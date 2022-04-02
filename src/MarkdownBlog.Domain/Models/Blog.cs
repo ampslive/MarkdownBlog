@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MarkdownBlog.Domain.Contracts;
 
 namespace MarkdownBlog.Domain.Models
 {
@@ -10,6 +6,6 @@ namespace MarkdownBlog.Domain.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<Post> Posts { get; set; }
+        public List<IPost> Posts { get; set; }
     }
 }

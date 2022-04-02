@@ -2,10 +2,10 @@ using Xunit;
 
 namespace MarkdownBlog.Tests
 {
-    public class UnitTest1
+    public class BlogTest
     {
         [Fact]
-        public void Test1()
+        public void Blog_CreateNew_Success()
         {
 
         }
