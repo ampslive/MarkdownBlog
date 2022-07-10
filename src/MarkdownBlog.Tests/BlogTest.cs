@@ -1,3 +1,4 @@
+using MarkdownBlog.Infra;
 using Xunit;
 
 namespace MarkdownBlog.Tests
@@ -7,7 +8,6 @@ namespace MarkdownBlog.Tests
         [Fact]
         public void Blog_CreateNew_Success()
         {
-
         }
     }
 }
