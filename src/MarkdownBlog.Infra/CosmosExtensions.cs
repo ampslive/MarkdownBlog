@@ -4,57 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 
 namespace MarkdownBlog.Infra;
-public class CosmosHelper
-{
-    //https://docs.microsoft.com/en-us/learn/modules/use-azure-cosmos-db-sql-api-sdk/4-connect-to-online-account
-    private readonly string endpoint;
-    private readonly string key;
-    private string dbName;
-    private CosmosClient client;
-    private Database db;
-    private Dictionary<String, String> tables;
 
-    public CosmosHelper(string databaseName, CosmosClient cosmosClient)
-    {
-        tables = new Dictionary<string, string> {
-            { "Blogs", "id" },
-            //{ "Users", "email" }
-        };
-        dbName = databaseName;
-    }
-
-    public async Task<Database> CreateDatabaseAsync(string name)
-    {
-        dbName = name;
-        return await client.CreateDatabaseIfNotExistsAsync(dbName);
-    }
-
-    public async Task CreateContainerAsync(string containerName)
-    {
-        if (db is null)
-            db = client.GetDatabase(dbName);
-
-        foreach (var t in tables)
-            await db.CreateContainerIfNotExistsAsync(t.Key, $"/{t.Value}");
-    }
-
-    
-}
-
-
-
+//https://docs.microsoft.com/en-us/learn/modules/use-azure-cosmos-db-sql-api-sdk/4-connect-to-online-account
 
 /*
-
-
-
-
-
-
 // insert data
 
 // read data
-
 
 /*
     - QueryDefinition query = new ("SELECT * FROM products p");
@@ -81,21 +37,21 @@ public class CosmosHelper
             }
  */
 
-
-
-
 public static class CosmosExtensions
 {
-    public static IServiceCollection AddCosmosStore(this IServiceCollection services, string dbName, CosmosClient cosmosClient)
+    public static IServiceCollection CreateDB(this IServiceCollection services, string dbName, CosmosClient cosmosClient)
     {
         // register your services here
         cosmosClient.CreateDatabaseIfNotExistsAsync(dbName).Wait();
         return services;
     }
 
-    public static IServiceCollection AddCosmosStoreTwo(this IServiceCollection services, string dbName, CosmosClient cosmosClient)
+    public static IServiceCollection CreateContainer(this IServiceCollection services, string dbName, Dictionary<String, String> containerCollection, CosmosClient cosmosClient)
     {
-        // register your services here
+        var db = cosmosClient.GetDatabase(dbName);
+
+        foreach (var t in containerCollection)
+            db.CreateContainerIfNotExistsAsync(t.Key, $"/{t.Value}").Wait();
 
         return services;
     }

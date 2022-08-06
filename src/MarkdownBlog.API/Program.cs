@@ -18,7 +18,14 @@ builder.Services.AddSingleton<CosmosClient>(new CosmosClient(
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 
-builder.Services.AddCosmosStore("Sample1", serviceProvider.GetService<CosmosClient>());
+var containerList = new Dictionary<string, string> { 
+    { "Blogs", "id" }, 
+};
+
+var dbName = builder.Configuration.GetSection("CosmosConnection:DbName").Value;
+
+builder.Services.CreateDB(dbName, serviceProvider.GetService<CosmosClient>())
+                .CreateContainer(dbName, containerList, serviceProvider.GetService<CosmosClient>());
 
 var app = builder.Build();
 
