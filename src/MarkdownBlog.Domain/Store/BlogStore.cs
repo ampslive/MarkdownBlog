@@ -1,4 +1,5 @@
 ﻿using MarkdownBlog.Domain.Models;
+using MarkdownBlog.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace MarkdownBlog.Domain.Store
 {
     public class BlogStore
     {
-        public BlogStore()
+        private readonly BlogRepo blogRepo;
+        public BlogStore(BlogRepo repo)
         {
-
+            blogRepo = repo;
         }
 
         public async Task<Blog> Add(Blog blog)
         {
-            throw new NotImplementedException();
+            return await blogRepo.Create(blog);
         }
     }
 }

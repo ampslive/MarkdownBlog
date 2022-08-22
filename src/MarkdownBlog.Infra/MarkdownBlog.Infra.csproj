@@ -16,4 +16,8 @@
     <Folder Include="Contracts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MarkdownBlog.Domain\MarkdownBlog.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

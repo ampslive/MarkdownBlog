@@ -1,8 +1,18 @@
 ﻿namespace MarkdownBlog.Domain.Contracts;
+
 public abstract class BaseRepo<T> : IRepository<T>
 {
-    public virtual T Create(T entity)
+    public abstract string TableName { get; set; }
+
+    private readonly IDatabaseHelper dbHelper;
+
+    public BaseRepo(IDatabaseHelper helper)
     {
-        throw new NotImplementedException();
+        dbHelper = helper;
+    }
+
+    public virtual async Task<T> Create(T entity)
+    {
+        return await dbHelper.CreateAsync(entity, this.TableName);
     }
 }

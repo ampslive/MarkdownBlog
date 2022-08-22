@@ -8,7 +8,7 @@ namespace MarkdownBlog.Domain.Contracts
 {
     public interface IRepository<T>
     {
-        T Create(T entity);
+        Task<T> Create(T entity);
         //void Delete(object id);
         //T Update(object id);
     }
