@@ -8,7 +8,7 @@ namespace MarkdownBlog.Domain.Contracts;
 
 public interface IDatabaseHelper
 {
-    Task<T> CreateAsync<T>(T obj, string tableName);
-    void GetAsync<T>();
+    Task<T> CreateAsync<T>(T obj, string tableName, string partitionKey);
+    Task<T> GetAsync<T>(string id, string tableName, string partitionKey);
     void QueryAsync<T>();
 }

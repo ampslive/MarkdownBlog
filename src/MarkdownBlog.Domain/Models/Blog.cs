@@ -1,14 +1,10 @@
 ﻿using MarkdownBlog.Domain.Contracts;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
-namespace MarkdownBlog.Domain.Models
+namespace MarkdownBlog.Domain.Models;
+
+public class Blog
 {
-    public class Blog
-    {
-        //[JsonProperty(PropertyName = "id")]
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public List<IPost> Posts { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public List<IPost> Posts { get; set; }
 }

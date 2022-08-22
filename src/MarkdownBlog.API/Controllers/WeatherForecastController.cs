@@ -25,11 +25,14 @@ namespace MarkdownBlog.API.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var result = await blogStore.Add(new Domain.Models.Blog
+            var blog = new Domain.Models.Blog
             {
                 Id = Guid.NewGuid(),
                 Name = $"Blog Title {Guid.NewGuid()}"
-            });
+            };
+
+            var result = await blogStore.Add(blog);
+            var result2 = await blogStore.Get(blog.Id.ToString());
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

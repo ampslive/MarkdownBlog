@@ -20,5 +20,10 @@ namespace MarkdownBlog.Domain.Store
         {
             return await blogRepo.Create(blog);
         }
+
+        public async Task<Blog> Get(string id)
+        {
+            return await blogRepo.Get(id);
+        }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using MarkdownBlog.Domain.Contracts;
 using Microsoft.Azure.Cosmos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace MarkdownBlog.Infra;
 
@@ -20,18 +14,18 @@ public class CosmosHelper : IDatabaseHelper
         db = cosmosClient.GetDatabase(cosmosConfig.DatabaseName);
     }
 
-    public async Task<T> CreateAsync<T>(T obj, string containerName)
+    public async Task<T> CreateAsync<T>(T obj, string containerName, string partitionKey)
     {
         var container = db.GetContainer(containerName);
-        return await container.CreateItemAsync(obj);
+        return await container.UpsertItemAsync(obj);
     }
 
-    public async void GetAsync<T>()
+    public async Task<T> GetAsync<T>(string id, string containerName, string partitionKey)
     {
-        string id = "[id]";
-        string accountNumber = "[partition-key]";
-        var container = db.GetContainer("testcontainer");
-        //ItemResponse<T> response = await container.ReadItemAsync(id, new PartitionKey(accountNumber));
+        var container = db.GetContainer(containerName);
+        ItemResponse<T> response = await container.ReadItemAsync<T>(id, new PartitionKey(id));
+
+        return response.Resource;
     }
 
     public async void QueryAsync<T>()
