@@ -17,13 +17,13 @@ public class CosmosHelper : IDatabaseHelper
     public async Task<T> CreateAsync<T>(T obj, string containerName, string partitionKey)
     {
         var container = db.GetContainer(containerName);
-        return await container.UpsertItemAsync(obj);
+        return await container.UpsertItemAsync(obj, new PartitionKey(partitionKey));
     }
 
     public async Task<T> GetAsync<T>(string id, string containerName, string partitionKey)
     {
         var container = db.GetContainer(containerName);
-        ItemResponse<T> response = await container.ReadItemAsync<T>(id, new PartitionKey(id));
+        ItemResponse<T> response = await container.ReadItemAsync<T>(id, new PartitionKey(partitionKey));
 
         return response.Resource;
     }

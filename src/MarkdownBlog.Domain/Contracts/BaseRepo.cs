@@ -1,9 +1,10 @@
-﻿namespace MarkdownBlog.Domain.Contracts;
+﻿using System.Collections.Concurrent;
 
-public abstract class BaseRepo<T> : IRepository<T>
+namespace MarkdownBlog.Domain.Contracts;
+
+public abstract class BaseRepo<T> : IRepository<T> where T : BaseModel
 {
     public abstract string TableName { get; set; }
-    public abstract string PartitionKey { get; set; }
 
     private readonly IDatabaseHelper dbHelper;
 
@@ -12,13 +13,19 @@ public abstract class BaseRepo<T> : IRepository<T>
         dbHelper = helper;
     }
 
-    public virtual async Task<T> Create(T entity)
+    public virtual async Task<T> Create(T entity, string partitionKey = null)
     {
-        return await dbHelper.CreateAsync(entity, this.TableName, this.PartitionKey);
+        if (partitionKey == null)
+            partitionKey = entity.Id.ToString();
+
+        return await dbHelper.CreateAsync(entity, this.TableName, partitionKey);
     }
 
-    public virtual async Task<T> Get(string id)
+    public virtual async Task<T> Get(string id, string partitionKey = null)
     {
-        return await dbHelper.GetAsync<T>(id, this.TableName, this.PartitionKey);
+        if (partitionKey == null)
+            partitionKey = id;
+
+        return await dbHelper.GetAsync<T>(id, this.TableName, partitionKey);
     }
 }

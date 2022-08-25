@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace MarkdownBlog.Domain.Contracts
 {
     public interface IRepository<T>
     {
-        Task<T> Create(T entity);
-        Task<T> Get(string id);
+        Task<T> Create(T entity, string partitionKey = null);
+        Task<T> Get(string id, string partitionKey = null);
         //void Delete(object id);
         //T Update(object id);
     }

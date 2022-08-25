@@ -10,7 +10,6 @@ namespace MarkdownBlog.Domain.Repositories
 {
     public class BlogRepo : BaseRepo<Blog>
     {
-        public override string PartitionKey { get; set; } = "id";
         public override string TableName { get; set; } = "blog";
 
         private readonly IDatabaseHelper dbHelper;
