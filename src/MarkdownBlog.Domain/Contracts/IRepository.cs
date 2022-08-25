@@ -9,8 +9,8 @@ namespace MarkdownBlog.Domain.Contracts
 {
     public interface IRepository<T>
     {
-        Task<T> Create(T entity, string partitionKey = null);
-        Task<T> Get(string id, string partitionKey = null);
+        Task<T> Create(T entity, string? partitionKey = null);
+        Task<T> Get(string id, string? partitionKey = null);
         //void Delete(object id);
         //T Update(object id);
     }
