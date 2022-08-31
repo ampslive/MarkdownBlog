@@ -31,7 +31,7 @@ namespace MarkdownBlog.API.Controllers
                 Name = $"Blog Title {Guid.NewGuid()}"
             };
 
-            var result = await blogStore.Add(blog);
+            //var result = await blogStore.Add(blog);
             var result2 = await blogStore.GetBlogByTitle(blog.Name);
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

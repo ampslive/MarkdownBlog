@@ -1,5 +1,7 @@
-﻿using MarkdownBlog.Domain.Contracts;
+﻿using Azure;
+using MarkdownBlog.Domain.Contracts;
 using Microsoft.Azure.Cosmos;
+using System.Net;
 
 namespace MarkdownBlog.Infra;
 
@@ -20,11 +22,14 @@ public class CosmosHelper : IDatabaseHelper
         return await container.UpsertItemAsync(obj, new PartitionKey(partitionKey));
     }
 
-    public async Task<T> GetAsync<T>(string id, string containerName, string partitionKey)
+    public async Task<T?> GetAsync<T>(string id, string containerName, string partitionKey)
     {
         var container = db.GetContainer(containerName);
         ItemResponse<T> response = await container.ReadItemAsync<T>(id, new PartitionKey(partitionKey));
-
+        
+        if(response.StatusCode == HttpStatusCode.NotFound)
+            return default;
+            
         return response.Resource;
     }
 
