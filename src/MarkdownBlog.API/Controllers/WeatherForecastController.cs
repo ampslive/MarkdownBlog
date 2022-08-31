@@ -32,7 +32,7 @@ namespace MarkdownBlog.API.Controllers
             };
 
             var result = await blogStore.Add(blog);
-            var result2 = await blogStore.Get(blog.Id.ToString());
+            var result2 = await blogStore.GetBlogByTitle(blog.Name.ToString());
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

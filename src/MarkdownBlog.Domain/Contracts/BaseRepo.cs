@@ -28,4 +28,9 @@ public abstract class BaseRepo<T> : IRepository<T> where T : BaseModel
 
         return await dbHelper.GetAsync<T>(id, this.TableName, partitionKey);
     }
+
+    public virtual async Task<List<T>> Search(string inputQuery, string[] parameters)
+    {
+        return await dbHelper.QueryAsync<T>(inputQuery, this.TableName, parameters);
+    }
 }

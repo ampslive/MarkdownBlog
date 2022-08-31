@@ -17,5 +17,14 @@ namespace MarkdownBlog.Domain.Repositories
         public BlogRepo(IDatabaseHelper helper) : base(helper)
         {
         }
+
+        public Task<List<Blog>> GetBlogByTitle(string title)
+        {
+            string query = @"SELECT * FROM blog c where c.name Like @p0";
+
+            var parameters = new List<String>() { $"{title}%" };
+
+            return this.Search(query, parameters.ToArray());
+        }
     }
 }

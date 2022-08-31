@@ -28,19 +28,31 @@ public class CosmosHelper : IDatabaseHelper
         return response.Resource;
     }
 
-    public async void QueryAsync<T>()
+    public async Task<List<T>> QueryAsync<T>(string inputQuery, string containerName, string[] parameters)
     {
+        /*
         QueryDefinition query = new QueryDefinition(
     "select * from sales s where s.AccountNumber = @AccountInput ")
     .WithParameter("@AccountInput", "Account1");
+        */
+        List<T> result = new();
 
-        var container = db.GetContainer("testcontainer");
-        FeedIterator<T> resultSet = container.GetItemQueryIterator<T>(
-            query,
-            requestOptions: new QueryRequestOptions()
+        QueryDefinition query = new QueryDefinition(inputQuery);
+
+        for (int i = 0; i <= parameters.Length - 1; i++)
+            query.WithParameter($"@p{i}", parameters[i]);
+
+        var container = db.GetContainer(containerName);
+
+        using (FeedIterator<T> feedIterator = container.GetItemQueryIterator<T>(query, null, new QueryRequestOptions()))
+        {
+            while (feedIterator.HasMoreResults)
             {
-                PartitionKey = new PartitionKey("Account1"),
-                MaxItemCount = 1
-            });
+                foreach (T item in await feedIterator.ReadNextAsync())
+                    result.Add(item);
+            }
+        }
+
+        return result;
     }
 }
