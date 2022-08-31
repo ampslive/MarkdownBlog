@@ -26,7 +26,8 @@ builder.Services.AddSingleton<CosmosClient>(new CosmosClient(
     {
         SerializerOptions = new CosmosSerializationOptions()
         {
-            PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+            PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase,
+            IgnoreNullValues = true
         }
     }
     ));
