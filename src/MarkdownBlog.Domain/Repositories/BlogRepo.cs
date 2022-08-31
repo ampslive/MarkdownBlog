@@ -20,11 +20,11 @@ namespace MarkdownBlog.Domain.Repositories
 
         public Task<List<Blog>> GetBlogByTitle(string title)
         {
-            string query = @"SELECT * FROM blog c where c.name Like @p0";
+            string query = @"SELECT * FROM c where c.name Like @p0";
 
-            var parameters = new List<String>() { $"{title}%" };
+            string[] parameters = { $"{title}%" };
 
-            return this.Search(query, parameters.ToArray());
+            return this.Search(query, parameters);
         }
     }
 }

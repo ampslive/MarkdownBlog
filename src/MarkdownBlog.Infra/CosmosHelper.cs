@@ -30,11 +30,6 @@ public class CosmosHelper : IDatabaseHelper
 
     public async Task<List<T>> QueryAsync<T>(string inputQuery, string containerName, string[] parameters)
     {
-        /*
-        QueryDefinition query = new QueryDefinition(
-    "select * from sales s where s.AccountNumber = @AccountInput ")
-    .WithParameter("@AccountInput", "Account1");
-        */
         List<T> result = new();
 
         QueryDefinition query = new QueryDefinition(inputQuery);
