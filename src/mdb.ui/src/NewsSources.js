@@ -10,7 +10,7 @@ class NewsSources extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://api.icndb.com/jokes`)
+        fetch(`https://api.icndb.com/jokes`)
             .then(result => result.json())
             .then(jokes => this.setState({ jokes : jokes.value.filter(function (joke) {
                 return !joke.categories.includes('explicit');
