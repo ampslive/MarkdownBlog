@@ -8,7 +8,8 @@ function App() {
     <div className="App">
       <TopNav title="Markdown Blog" />
       <Blog />
-      {/* <NewsSources /> */}
+      <hr/>
+      <NewsSources />
     </div>
   );
 }
