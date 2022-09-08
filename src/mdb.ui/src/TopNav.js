@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function TopNav(props) {
     return (
-        <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
+        <Navbar bg="dark" variant="dark" expand="sm" sticky="top">
             <Container>
                 <Navbar.Brand href="/">{props.title}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
