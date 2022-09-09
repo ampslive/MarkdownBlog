@@ -9,7 +9,7 @@ function Blog() {
     useEffect(() => {
         setBlog(BlogData.blogs);
         console.log(blogs)
-    })
+    }, [blogs])
 
     return (
         <div>
