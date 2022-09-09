@@ -1,32 +1,29 @@
 import React from 'react'
 import BlogData from './blogsData.json'
+import { useState, useEffect } from 'react'
 
-class Blog extends React.Component {
-    constructor() {
-        super();
-        this.state = { blogs: [] };
-    }
+function Blog() {
 
-    componentDidMount() {
-        console.log(BlogData);
-        this.setState({ blogs: BlogData.blogs });
-    }
+    const [blogs, setBlog] = useState([]);
 
-    render() {
-        return (
-            <div>
-                <h1>Blog Section</h1>
-                {
-                    this.state.blogs.map((blog) =>
-                        <div key={blog.Id}>
-                            <h3>{blog.title}</h3>
-                            <p>{blog.posts[0].title}</p>
-                        </div>
+    useEffect(() => {
+        setBlog(BlogData.blogs);
+        console.log(blogs)
+    })
 
-                    )}
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h1>Blog Section</h1>
+            {
+                blogs.map((blog) =>
+                    <div key={blog.Id}>
+                        <h3>{blog.title}</h3>
+                        <p>{blog.posts[0].title}</p>
+                    </div>
+                )
+            }
+        </div>
+    );
 }
 
 export default Blog;
