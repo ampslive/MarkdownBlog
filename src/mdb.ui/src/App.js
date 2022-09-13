@@ -2,7 +2,7 @@ import './App.css';
 import TopNav from './TopNav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NewsSources from './NewsSources'
-import Blog from './Blog'
+import Blog from './pages/blog'
 
 function App() {
   return (

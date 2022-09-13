@@ -1,6 +1,6 @@
 import React from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
-import { GetApi } from './ApiHelper'
+import { GetApi } from './common/ApiHelper'
 
 class NewsSources extends React.Component {
 
