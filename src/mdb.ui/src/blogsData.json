@@ -1,0 +1,29 @@
+{
+    "count" : 1,
+    "blogs" : [
+        {
+            "id" : 1,
+            "title" : "Blog Series",
+            "description" : "This is a Blog Series",
+            "posts" : [
+                {
+                    "title" : "First Post Title",
+                    "description" : "Subtext",
+                    "body" : "This is my first blog post."
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "title" : "Blog Series 2",
+            "description" : "This is a Blog Series 2",
+            "posts" : [
+                {
+                    "title" : "First Post Title",
+                    "description" : "Subtext",
+                    "body" : "This is my first blog post."
+                }
+            ]
+        }
+    ]
+}
