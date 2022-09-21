@@ -1,28 +1,37 @@
 import React from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
+import Image from 'react-bootstrap/Image'
+import Card from 'react-bootstrap/Card';
 
 function Blog() {
 
-    const [blogs, setBlog] = useState([]);
+    const [blogPosts, setPosts] = useState([]);
 
     useEffect(() => {
-        setBlog(BlogData.blogs);
-        console.log(blogs)
-    }, [blogs])
+        var data = [];
+
+        //fetch posts from all the blogs
+        BlogData.blogs.map(x => x.posts.map(y => data.push(y)));
+
+        //order posts by date descending
+        data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
+
+        setPosts(data);
+    }, [])
 
     return (
-        <div>
-            <h1>Blog Section</h1>
-            {
-                blogs.map((blog) =>
-                    <div key={blog.Id}>
-                        <h3>{blog.title}</h3>
-                        <p>{blog.posts[0].title}</p>
-                    </div>
-                )
-            }
-        </div>
+
+        blogPosts &&
+        blogPosts.map((post) =>
+            <Card key={post.id}>
+                <Card.Img variant="top" src={post.bannerUri} />
+                <Card.Body >
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>{post.body}</Card.Text>
+                </Card.Body>
+            </Card>
+        )
     );
 }
 

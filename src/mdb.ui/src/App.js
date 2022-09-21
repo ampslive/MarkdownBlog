@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <Router>
         <TopNav title="Markdown Blog" />
-        <br />
         <div className="content">
           <Routes>
             <Route path="/" element={<Blog />} />
