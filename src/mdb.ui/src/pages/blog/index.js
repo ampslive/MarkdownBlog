@@ -2,6 +2,7 @@ import React from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 
 function Blog() {
 
@@ -19,17 +20,39 @@ function Blog() {
         setPosts(data);
     }, [])
 
+    function ConvertToDate(dt) {
+        var date = new Date(dt);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+        return date.toLocaleDateString('en-US', options)
+    }
+
     return (
 
         blogPosts &&
         blogPosts.map((post) =>
-            <Card key={post.id}>
-                <Card.Img variant="top" src={post.bannerUri} />
-                <Card.Body >
-                    <Card.Title>{post.title}</Card.Title>
-                    <Card.Text>{post.body}</Card.Text>
-                </Card.Body>
-            </Card>
+
+            <div >
+                <Row>
+                    <Image src={post.bannerUri} fluid />
+                </Row>
+                <Container>
+                    <Row>
+                        <h6>BLOG-NAME</h6>
+                    </Row>
+                    <Row>
+                        <h2>{post.title}</h2>
+                    </Row>
+                    <Row>
+                        <p>{post.author.name} |  {ConvertToDate(post.dateCreated)}</p>
+                    </Row>
+                    <Row xs={7}>
+                        <article>{post.body}</article>
+                    </Row>
+                </Container>
+            </div>
+
+
         )
     );
 }
