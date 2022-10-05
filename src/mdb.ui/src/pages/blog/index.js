@@ -1,8 +1,7 @@
 import React from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
-import Card from 'react-bootstrap/Card';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Image } from 'react-bootstrap';
 
 function Blog() {
 
