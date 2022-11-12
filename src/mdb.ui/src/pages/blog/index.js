@@ -11,7 +11,9 @@ function Blog() {
         var data = [];
 
         //fetch posts from all the blogs
-        BlogData.blogs.map(x => x.posts.map(y => data.push(y)));
+        BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
+
+        //BlogData.blogs.map(x => x.posts.map(y => console.log(ConvertToPosts(x,y))));
 
         //order posts by date descending
         data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
@@ -26,6 +28,23 @@ function Blog() {
         return date.toLocaleDateString('en-US', options)
     }
 
+    function ConvertToPosts(blog, post) {
+        return {
+            id: post.id,
+            blogName: blog.title,
+            title: post.title,
+            bannerUri: post.bannerUri,
+            description: post.description,
+            body: post.body,
+            dateCreated: post.dateCreated,
+            author: {
+                id: post.author.id,
+                name: post.author.name,
+                imageUri: post.author.imageUri
+            }
+        }
+    }
+
     return (
 
         blogPosts &&
@@ -36,15 +55,17 @@ function Blog() {
                     <Image src={post.bannerUri} fluid />
                 </Row>
                 <Container>
-                    <Row>
-                        <h6>BLOG-NAME</h6>
-                    </Row>
-                    <Row>
-                        <h2>{post.title}</h2>
-                    </Row>
-                    <Row>
-                        <p>{post.author.name} |  {ConvertToDate(post.dateCreated)}</p>
-                    </Row>
+                    <div>
+                        <Row>
+                            <h6>{post.blogName.toUpperCase()}</h6>
+                        </Row>
+                        <Row>
+                            <h2>{post.title}</h2>
+                        </Row>
+                        <Row>
+                            <p>{post.author.name} |  {ConvertToDate(post.dateCreated)}</p>
+                        </Row>
+                    </div>
                     <Row xs={7}>
                         <article>{post.body}</article>
                     </Row>
