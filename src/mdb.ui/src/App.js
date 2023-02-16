@@ -3,7 +3,7 @@ import TopNav from './TopNav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NewsSources from './NewsSources'
 import Blog from './pages/blog'
-import Sample from './pages/sample/sampls';
+import Sample from './pages/sample/sample';
 
 function App() {
   return (
