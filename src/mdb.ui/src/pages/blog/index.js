@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Container, Row, Image } from 'react-bootstrap';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 import remarkGfm from 'remark-gfm'
-import Samplemd from '../blog/sample.md'
 
 function Blog() {
 
@@ -67,11 +66,11 @@ function Blog() {
         blogPosts.map((post) =>
 
             <div >
-                <Row>
+                {/* <Row>
                     <Image src={post.bannerUri} fluid />
-                </Row>
-                <Container>
-                    <div>
+                </Row> */}
+                {/* <Container> */}
+                    {/* <div>
                         <Row>
                             <h6>{post.blogName.toUpperCase()}</h6>
                         </Row>
@@ -87,8 +86,21 @@ function Blog() {
                     </div>
                     <Row xs={7}>
                         <article>{post.body}</article>
-                    </Row>
-                </Container>
+                    </Row> */}
+
+                    <div class="row row-cols-3">
+  <div class="col">
+    <div class="card">
+      <img src={post.bannerUri} class="card-img-top" alt="Image 1" />
+      <div class="card-body">
+        <h5 class="card-title">{post.title}</h5>
+        <p class="card-text">Some text about image 1</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+                {/* </Container> */}
             </div> 
 
 

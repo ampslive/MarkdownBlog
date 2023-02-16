@@ -3,6 +3,7 @@ import TopNav from './TopNav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NewsSources from './NewsSources'
 import Blog from './pages/blog'
+import Sample from './pages/sample/sampls';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<Blog />} />
             <Route path="/news" element={<NewsSources />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/sample" element={<Sample />} />
           </Routes>
         </div>
       </Router>
