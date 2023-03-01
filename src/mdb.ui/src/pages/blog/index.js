@@ -61,7 +61,7 @@ function Blog() {
 
     return (
         <Fragment>
-            <div class="border border-warning p-5">
+            <div class="p-5 bg-dark">
                 <Jumbotron />
             </div>
             <div class="container">
