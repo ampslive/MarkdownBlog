@@ -1,19 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
-import { Container, Row, Image } from 'react-bootstrap';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 import remarkGfm from 'remark-gfm'
 import PostPreview from '../../components/postPreview';
+import './style.css'
+import Jumbotron from '../../components/jumbotron'
 
 function Blog() {
 
     const [blogPosts, setPosts] = useState([]);
+    const [heroPost, setHero] = useState([]);
     const [mdpost, setMdPost] = useState([]);
-
-    const markdown = "### LinkedList";
-
-
 
     //remarkPlugins={[remarkGfm]}
 
@@ -28,10 +26,10 @@ function Blog() {
         //fetch posts from all the blogs
         BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
 
-        //BlogData.blogs.map(x => x.posts.map(y => console.log(ConvertToPosts(x,y))));
-
         //order posts by date descending
         data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
+
+        //setHero(data[0]);
 
         setPosts(data);
 
@@ -62,18 +60,23 @@ function Blog() {
     }
 
     return (
-        <div class="container">
-            <div class="row">
-                {
-                    blogPosts &&
-                    blogPosts.map((post) =>
-                        <div class="col-sm-4 my-4">
-                            <PostPreview image={post.bannerUri} title={post.title} description={post.description} />
-                        </div>
-                    )
-                }
+        <Fragment>
+            <div class="border border-warning p-5">
+                <Jumbotron />
             </div>
-        </div>
+            <div class="container">
+                <div class="row">
+                    {
+                        blogPosts &&
+                        blogPosts.map((post) =>
+                            <div class="col-sm-4 my-4" key={post.id}>
+                                <PostPreview image={post.bannerUri} title={post.title} description={post.description} />
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </Fragment>
     );
 }
 
