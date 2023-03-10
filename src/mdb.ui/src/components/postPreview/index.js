@@ -4,7 +4,7 @@ function PostPreview(props) {
     return (
         <Fragment>
             <div class="card">
-                <img src={props.image} class="card-img-top" alt="Image 1" />
+                <img src={props.image} class="card-img-top" alt="Post Banner" />
                 <div class="card-body">
                     <a class="nav-link card-title" href="/news"><h5>{props.title}</h5></a>
                     <p class="card-text">{props.description}</p>

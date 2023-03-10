@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
 //import ReactMarkdown from 'https://esm.sh/react-markdown@7'
-import remarkGfm from 'remark-gfm'
+//import remarkGfm from 'remark-gfm'
 import PostPreview from '../../components/postPreview';
 import './style.css'
 import Jumbotron from '../../components/jumbotron'
@@ -10,8 +10,8 @@ import Jumbotron from '../../components/jumbotron'
 function Blog() {
 
     const [blogPosts, setPosts] = useState([]);
-    const [heroPost, setHero] = useState([]);
-    const [mdpost, setMdPost] = useState([]);
+    //const [heroPost, setHero] = useState([]);
+    //const [mdpost, setMdPost] = useState([]);
 
     //remarkPlugins={[remarkGfm]}
 
@@ -35,12 +35,12 @@ function Blog() {
 
     }, [])
 
-    function ConvertToDate(dt) {
-        var date = new Date(dt);
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    // function ConvertToDate(dt) {
+    //     var date = new Date(dt);
+    //     const options = { year: 'numeric', month: 'short', day: 'numeric' };
 
-        return date.toLocaleDateString('en-US', options)
-    }
+    //     return date.toLocaleDateString('en-US', options)
+    // }
 
     function ConvertToPosts(blog, post) {
         return {

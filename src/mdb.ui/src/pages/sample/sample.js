@@ -16,7 +16,7 @@ function Sample(props) {
                     <hr class="my-4" />
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                        <button class="btn btn-primary btn-lg">Learn more</button>
                     </p>
                 </div>
             </div>
@@ -25,7 +25,7 @@ function Sample(props) {
                 <div class="row">
                     <div class="col-sm-4 my-4">
                         <div class="card">
-                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Image 1" />
+                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Post Banner" />
                             <div class="card-body">
                                 <a class="nav-link card-title" href="/news"><h5>Title 1</h5></a>
                                 <p class="card-text">Some text about image 1</p>
@@ -34,27 +34,27 @@ function Sample(props) {
                     </div>
                     <div class="col-sm-4  my-4">
                         <div class="card">
-                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Image 1" />
+                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Post Banner" />
                             <div class="card-body">
-                                <a class="nav-link card-title" href="#"><h5>Title 1</h5></a>
+                                <a class="nav-link card-title" href="/news"><h5>Title 1</h5></a>
                                 <p class="card-text">Some text about image 1</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4  my-4">
                         <div class="card">
-                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Image 1" />
+                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Post Banner" />
                             <div class="card-body">
-                                <a class="nav-link card-title" href="#"><h5>Title 1</h5></a>
+                                <a class="nav-link card-title" href="/news"><h5>Title 1</h5></a>
                                 <p class="card-text">Some text about image 1</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4  my-4">
                         <div class="card">
-                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Image 1" />
+                            <img src="https://picsum.photos/300/100" class="card-img-top" alt="Post Banner" />
                             <div class="card-body">
-                                <a class="nav-link card-title" href="#"><h5>Title 1</h5></a>
+                                <a class="nav-link card-title" href="/news"><h5>Title 1</h5></a>
                                 <p class="card-text">Some text about image 1</p>
                             </div>
                         </div>
