@@ -21,7 +21,7 @@ function Blog() {
         fetch('https://raw.githubusercontent.com/ampslive/DSA/main/DS/1-LinkedList/LinkedList.md')
             .then(response => response.text())
             //setMdPost(response);
-            .then(data => setMdPost(data));
+            //.then(data => setMdPost(data));
 
         //fetch posts from all the blogs
         BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
