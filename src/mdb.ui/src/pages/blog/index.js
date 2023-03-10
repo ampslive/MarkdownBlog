@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import BlogData from '../../blogsData.json'
 import { useState, useEffect } from 'react'
-import ReactMarkdown from 'https://esm.sh/react-markdown@7'
+//import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 import remarkGfm from 'remark-gfm'
 import PostPreview from '../../components/postPreview';
 import './style.css'
