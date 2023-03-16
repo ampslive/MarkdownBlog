@@ -70,7 +70,7 @@ function Blog() {
                         blogPosts &&
                         blogPosts.map((post) =>
                             <div class="col-sm-4 my-4" key={post.id}>
-                                <PostPreview image={post.bannerUri} title={post.title} description={post.description} />
+                                <PostPreview image={post.bannerUri} title={post.title} description={post.description} author={post.author} />
                             </div>
                         )
                     }
