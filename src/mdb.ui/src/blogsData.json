@@ -16,7 +16,7 @@
                     "author" : {
                         "id" : 1,
                         "name" : "Amit Philips",
-                        "imageUri" : "imageUri"
+                        "imageUri" : "https://i.pravatar.cc/40?img=1"
                     }
                 },
                 {
@@ -29,7 +29,7 @@
                     "author" : {
                         "id" : 1,
                         "name" : "Amit Philips",
-                        "imageUri" : "imageUri"
+                        "imageUri" : "https://i.pravatar.cc/40?img=1"
                     }
                 }
             ]
@@ -49,7 +49,7 @@
                     "author" : {
                         "id" : 1,
                         "name" : "Amit Philips",
-                        "imageUri" : "imageUri"
+                        "imageUri" : "https://i.pravatar.cc/40?img=1"
                     }
                 }
             ]
