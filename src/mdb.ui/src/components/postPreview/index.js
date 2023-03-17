@@ -24,3 +24,5 @@ function PostPreview(props) {
         </Fragment>
     );
 } 
+
+export default PostPreview;
