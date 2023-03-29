@@ -1,18 +1,24 @@
 import React from 'react'
-import { Container, Row, Image } from 'react-bootstrap';
-import { useState, useEffect } from 'react'
+//import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 
 function Post(props) {
 
+    /*
     const [post, setPost] = useState([]);
 
     useEffect(() => {
         var data = props.post;
         setPost(data);
     }, [])
+    */
+
+    let { id } = useParams();
 
     return (
 
+        <div>Post Id: {id}</div>
+        /*
         post &&
         (
             <div >
@@ -40,6 +46,7 @@ function Post(props) {
                 </Container>
             </div> 
         )
+        */
     );
 }
 
