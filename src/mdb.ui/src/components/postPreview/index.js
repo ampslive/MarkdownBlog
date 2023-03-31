@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 function PostPreview(props) {
 
-    const postUri = `/post/${props.post.id}`;
+    const postTitle = props.post.title.trim().toLowerCase().replace(/\s/g, "-");
+    const postUri = `/post/${props.post.id}/` + postTitle;
 
     return (
         <Fragment>

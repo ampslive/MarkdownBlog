@@ -17,7 +17,7 @@ function App() {
             <Route path="/news" element={<NewsSources />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/sample" element={<Sample />} />
-            <Route path="/post/:id" element={<Post />} />
+            <Route path="/post/:id/:title" element={<Post />} />
           </Routes>
         </div>
       </Router>
