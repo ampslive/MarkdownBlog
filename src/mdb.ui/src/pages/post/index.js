@@ -28,9 +28,9 @@ function Post(props) {
 
         var data = [];
         BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
-        let filteredPost = data.filter(function (x) { return x.id === id; });
+        let filteredPost = data.filter(function (x) { return x.id == id; });
         setPost(filteredPost[0]);
-    }, [id])
+    }, [])
 
     function ConvertToPosts(blog, post) {
         return {
