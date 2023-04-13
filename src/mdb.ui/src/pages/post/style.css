@@ -1,0 +1,16 @@
+.postBanner {
+    object-fit: cover;
+    width: 100%;
+}
+
+.mainContent {
+    background-color: white;
+    border-radius: 4px 4px 0 0;
+
+}
+
+.author-image {
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}

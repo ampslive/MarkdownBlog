@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import './style.css'
 import BlogData from '../../blogsData.json'
 
 function Post(props) {
@@ -55,14 +56,17 @@ function Post(props) {
     return (
         <Fragment>
             {blogPost && (
-                <div class="container">
+                <div class="container mainContent">
                     <div class="row">
-                        <div class="col-md-11 my-4 borderRed">
-                            <div>{blogPost.title}</div>
-                            <div>{blogPost.author.name}</div>
-                            <div>{blogPost.dateCreated}</div>
-                            <div>{blogPost.bannerUri}</div>
-                            <div>{blogPost.body}</div>
+                        <div class="col-md-12 my-4 p-3 post">
+                            <h2 class="text-center">{blogPost.title}</h2>
+                            <div class="my-3">
+                                <div class="d-flex justify-content-center"><img src={blogPost.author.imageUri} alt="author" class="author-image" /></div>
+                                <div class="text-center"><p class="fw-semibold">{blogPost.author.name}</p></div>
+                            </div>
+                            <div class="text-center m-2"><p class="fw-light">{blogPost.dateCreated + '  |  ' + blogPost.blogName}</p></div>
+                            <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
+                            <div class="p-4"><p class="text-justify lh-base">{blogPost.body}</p></div>
                         </div>
                     </div>
                 </div>
