@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import './style.css'
 import BlogData from '../../blogsData.json'
+import ReactMarkdown from 'react-markdown';
 
 function Post(props) {
 
@@ -22,10 +23,17 @@ function Post(props) {
     };
 
     const [blogPost, setPost] = useState(defaultPost);
+    const [sampleMd, setSampleMd] = useState(defaultPost);
     let { id } = useParams();
 
 
     useEffect(() => {
+
+        fetch('../../md-posts/sample.md')
+            .then((response) => response.text())
+            .then((text) => {
+                setSampleMd(text);
+            });
 
         var data = [];
         BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
@@ -67,6 +75,7 @@ function Post(props) {
                             <div class="text-center m-2"><p class="fw-light">{blogPost.dateCreated + '  |  ' + blogPost.blogName}</p></div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
                             <div class="p-4"><p class="text-justify lh-base">{blogPost.body}</p></div>
+                            <div class="p-4"><p class="text-justify lh-base"><ReactMarkdown children={sampleMd} /></p></div>
                         </div>
                     </div>
                 </div>
