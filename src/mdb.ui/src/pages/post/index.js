@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import './style.css'
 import BlogData from '../../blogsData.json'
 import ReactMarkdown from 'react-markdown';
+import { formatDate } from '../../utils'
 
 function Post(props) {
 
@@ -72,7 +73,7 @@ function Post(props) {
                                 <div class="d-flex justify-content-center"><img src={blogPost.author.imageUri} alt="author" class="author-image" /></div>
                                 <div class="text-center"><p class="fw-semibold">{blogPost.author.name}</p></div>
                             </div>
-                            <div class="text-center m-2"><p class="fw-light">{blogPost.dateCreated + '  |  ' + blogPost.blogName}</p></div>
+                            <div class="text-center m-2"><p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  ' + blogPost.blogName}</p></div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
                             <div class="p-4"><p class="text-justify lh-base">{blogPost.body}</p></div>
                             <div class="p-4"><p class="text-justify lh-base"><ReactMarkdown children={sampleMd} /></p></div>
