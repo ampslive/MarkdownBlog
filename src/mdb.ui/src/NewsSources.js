@@ -1,6 +1,6 @@
 import React from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
-import { GetApi } from './common/ApiHelper'
+import { getApiJson } from './common/ApiHelper'
 
 class NewsSources extends React.Component {
 
@@ -12,7 +12,7 @@ class NewsSources extends React.Component {
 
     componentDidMount() {
 
-        GetApi('https://api.icndb.com/jokes')
+        getApiJson('https://api.icndb.com/jokes')
             .then(jokes => this.setState({
                 jokes: jokes.value.filter(function (joke) {
                     return !joke.categories.includes('explicit');

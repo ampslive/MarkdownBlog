@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import './style.css'
 import BlogData from '../../blogsData.json'
 import ReactMarkdown from 'react-markdown';
-import { formatDate } from '../../utils'
+import { formatDate } from '../../common/Utils';
+import { getApiText } from '../../common/ApiHelper';
 
 function Post(props) {
 
@@ -30,8 +31,13 @@ function Post(props) {
 
     useEffect(() => {
 
-        fetch('../../md-posts/sample.md')
-            .then((response) => response.text())
+        // fetch('../../md-posts/sample.md')
+        //     .then((response) => response.text())
+        //     .then((text) => {
+        //         setSampleMd(text);
+        //     });
+
+        getApiText('../../md-posts/sample.md')
             .then((text) => {
                 setSampleMd(text);
             });
