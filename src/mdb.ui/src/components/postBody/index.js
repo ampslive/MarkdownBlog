@@ -20,11 +20,11 @@ function PostBody(props) {
 
     return (
         <Fragment>
-            <p class="text-justify lh-base">
+            <div class="text-justify lh-base">
             {
-                (contentType === 'embTxt') ? {body} : <ReactMarkdown children={postMd} />
+                (contentType === 'embTxt') ? <p>{body}</p> : <ReactMarkdown children={postMd} />
             }
-            </p>
+            </div>
         </Fragment>
     );
 }
