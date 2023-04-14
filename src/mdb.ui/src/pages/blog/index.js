@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import BlogData from '../../blogsData.json'
+import BlogData from '../../blogMaster.json'
 import { useState, useEffect } from 'react'
 //import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 //import remarkGfm from 'remark-gfm'

@@ -17,6 +17,10 @@
                         "id" : 1,
                         "name" : "Amit Philips",
                         "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
+                    },
+                    "meta" : {
+                        "contentType" : "embTxt",
+                        "contentLocation" : ""
                     }
                 },
                 {
@@ -30,6 +34,10 @@
                         "id" : 1,
                         "name" : "Amit Philips",
                         "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
+                    },
+                    "meta" : {
+                        "contentType" : "localMD",
+                        "contentLocation" : "../../md-posts/sample.md"
                     }
                 }
             ]
@@ -50,6 +58,10 @@
                         "id" : 1,
                         "name" : "Amit Philips",
                         "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
+                    },
+                    "meta" : {
+                        "contentType" : "extMD",
+                        "contentLocation" : "https://raw.githubusercontent.com/ampslive/DSA/main/DS/1-LinkedList/LinkedList.md"
                     }
                 }
             ]

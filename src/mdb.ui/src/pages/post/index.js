@@ -2,10 +2,9 @@ import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import './style.css'
-import BlogData from '../../blogsData.json'
-import ReactMarkdown from 'react-markdown';
+import BlogData from '../../blogMaster.json'
 import { formatDate } from '../../common/Utils';
-import { getApiText } from '../../common/ApiHelper';
+import PostBody from '../../components/postBody';
 
 function Post(props) {
 
@@ -21,27 +20,20 @@ function Post(props) {
             id: 1,
             name: "Amit Philips",
             imageUri: "https://i.pravatar.cc/40?img=1"
+        },
+        meta: {
+            body: "This is my third blog post.",
+            contentType: "localMD",
+            contentLocation: "../../md-posts/sample.md"
         }
     };
 
     const [blogPost, setPost] = useState(defaultPost);
-    const [sampleMd, setSampleMd] = useState(defaultPost);
+
     let { id } = useParams();
 
 
     useEffect(() => {
-
-        // fetch('../../md-posts/sample.md')
-        //     .then((response) => response.text())
-        //     .then((text) => {
-        //         setSampleMd(text);
-        //     });
-
-        getApiText('../../md-posts/sample.md')
-            .then((text) => {
-                setSampleMd(text);
-            });
-
         var data = [];
         BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
         let filteredPost = data.filter(function (x) { return x.id === id; });
@@ -55,7 +47,11 @@ function Post(props) {
             title: post.title,
             bannerUri: post.bannerUri,
             description: post.description,
-            body: post.body,
+            meta: {
+                body: post.body,
+                contentType: post.meta.contentType,
+                contentLocation: post.meta.contentLocation
+            },
             dateCreated: post.dateCreated,
             author: {
                 id: post.author.id,
@@ -81,8 +77,9 @@ function Post(props) {
                             </div>
                             <div class="text-center m-2"><p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  ' + blogPost.blogName}</p></div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
-                            <div class="p-4"><p class="text-justify lh-base">{blogPost.body}</p></div>
-                            <div class="p-4"><p class="text-justify lh-base"><ReactMarkdown children={sampleMd} /></p></div>
+                            <div class="p-4">
+                                <PostBody meta={blogPost.meta} />
+                            </div>
                         </div>
                     </div>
                 </div>
