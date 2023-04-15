@@ -7,10 +7,10 @@ export const formatDate = (date) => {
     let diffDays = Math.floor(timeDiff / (1000 * 3600 * 24));
     //alert(diffDays);
     switch (true) {
-        case (diffDays == 0):
+        case (diffDays === 0):
             return 'Today';
 
-        case (diffDays == 1):
+        case (diffDays === 1):
             return 'Yesterday';
 
         case (diffDays < 7):

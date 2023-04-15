@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom';
+import { formatDate } from '../../common/Utils';
 
 function PostPreview(props) {
 
@@ -28,7 +29,7 @@ function PostPreview(props) {
                             <img src={props.post.author.imageUri} alt="author" class="user-image" />
                             <p class="px-2 mt-1">{props.post.author.name}</p>
                         </div>
-                        <div><p class="px-2 mt-1"><small>{props.post.dateCreated}</small></p></div>
+                        <div><p class="px-2 mt-1"><small>{formatDate(props.post.dateCreated)}</small></p></div>
                     </div>
 
                 </div>
