@@ -14,7 +14,7 @@ function PostBody(props) {
             .then(
                 (text) => setPostBody(text)
             );
-    }, [postBody]);
+    }, [postBody, body]);
 
     return (
         <Fragment>

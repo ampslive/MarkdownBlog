@@ -12,7 +12,15 @@ export const getPosts = () => {
 export const getPostById = (postId) => {
     var data = [];
     BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
+
+    //filter by id
     return data.filter(function (x) { return x.id === postId; });
+}
+
+export const getPostByTitleDescription = (searchTerm) => {
+    var data = [];
+    BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
+    return data.filter(post => post.title.includes(searchTerm) || post.description.includes(searchTerm));
 }
 
 export const getPostBody = async (contentLocation, contentType, body) => {
