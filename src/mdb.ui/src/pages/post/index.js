@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import './style.css'
-import BlogData from '../../blogMaster.json'
+import { getPostById } from '../../common/BlogStore'
 import { formatDate } from '../../common/Utils';
 import PostBody from '../../components/postBody';
 
@@ -34,35 +34,9 @@ function Post(props) {
 
 
     useEffect(() => {
-        var data = [];
-        BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
-        let filteredPost = data.filter(function (x) { return x.id === id; });
+        let filteredPost = getPostById(id);
         setPost(filteredPost[0]);
     }, [id])
-
-    function ConvertToPosts(blog, post) {
-        return {
-            id: post.id,
-            blogName: blog.title,
-            title: post.title,
-            bannerUri: post.bannerUri,
-            description: post.description,
-            meta: {
-                body: post.body,
-                contentType: post.meta.contentType,
-                contentLocation: post.meta.contentLocation
-            },
-            dateCreated: post.dateCreated,
-            author: {
-                id: post.author.id,
-                name: post.author.name,
-                imageUri: post.author.imageUri
-            }
-        }
-    }
-
-
-
 
     return (
         <Fragment>
@@ -85,36 +59,6 @@ function Post(props) {
                 </div>
             )}
         </Fragment>
-
-        /*
-        post &&
-        (
-            <div >
-                <Row>
-                    <Image src={post.bannerUri} fluid />
-                </Row>
-                <Container>
-                    <div>
-                        <Row>
-                            <h6>{post.blogName.toUpperCase()}</h6>
-                        </Row>
-                        <Row>
-                            <h2>{post.title}</h2>
-                        </Row>
-                        <Row>
-                            <p>{post.author.name} |  {ConvertToDate(post.dateCreated)}</p>
-                        </Row>
-                        <Row>
-                            <ReactMarkdown children={mdpost} remarkPlugins={[remarkGfm]} /> 
-                        </Row>
-                    </div>
-                    <Row xs={7}>
-                        <article>{post.body}</article>
-                    </Row>
-                </Container>
-            </div> 
-        )
-        */
     );
 }
 

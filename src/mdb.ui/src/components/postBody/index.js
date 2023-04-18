@@ -1,29 +1,28 @@
 import React, { Fragment } from 'react';
 import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
-import { getApiText } from '../../common/ApiHelper';
+import { getPostBody } from '../../common/BlogStore';
 
 function PostBody(props) {
 
-    const [postMd, setPostMd] = useState();
+    const [postBody, setPostBody] = useState();
 
     const { contentLocation, contentType, body } = props.meta;
 
     useEffect(() => {
-        if (contentType === "localMD" || contentType === "extMD") {
-            getApiText(contentLocation)
-                .then((text) => {
-                    setPostMd(text);
-                });
-        }
-    });
+        getPostBody(contentLocation, contentType, body)
+            .then(
+                (text) => setPostBody(text)
+            );
+    }, [postBody]);
 
     return (
         <Fragment>
             <div class="text-justify lh-base">
-            {
-                (contentType === 'embTxt') ? <p>{body}</p> : <ReactMarkdown children={postMd} />
-            }
+                {
+                    ((contentType === 'embTxt') && <p>{postBody}</p> ) 
+                    || <ReactMarkdown children={postBody} />
+                }
             </div>
         </Fragment>
     );
