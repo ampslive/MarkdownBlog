@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm'
 import { getPostBody } from '../../common/BlogStore';
+import './style.css'
 
 function PostBody(props) {
 
@@ -20,8 +22,8 @@ function PostBody(props) {
         <Fragment>
             <div class="text-justify lh-base">
                 {
-                    ((contentType === 'embTxt') && <p>{postBody}</p> ) 
-                    || <ReactMarkdown children={postBody} />
+                    ((contentType === 'embTxt') && <p class='embTxt'>{postBody}</p> ) 
+                    || <div class='mdContainer'><ReactMarkdown remarkPlugins={[gfm]} children={postBody} /></div>
                 }
             </div>
         </Fragment>
