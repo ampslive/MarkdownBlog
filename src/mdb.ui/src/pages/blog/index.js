@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import PostPreview from '../../components/postPreview';
 import './style.css'
 import Jumbotron from '../../components/jumbotron'
-import { getAllPosts } from '../../common/BlogStore'
+import { getPosts } from '../../common/BlogStore'
 
 function Blog() {
 
@@ -18,7 +18,7 @@ function Blog() {
     useEffect(() => {
         var data = [];
 
-        data = getAllPosts();
+        data = getPosts();
 
         //order posts by date descending
         data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));

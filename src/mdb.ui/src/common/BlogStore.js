@@ -1,7 +1,7 @@
 import BlogData from '../blogMaster.json'
 import { getApiText } from '../common/ApiHelper';
 
-export const getAllPosts = () => {
+export const getPosts = () => {
     var data = [];
 
     //fetch posts from all the blogs
