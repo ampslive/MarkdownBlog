@@ -37,7 +37,7 @@ export const getPostBody = async (contentLocation, contentType, body) => {
 export const getAuthorById = (authorId) => {
 
     //fetch author details
-    return BlogData.authors.filter(x => x.id == authorId)[0];
+    return BlogData.authors.filter(x => x.id === authorId)[0];
 }
 
 
