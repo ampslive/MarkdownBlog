@@ -1,21 +1,17 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
-//import ReactMarkdown from 'https://esm.sh/react-markdown@7'
-//import remarkGfm from 'remark-gfm'
+import { useParams } from 'react-router-dom';
 import PostPreview from '../../components/postPreview';
 import './style.css'
 import Jumbotron from '../../components/jumbotron'
 import { getPosts } from '../../common/BlogStore'
 
-function Blog() {
+function Blog(props) {
 
     const [blogPosts, setPosts] = useState([]);
-    //const [heroPost, setHero] = useState([]);
-    //const [mdpost, setMdPost] = useState([]);
-
-    //remarkPlugins={[remarkGfm]}
 
     useEffect(() => {
+
         var data = [];
 
         data = getPosts();
