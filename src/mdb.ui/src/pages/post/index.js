@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './style.css'
 import { getPostById } from '../../common/BlogStore'
 import { formatDate } from '../../common/Utils';
@@ -31,6 +31,7 @@ function Post(props) {
     const [blogPost, setPost] = useState(defaultPost);
 
     let { id } = useParams();
+    const seriesUri = `/blog/series/${blogPost.blogName.toLowerCase()}/`;
 
 
     useEffect(() => {
@@ -49,7 +50,12 @@ function Post(props) {
                                 <div class="d-flex justify-content-center"><img src={blogPost.author[0].imageUri} alt="author" class="author-image" /></div>
                                 <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.author[0].name}</a></div>
                             </div>
-                            <div class="text-center m-2"><p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  ' + blogPost.blogName}</p></div>
+                            <div class="d-flex justify-content-center text-center m-2">
+                                <p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  '}</p>
+                                <Link to={seriesUri} class="mx-1 nav-link card-title">
+                                    <p class="fw-light">{blogPost.blogName}</p>
+                                </Link>
+                            </div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
                             <div class="p-4">
                                 <PostBody meta={blogPost.meta} />

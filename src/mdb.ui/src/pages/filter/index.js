@@ -19,7 +19,7 @@ function  Filter() {
         data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
 
         setPosts(data);
-    }, [])
+    }, [searchSeries])
 
 
     return (

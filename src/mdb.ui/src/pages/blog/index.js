@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
 import PostPreview from '../../components/postPreview';
 import './style.css'
 import Jumbotron from '../../components/jumbotron'
