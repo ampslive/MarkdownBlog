@@ -16,11 +16,11 @@ function Post(props) {
         description: "Subtext",
         id: "0",
         title: "Sample Data",
-        author: {
+        author: [{
             id: 1,
             name: "Amit Philips",
             imageUri: "https://i.pravatar.cc/40?img=1"
-        },
+        }],
         meta: {
             body: "This is my third blog post.",
             contentType: "localMD",
@@ -46,8 +46,8 @@ function Post(props) {
                         <div class="col-md-12 my-4 p-3 post">
                             <h2 class="text-center">{blogPost.title}</h2>
                             <div class="my-3">
-                                <div class="d-flex justify-content-center"><img src={blogPost.author.imageUri} alt="author" class="author-image" /></div>
-                                <div class="text-center"><p class="fw-semibold">{blogPost.author.name}</p></div>
+                                <div class="d-flex justify-content-center"><img src={blogPost.author[0].imageUri} alt="author" class="author-image" /></div>
+                                <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.author[0].name}</a></div>
                             </div>
                             <div class="text-center m-2"><p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  ' + blogPost.blogName}</p></div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
@@ -56,6 +56,18 @@ function Post(props) {
                             </div>
                         </div>
                     </div>
+                    <div id="postFooter" class="row p-4">
+                        <div class="col-md-10 mx-auto">
+                            <div class="d-flex flex-row">
+                                <div class="m-2"><img src={blogPost.author[0].imageUri} alt="author" class="author-image-footer" /></div>
+                                <div class="m-2">
+                                    <h6>ABOUT {blogPost.author[0].name.toUpperCase()}</h6>
+                                    <p>{blogPost.author[0].bio}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             )}
         </Fragment>

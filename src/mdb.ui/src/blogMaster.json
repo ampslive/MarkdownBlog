@@ -1,5 +1,13 @@
 {
     "count" : 1,
+    "authors" : [
+        {
+            "id" : 1,
+            "name" : "Amit Philips",
+            "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8",
+            "bio" : "Passionate developer! I've been doing this for 11+ years and I spend my time solving my client's biggest challenges. I am a Cloud Specialist with Bosch and have developed and lead various projects end-to-end. My specialty is building intuitive solutions for Web, Desktop and Mobile using .NET and frontend frameworks."
+        }
+    ],
     "blogs" : [
         {
             "id" : 1,
@@ -13,11 +21,7 @@
                     "description" : "Subtext",
                     "body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra justo nec ultrices dui sapien. Sit amet nulla facilisi morbi tempus iaculis. Neque vitae tempus quam pellentesque nec. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Hac habitasse platea dictumst quisque sagittis purus. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Sit amet dictum sit amet justo donec enim diam. Lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis. Pellentesque habitant morbi tristique senectus et netus et. In est ante in nibh. Tempus quam pellentesque nec nam aliquam sem et tortor. Ultricies tristique nulla aliquet enim tortor at. Facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Non sodales neque sodales ut etiam sit. Pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id. Quam nulla porttitor massa id. Mauris pellentesque pulvinar pellentesque habitant morbi. Nulla facilisi cras fermentum odio eu feugiat. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Urna nunc id cursus metus aliquam eleifend mi in. Scelerisque varius morbi enim nunc. In eu mi bibendum neque. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Tempor id eu nisl nunc mi ipsum. Lobortis scelerisque fermentum dui faucibus in. Varius duis at consectetur lorem donec massa. Tempus iaculis urna id volutpat lacus laoreet. Eu feugiat pretium nibh ipsum consequat nisl vel. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Odio facilisis mauris sit amet massa vitae tortor. Enim diam vulputate ut pharetra sit. Consectetur libero id faucibus nisl tincidunt eget. Condimentum vitae sapien pellentesque habitant morbi. Mi eget mauris pharetra et ultrices neque ornare aenean. Id leo in vitae turpis. Et pharetra pharetra massa massa ultricies mi quis. Faucibus pulvinar elementum integer enim. At erat pellentesque adipiscing commodo. Vitae aliquet nec ullamcorper sit amet risus. Tortor aliquam nulla facilisi cras fermentum. Commodo nulla facilisi nullam vehicula ipsum a arcu. Gravida cum sociis natoque penatibus et magnis dis. Massa tincidunt nunc pulvinar sapien et ligula. Dolor sed viverra ipsum nunc aliquet. Proin sagittis nisl rhoncus mattis rhoncus. Morbi blandit cursus risus at ultrices mi. Sit amet justo donec enim diam vulputate ut. Cras tincidunt lobortis feugiat vivamus at augue eget.",
                     "dateCreated" : "09/15/2022 18:46:07",
-                    "author" : {
-                        "id" : 1,
-                        "name" : "Amit Philips",
-                        "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
-                    },
+                    "authors" : [{"id":1}],
                     "meta" : {
                         "contentType" : "embTxt",
                         "contentLocation" : ""
@@ -30,11 +34,7 @@
                     "description" : "Subtext",
                     "body" : "This is my third blog post.",
                     "dateCreated" : "04/14/2023 13:46:07",
-                    "author" : {
-                        "id" : 1,
-                        "name" : "Amit Philips",
-                        "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
-                    },
+                    "authors" : [{"id":1}],
                     "meta" : {
                         "contentType" : "localMD",
                         "contentLocation" : "../../md-posts/sample.md"
@@ -54,11 +54,7 @@
                     "description" : "Subtext",
                     "body" : "This is my second blog post.",
                     "dateCreated" : "09/16/2022 18:46:07",
-                    "author" : {
-                        "id" : 1,
-                        "name" : "Amit Philips",
-                        "imageUri" : "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_200_200/0/1516337443631?e=1686787200&v=beta&t=IOzGqmVkrEXn3QLw0bI4rSiMC84c68QfQj3DyDvBMF8"
-                    },
+                    "authors" : [{"id":1}],
                     "meta" : {
                         "contentType" : "extMD",
                         "contentLocation" : "https://raw.githubusercontent.com/ampslive/DSA/main/DS/1-LinkedList/LinkedList.md"

@@ -1,6 +1,8 @@
 import BlogData from '../blogMaster.json'
 import { getApiText } from '../common/ApiHelper';
 
+/***** Posts *****/
+
 export const getPosts = () => {
     var data = [];
 
@@ -30,9 +32,21 @@ export const getPostBody = async (contentLocation, contentType, body) => {
     return await getApiText(contentLocation);
 }
 
+/***** Authors *****/
+
+export const getAuthorById = (authorId) => {
+
+    //fetch author details
+    return BlogData.authors.filter(x => x.id == authorId)[0];
+}
+
 
 function ConvertToPosts(blog, post) {
-    return {
+
+    let authors = [];
+    post.authors.map(a=> authors.push(getAuthorById(a.id)));
+
+    let postData = {
         id: post.id,
         blogName: blog.title,
         title: post.title,
@@ -44,10 +58,8 @@ function ConvertToPosts(blog, post) {
             contentLocation: post.meta.contentLocation
         },
         dateCreated: post.dateCreated,
-        author: {
-            id: post.author.id,
-            name: post.author.name,
-            imageUri: post.author.imageUri
-        }
+        author: authors
     }
+
+    return postData;
 }
