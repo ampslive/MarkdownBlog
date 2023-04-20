@@ -7,6 +7,7 @@ function PostPreview(props) {
 
     const postTitle = props.post.title.trim().toLowerCase().replace(/\s/g, "-");
     const postUri = `/post/${props.post.id}/` + postTitle;
+    const seriesUri = `/blog/series/${props.post.blogName.toLowerCase()}/`;
 
     return (
         <Fragment>
@@ -16,7 +17,9 @@ function PostPreview(props) {
                 </Link>
 
                 <div class="card-body">
-                    <pre class="text-right text-uppercase">{props.post.blogName}</pre>
+                    <Link to={seriesUri} class="nav-link card-title">
+                        <pre class="text-right text-uppercase">{props.post.blogName}</pre>
+                    </Link>
 
                     <Link to={postUri} class="nav-link card-title">
                         <h5>{props.post.title}</h5>

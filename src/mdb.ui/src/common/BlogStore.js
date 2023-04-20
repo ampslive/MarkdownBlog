@@ -25,6 +25,12 @@ export const getPostByTitleDescription = (searchTerm) => {
     return data.filter(post => post.title.includes(searchTerm) || post.description.includes(searchTerm));
 }
 
+export const getPostByBlogSeries = (searchTerm) => {
+    var data = [];
+    BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
+    return data.filter(post => post.blogName.toLowerCase() === searchTerm);
+}
+
 export const getPostBody = async (contentLocation, contentType, body) => {
     if (contentType === "embTxt") {
         return Promise.resolve(body);
