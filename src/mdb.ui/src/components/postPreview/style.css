@@ -3,3 +3,10 @@
     width: 35px;
     height: 35px;
 }
+
+.card-text {
+    overflow: hidden;
+    height: 3.6em;
+    line-height: 1.2em;
+    margin-bottom: 0;
+}

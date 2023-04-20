@@ -25,7 +25,13 @@ function PostPreview(props) {
                         <h5>{props.post.title}</h5>
                     </Link>
 
-                    <p class="card-text">{props.post.description}</p>
+                    <div class="my-2">
+                        <p class="card-text">{props.post.description}</p>
+
+                        <Link to={postUri} class="nav-link card-title">
+                            <span>[...]</span>
+                        </Link>
+                    </div>
 
                     <div class="d-flex justify-content-between text-muted">
                         <div class="d-flex justify-content-between">
