@@ -9,23 +9,10 @@ import PostBody from '../../components/postBody';
 function Post(props) {
 
     const defaultPost = {
-        bannerUri: "https://picsum.photos/1000/300",
-        blogName: "Blog Series",
-        body: "This is my third blog post.",
+        blogName: "",
         dateCreated: "09/17/2022 18:46:07",
-        description: "Subtext",
-        id: "0",
-        title: "Sample Data",
-        author: [{
-            id: 1,
-            name: "Amit Philips",
-            imageUri: "https://i.pravatar.cc/40?img=1"
-        }],
-        meta: {
-            body: "This is my third blog post.",
-            contentType: "localMD",
-            contentLocation: "../../md-posts/sample.md"
-        }
+        author: [{ name: "" }],
+        meta: { }
     };
 
     const [blogPost, setPost] = useState(defaultPost);
