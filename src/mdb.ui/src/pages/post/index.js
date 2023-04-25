@@ -19,7 +19,7 @@ function Post(props) {
     const [blogPost, setPost] = useState(defaultPost);
 
     let { id } = useParams();
-    let seriesUri;
+    let seriesUri = '';
 
 
     useEffect(() => {
