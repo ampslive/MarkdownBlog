@@ -13,24 +13,18 @@ function Post(props) {
         blogName: "",
         dateCreated: "09/17/2022 18:46:07",
         author: [{ name: "" }],
-        meta: {}
+        meta: {},
+        seriesUri: ""
     };
 
     const [blogPost, setPost] = useState(defaultPost);
 
     let { id } = useParams();
-    let seriesUri = '';
-
+    const seriesUri = `/blog/series/`;
 
     useEffect(() => {
         let filteredPost = getPostById(id);
         setPost(filteredPost);
-
-        if(filteredPost) {
-            seriesUri = `/blog/series/${blogPost.blogName.toLowerCase()}/`;
-        }
-
-        
     }, [id])
 
     return (
@@ -48,7 +42,7 @@ function Post(props) {
                             </div>
                             <div class="d-flex justify-content-center text-center m-2">
                                 <p class="fw-light">{formatDate(blogPost.dateCreated) + '  |  '}</p>
-                                <Link to={seriesUri} class="mx-1 nav-link card-title">
+                                <Link to={seriesUri + blogPost.blogName.toLowerCase() + '/'} class="mx-1 nav-link card-title">
                                     <p class="fw-light">{blogPost.blogName}</p>
                                 </Link>
                             </div>
