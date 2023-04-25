@@ -5,6 +5,7 @@ import './style.css'
 import { getPostById } from '../../common/BlogStore'
 import { formatDate } from '../../common/Utils';
 import PostBody from '../../components/postBody';
+import NoContent from '../../components/NoContent';
 
 function Post(props) {
 
@@ -12,22 +13,30 @@ function Post(props) {
         blogName: "",
         dateCreated: "09/17/2022 18:46:07",
         author: [{ name: "" }],
-        meta: { }
+        meta: {}
     };
 
     const [blogPost, setPost] = useState(defaultPost);
 
     let { id } = useParams();
-    const seriesUri = `/blog/series/${blogPost.blogName.toLowerCase()}/`;
+    let seriesUri;
 
 
     useEffect(() => {
         let filteredPost = getPostById(id);
-        setPost(filteredPost[0]);
+        setPost(filteredPost);
+
+        if(filteredPost) {
+            seriesUri = `/blog/series/${blogPost.blogName.toLowerCase()}/`;
+        }
+
+        
     }, [id])
 
     return (
         <Fragment>
+            {!blogPost && <NoContent />}
+
             {blogPost && (
                 <div class="container mainContent">
                     <div class="row">

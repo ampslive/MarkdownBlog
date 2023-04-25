@@ -16,7 +16,12 @@ export const getPostById = (postId) => {
     BlogData.blogs.map(x => x.posts.map(y => data.push(ConvertToPosts(x, y))));
 
     //filter by id
-    return data.filter(function (x) { return x.id === postId; });
+    let result = data.find(function (x) { return x.id === postId; });
+
+    if(result === undefined)
+        return null;
+
+    return result;
 }
 
 export const getPostByTitleDescription = (searchTerm) => {
