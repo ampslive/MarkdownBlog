@@ -16,9 +16,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.MapGet("/api", () => "Hello World")
-//.WithName("Say Hello")
-//.WithOpenApi();
+app.MapGet("/api", () => "Hello World")
+.WithName("Say Hello")
+.WithOpenApi();
 
 app.MapBlogApi();
 

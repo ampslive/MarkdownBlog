@@ -1,29 +1,25 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using MarkdownBlog.API.Models;
 using MarkdownBlog.Domain.Models;
+using MarkdownBlog.Domain.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 public static class BlogGroup
 {
     public static IEndpointRouteBuilder MapBlogApi(this IEndpointRouteBuilder group)
     {
-        group.MapGet("/posts", GetPosts);
-        group.MapPost("/posts", Results.Ok(CreatePost));
+        group.MapGet("/", () => "Hello MD Blog");
+
+        //author
+        group.MapPost("/author", CreateAuthor);
         return group;
     }
 
-    public static string GetPosts()
+    public static Created<Author> CreateAuthor([FromBody] AuthorModel model)
     {
-        return "Hello Blog";
-        //return TypedResults.Created($"{todo.Id}", todo);
-    }
-
-    public static Task CreatePost(Blog blog)
-    {
-        return Task.CompletedTask;
+        var store = new AuthorRepo();
+        var author = store.Create(model.Name, model.ImageUri, model.Bio);
+        return TypedResults.Created($"{author.Id}", author);
     }
 }
 

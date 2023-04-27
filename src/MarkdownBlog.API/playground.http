@@ -1,5 +1,14 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
-//GET https://localhost:7299/
+GET https://localhost:7299/api
 
-GET https://localhost:7299/posts
+###
+
+POST https://localhost:7299/author
+Content-Type: application/json
+
+{
+  "name": "amit",
+  "imageUri": "myimage",
+  "bio": "bionic"
+}
