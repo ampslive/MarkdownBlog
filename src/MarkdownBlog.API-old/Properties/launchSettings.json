@@ -4,27 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:32499",
-      "sslPort": 44344
+      "applicationUrl": "http://localhost:39996",
+      "sslPort": 44359
     }
   },
   "profiles": {
-    "http": {
+    "MarkdownBlog.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5121",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7299;http://localhost:5121",
+      "applicationUrl": "https://localhost:7181;http://localhost:5181",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
