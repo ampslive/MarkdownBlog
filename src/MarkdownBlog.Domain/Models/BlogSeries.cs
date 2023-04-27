@@ -2,9 +2,8 @@
 
 namespace MarkdownBlog.Domain.Models;
 
-public class Blog : BaseModel
+public class BlogSeries : BaseModel
 {
     public string Title { get; set; }
     public string Description { get; set; }
-    public List<IPost> Posts { get; set; }
 }

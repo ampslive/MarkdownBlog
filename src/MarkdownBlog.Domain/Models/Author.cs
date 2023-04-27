@@ -1,8 +1,10 @@
-﻿namespace MarkdownBlog.Domain.Models
+﻿using MarkdownBlog.Domain.Contracts;
+
+namespace MarkdownBlog.Domain.Models;
+
+public class Author : BaseModel
 {
-    public class Author
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
+    public string ImageUri { get; set; }
+    public string Bio { get; set; }
 }

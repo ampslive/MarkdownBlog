@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MarkdownBlog.Domain.Contracts;
 
-namespace MarkdownBlog.Domain.Contracts
+public abstract class BaseModel
 {
-    public abstract class BaseModel
-    {
-        public Guid Id { get; set; }
-    }
+    public string Id { get; set; }
 }
