@@ -1,4 +1,4 @@
-# For more info on HTTP files go to https://aka.ms/vs/httpfile
+0# For more info on HTTP files go to https://aka.ms/vs/httpfile
 
 GET https://localhost:7299/api
 
@@ -8,7 +8,7 @@ POST https://localhost:7299/author
 Content-Type: application/json
 
 {
-  "name": "amit",
+  "name": "amit2",
   "imageUri": "myimage",
   "bio": "bionic"
 }

@@ -1,6 +1,9 @@
-﻿using MarkdownBlog.API.Models;
+﻿using Azure.Storage.Blobs;
+using MarkdownBlog.API.Models;
+using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
-using MarkdownBlog.Domain.Repositories;
+using MarkdownBlog.Domain.Store;
+using MarkdownBlog.Infra;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +18,18 @@ public static class BlogGroup
         return group;
     }
 
-    public static Created<Author> CreateAuthor([FromBody] AuthorModel model)
+    public async static Task<Created<BlogMaster>> CreateAuthor(BlobServiceClient blobServiceClient, 
+        IBlobContext<BlogMaster> context, 
+        [FromBody] AuthorModel model)
     {
-        var store = new AuthorRepo();
-        var author = store.Create(model.Name, model.ImageUri, model.Bio);
-        return TypedResults.Created($"{author.Id}", author);
+        var store = new BlogMasterStore(context);
+
+        var bm = await store.GetBlogMaster();
+        bm.Authors = new List<Author>();
+
+        var author = await store.AddAuthor(bm, model.Name, model.ImageUri, model.Bio);
+        
+        return TypedResults.Created($"{author.Authors.Count}", author);
     }
 }
 
