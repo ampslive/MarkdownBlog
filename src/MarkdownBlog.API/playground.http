@@ -8,7 +8,7 @@ POST https://localhost:7299/author
 Content-Type: application/json
 
 {
-  "name": "amit2",
+  "name": "amit5",
   "imageUri": "myimage",
   "bio": "bionic"
 }

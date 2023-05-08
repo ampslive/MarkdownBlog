@@ -25,7 +25,6 @@ public static class BlogGroup
         var store = new BlogMasterStore(context);
 
         var bm = await store.GetBlogMaster();
-        bm.Authors = new List<Author>();
 
         var author = await store.AddAuthor(bm, model.Name, model.ImageUri, model.Bio);
         
