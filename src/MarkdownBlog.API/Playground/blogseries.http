@@ -1,0 +1,35 @@
+@id = J-l7D7WsakiTjXJIxnA4fw
+
+GET https://localhost:7299/api/series
+Content-Type: application/json
+
+###
+
+GET https://localhost:7299/api/series/{{id}}
+Content-Type: application/json
+
+###
+
+POST https://localhost:7299/api/series
+Content-Type: application/json
+
+{
+  "title": "Cloud",
+  "description": "All cloud posts"
+}
+
+###
+
+PUT https://localhost:7299/api/series/{{id}}
+Content-Type: application/json
+
+{
+  "title": "Cloud",
+  "description": "All posts related to Azure Cloud"
+}
+
+
+###
+
+DELETE https://localhost:7299/api/series/{{id}}
+Content-Type: application/json

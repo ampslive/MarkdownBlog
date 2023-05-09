@@ -20,6 +20,7 @@ builder.Services.AddAzureClients(clientBuilder =>
 
 builder.Services.AddTransient<IBlobContext<BlogMaster>, Context>();
 builder.Services.AddTransient<AuthorStore>();
+builder.Services.AddTransient<BlogSeriesStore>();
 builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
 {
     var blobServiceClient = serviceProvider.GetRequiredService<BlobServiceClient>();
@@ -41,6 +42,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapBlogEndpoints();
+app.MapBlogSeriesEndpoints();
 app.MapAuthorEndpoints();
 app.Run();
