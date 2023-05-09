@@ -8,9 +8,10 @@ namespace MarkdownBlog.Infra;
 public class Context : IBlobContext<BlogMaster>
 {
     private readonly BlobStoreHelper _blobHelper;
-    public Context(BlobServiceClient blobServiceClient)
+
+    public Context(BlobServiceClient blobServiceClient, BlobStoreHelper blobStoreHelper)
     {
-        _blobHelper = new BlobStoreHelper(blobServiceClient);
+        _blobHelper = blobStoreHelper;
     }
 
 

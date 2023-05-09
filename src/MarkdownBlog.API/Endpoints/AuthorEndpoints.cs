@@ -3,6 +3,7 @@ using MarkdownBlog.API.Models;
 using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
 using MarkdownBlog.Domain.Store;
+using MarkdownBlog.Infra;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ public static class AuthorEndpoints
     
     public async static Task<Results<Ok<List<Author>>, NotFound>> GetAuthors(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
+        BlobStoreHelper blobStoreHelper,
         BlogMasterStore store)
     {
         var result = await store.GetAuthors();
@@ -31,6 +33,7 @@ public static class AuthorEndpoints
 
     public async static Task<Created<Author>> CreateAuthor(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
+        BlobStoreHelper blobStoreHelper,
         BlogMasterStore store,
         [FromBody] AuthorModel model)
     {
@@ -41,6 +44,7 @@ public static class AuthorEndpoints
 
     public async static Task<Results<Ok<Author>, NotFound>> RemoveAuthor(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
+        BlobStoreHelper blobStoreHelper,
         BlogMasterStore store,
         [FromBody] AuthorModel model)
     {

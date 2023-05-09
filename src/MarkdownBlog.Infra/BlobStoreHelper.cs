@@ -6,17 +6,19 @@ namespace MarkdownBlog.Infra;
 
 public class BlobStoreHelper
 {
-    public string ContainerName { get; set; } = "bm1";
-    public string FileName { get; set; } = "blogMaster.json";
+    private readonly string _containerName;
+    private readonly string _fileName;
     private readonly BlobServiceClient _blobServiceClient;
     private readonly BlobContainerClient _containerClient;
     private readonly BlobClient _blobClient;
 
-    public BlobStoreHelper(BlobServiceClient blobServiceClient)
+    public BlobStoreHelper(BlobServiceClient blobServiceClient, string containerName, string fileName)
     {
         _blobServiceClient = blobServiceClient;
-        _containerClient = _blobServiceClient.GetBlobContainerClient(ContainerName);
-        _blobClient = _containerClient.GetBlobClient(FileName);
+        _containerName = containerName;
+        _fileName = fileName;
+        _containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
+        _blobClient = _containerClient.GetBlobClient(_fileName);
     }
 
     public async Task CreateBlobAsync(string data)

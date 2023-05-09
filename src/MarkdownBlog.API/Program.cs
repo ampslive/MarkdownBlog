@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using MarkdownBlog.API.Endpoints;
 using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
@@ -19,6 +20,13 @@ builder.Services.AddAzureClients(clientBuilder =>
 
 builder.Services.AddTransient<IBlobContext<BlogMaster>, Context>();
 builder.Services.AddTransient<BlogMasterStore>();
+builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
+{
+    var blobServiceClient = serviceProvider.GetRequiredService<BlobServiceClient>();
+    string containername = builder.Configuration.GetValue<string>("BlobContainerName");
+    string filename = builder.Configuration.GetValue<string>("BlobFileName");
+    return new BlobStoreHelper(blobServiceClient, containername, filename);
+});
 
 var app = builder.Build();
 
