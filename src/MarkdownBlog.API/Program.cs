@@ -1,5 +1,7 @@
+using MarkdownBlog.API.Endpoints;
 using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
+using MarkdownBlog.Domain.Store;
 using MarkdownBlog.Infra;
 using Microsoft.Extensions.Azure;
 
@@ -15,7 +17,8 @@ builder.Services.AddAzureClients(clientBuilder =>
     clientBuilder.AddBlobServiceClient(builder.Configuration.GetSection("StorageConnectionString"));
 });
 
-builder.Services.AddTransient<IBlobContext<BlogMaster>, Context<BlogMaster>>();
+builder.Services.AddTransient<IBlobContext<BlogMaster>, Context>();
+builder.Services.AddTransient<BlogMasterStore>();
 
 var app = builder.Build();
 
@@ -28,10 +31,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api", () => "Hello World")
-.WithName("Say Hello")
-.WithOpenApi();
-
-app.MapBlogApi();
-
+app.MapBlogEndpoints();
+app.MapAuthorEndpoints();
 app.Run();

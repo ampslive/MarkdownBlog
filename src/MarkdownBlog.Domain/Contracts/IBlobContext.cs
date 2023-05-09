@@ -3,5 +3,5 @@
 public interface IBlobContext<T>
 {
     Task SaveAsync(T obj);
-    Task<T> LoadAsync();
+    Task<T?> LoadAsync();
 }

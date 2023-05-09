@@ -4,11 +4,25 @@ GET https://localhost:7299/api
 
 ###
 
-POST https://localhost:7299/author
+POST https://localhost:7299/api/author
 Content-Type: application/json
 
 {
-  "name": "amit5",
+  "name": "amit7",
   "imageUri": "myimage",
   "bio": "bionic"
+}
+
+###
+
+GET https://localhost:7299/api/author
+Content-Type: application/json
+
+###
+
+DELETE https://localhost:7299/api/author
+Content-Type: application/json
+
+{
+  "id": "s3SnxAzrq0KJhJbhgYctXw"
 }

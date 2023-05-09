@@ -1,29 +1,39 @@
 ﻿using Azure.Storage.Blobs;
 using MarkdownBlog.Domain.Contracts;
+using MarkdownBlog.Domain.Models;
 using System.Text.Json;
 
 namespace MarkdownBlog.Infra;
 
-public class Context<T> : IBlobContext<T>
+public class Context : IBlobContext<BlogMaster>
 {
-    private readonly BlobServiceClient _blobServiceClient;
+    private readonly BlobStoreHelper _blobHelper;
     public Context(BlobServiceClient blobServiceClient)
     {
-        _blobServiceClient = blobServiceClient;
+        _blobHelper = new BlobStoreHelper(blobServiceClient);
     }
 
 
-    public async Task SaveAsync(T obj)
+    public async Task SaveAsync(BlogMaster obj)
     {
         var json = JsonSerializer.Serialize(obj);
-        var b = new BlobStoreHelper(_blobServiceClient);
-        await b.CreateBlobAsync(json);
+        await _blobHelper.CreateBlobAsync(json);
     }
 
-    public async Task<T> LoadAsync()
+    public async Task<BlogMaster?> LoadAsync()
     {
-        var b = new BlobStoreHelper(_blobServiceClient);
-        var result = await b.GetBlobAsync();
-        return JsonSerializer.Deserialize<T>(result);
+        var result = await _blobHelper.GetBlobAsync();
+
+        if (result is null)
+        {
+            return new BlogMaster
+            {
+                Authors = new List<Author>(),
+                Blogs = new List<Blog>(),
+                BlogSeries = new List<BlogSeries>()
+            };
+        }
+        return JsonSerializer.Deserialize<BlogMaster>(result);
+
     }
 }
