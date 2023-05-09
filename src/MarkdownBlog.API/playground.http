@@ -4,25 +4,38 @@ GET https://localhost:7299/api
 
 ###
 
+GET https://localhost:7299/api/author
+Content-Type: application/json
+
+###
+
+GET https://localhost:7299/api/author/C-DUBfBOh0W66uqMkybTVQ
+Content-Type: application/json
+
+###
+
 POST https://localhost:7299/api/author
 Content-Type: application/json
 
 {
-  "name": "amit7",
+  "name": "amit philips",
   "imageUri": "myimage",
   "bio": "bionic"
 }
 
 ###
 
-GET https://localhost:7299/api/author
-Content-Type: application/json
-
-###
-
-DELETE https://localhost:7299/api/author
+PUT https://localhost:7299/api/author/C-DUBfBOh0W66uqMkybTVQ
 Content-Type: application/json
 
 {
-  "id": "s3SnxAzrq0KJhJbhgYctXw"
+  "name": "amit philips",
+  "imageUri": "myimage",
+  "bio": "bionic"
 }
+
+
+###
+
+DELETE https://localhost:7299/api/author/C-DUBfBOh0W66uqMkybTVQ
+Content-Type: application/json

@@ -19,7 +19,7 @@ builder.Services.AddAzureClients(clientBuilder =>
 });
 
 builder.Services.AddTransient<IBlobContext<BlogMaster>, Context>();
-builder.Services.AddTransient<BlogMasterStore>();
+builder.Services.AddTransient<AuthorStore>();
 builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
 {
     var blobServiceClient = serviceProvider.GetRequiredService<BlobServiceClient>();

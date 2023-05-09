@@ -16,25 +16,39 @@ public static class AuthorEndpoints
         var group = routes.MapGroup("/api/author").WithTags(nameof(Author));
 
         group.MapGet("/", GetAuthors);
+        group.MapGet("/{id}", GetAuthor);
         group.MapPost("/", CreateAuthor);
-        group.MapDelete("/", RemoveAuthor);
+        group.MapPut("/{id}", UpdateAuthor);
+        group.MapDelete("/{id}", RemoveAuthor);
     }
     
     public async static Task<Results<Ok<List<Author>>, NotFound>> GetAuthors(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
         BlobStoreHelper blobStoreHelper,
-        BlogMasterStore store)
+        AuthorStore store)
     {
         var result = await store.GetAuthors();
 
-        return (result != null) ? TypedResults.Ok(await store.GetAuthors())
+        return (result != null) ? TypedResults.Ok(result)
+        : TypedResults.NotFound();
+    }
+
+    public async static Task<Results<Ok<Author>, NotFound>> GetAuthor(BlobServiceClient blobServiceClient,
+        IBlobContext<BlogMaster> context,
+        BlobStoreHelper blobStoreHelper,
+        AuthorStore store,
+        string id)
+    {
+        var result = await store.GetAuthors(id);
+
+        return (result.Count != 0) ? TypedResults.Ok(result.First())
         : TypedResults.NotFound();
     }
 
     public async static Task<Created<Author>> CreateAuthor(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
         BlobStoreHelper blobStoreHelper,
-        BlogMasterStore store,
+        AuthorStore store,
         [FromBody] AuthorModel model)
     {
         var author = await store.AddAuthor(model.Name, model.ImageUri, model.Bio);
@@ -42,13 +56,26 @@ public static class AuthorEndpoints
         return TypedResults.Created($"{author?.Id}", author);
     }
 
+    public async static Task<Results<Ok<Author>, NotFound>> UpdateAuthor(BlobServiceClient blobServiceClient,
+        IBlobContext<BlogMaster> context,
+        BlobStoreHelper blobStoreHelper,
+        AuthorStore store,
+        string id,
+        [FromBody] AuthorModel model)
+    {
+        var author = await store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio);
+
+        return (author != null) ? TypedResults.Ok(author)
+            : TypedResults.NotFound();
+    }
+
     public async static Task<Results<Ok<Author>, NotFound>> RemoveAuthor(BlobServiceClient blobServiceClient,
         IBlobContext<BlogMaster> context,
         BlobStoreHelper blobStoreHelper,
-        BlogMasterStore store,
-        [FromBody] AuthorModel model)
+        AuthorStore store,
+        string id)
     {
-        var author = await store.RemoveAuthor(model.Id);
+        var author = await store.RemoveAuthor(id);
 
         return (author != null) ? TypedResults.Ok(author)
             : TypedResults.NotFound();
