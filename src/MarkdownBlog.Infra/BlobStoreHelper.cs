@@ -1,13 +1,15 @@
 ﻿using Azure.Storage.Blobs;
+using MarkdownBlog.Domain.Models;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Text.Json;
 
 namespace MarkdownBlog.Infra;
 
 public class BlobStoreHelper
 {
-    private readonly string _containerName;
-    private readonly string _fileName;
+    public readonly string ContainerName;
+    public readonly string FileName;
     private readonly BlobServiceClient _blobServiceClient;
     private readonly BlobContainerClient _containerClient;
     private readonly BlobClient _blobClient;
@@ -15,10 +17,10 @@ public class BlobStoreHelper
     public BlobStoreHelper(BlobServiceClient blobServiceClient, string containerName, string fileName)
     {
         _blobServiceClient = blobServiceClient;
-        _containerName = containerName;
-        _fileName = fileName;
-        _containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
-        _blobClient = _containerClient.GetBlobClient(_fileName);
+        ContainerName = containerName;
+        FileName = fileName;
+        _containerClient = _blobServiceClient.GetBlobContainerClient(ContainerName);
+        _blobClient = _containerClient.GetBlobClient(FileName);
     }
 
     public async Task CreateBlobAsync(string data)

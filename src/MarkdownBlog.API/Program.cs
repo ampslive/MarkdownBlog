@@ -30,6 +30,8 @@ builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
 
 var app = builder.Build();
 
+BlobInitializer.CreateContainerAndBlob(app.Services);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -24,17 +24,6 @@ public class Context : IBlobContext<BlogMaster>
     public async Task<BlogMaster?> LoadAsync()
     {
         var result = await _blobHelper.GetBlobAsync();
-
-        if (result is null)
-        {
-            return new BlogMaster
-            {
-                Authors = new List<Author>(),
-                Blogs = new List<Blog>(),
-                BlogSeries = new List<BlogSeries>()
-            };
-        }
         return JsonSerializer.Deserialize<BlogMaster>(result);
-
     }
 }
