@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.API-old", "MarkdownBlog.API\MarkdownBlog.API-old.csproj", "{F7AD77BE-5B3F-4A8F-BDEA-5DC159044F0F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Domain", "MarkdownBlog.Domain\MarkdownBlog.Domain.csproj", "{EB1D8F67-C857-4DF0-AAA1-3B88185D6EF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Tests", "MarkdownBlog.Tests\MarkdownBlog.Tests.csproj", "{0A4A7A3A-F907-4C39-96DC-7FDC987E8942}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Infra", "MarkdownBlog.Infra\MarkdownBlog.Infra.csproj", "{07950105-1D78-4B6A-A5BF-A33D9E934D20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownBlog.API", "MarkdownBlog.API\MarkdownBlog.API.csproj", "{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.API", "MarkdownBlog.API\MarkdownBlog.API.csproj", "{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7AD77BE-5B3F-4A8F-BDEA-5DC159044F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7AD77BE-5B3F-4A8F-BDEA-5DC159044F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7AD77BE-5B3F-4A8F-BDEA-5DC159044F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7AD77BE-5B3F-4A8F-BDEA-5DC159044F0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB1D8F67-C857-4DF0-AAA1-3B88185D6EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB1D8F67-C857-4DF0-AAA1-3B88185D6EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB1D8F67-C857-4DF0-AAA1-3B88185D6EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
