@@ -10,22 +10,19 @@ public class AuthorStore
     public AuthorStore(IBlobContext<BlogMaster> context)
     {
         _context = context;
+        _data = context.Data;
     }
 
     public async Task<List<Author>?> GetAuthors(string? id = null)
     {
-        _data = await _context.LoadAsync();
-
         if (id is null)
             return _data?.Authors;
 
-        return _data.Authors.Where(x => x.Id == id).ToList();
+        return _data?.Authors.Where(x => x.Id == id).ToList();
     }
 
     public async Task<Author?> AddAuthor(string name, string imageUri, string bio)
     {
-        _data = await _context.LoadAsync();
-
         if (_data is null)
             return null;
         
@@ -37,8 +34,6 @@ public class AuthorStore
 
     public async Task<Author?> UpdateAuthor(string id, string name, string imageUri, string bio)
     {
-        _data = await _context.LoadAsync();
-
         if (_data is null)
             return null;
 
@@ -58,8 +53,6 @@ public class AuthorStore
 
     public async Task<Author?> RemoveAuthor(string id)
     {
-        _data = await _context.LoadAsync();
-
         if (_data is null)
             return null;
 

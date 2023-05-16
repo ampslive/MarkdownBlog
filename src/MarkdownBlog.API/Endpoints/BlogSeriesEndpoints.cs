@@ -1,12 +1,9 @@
 ﻿using Azure.Storage.Blobs;
 using MarkdownBlog.API.Models;
-using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
 using MarkdownBlog.Domain.Store;
-using MarkdownBlog.Infra;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 
 namespace MarkdownBlog.API.Endpoints;
 
@@ -26,8 +23,6 @@ public static class BlogSeriesEndpoints
     }
 
     public async static Task<Results<Ok<List<BlogSeries>>, NotFound>> GetSeries(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         BlogSeriesStore store)
     {
         var result = await store.Get();
@@ -37,8 +32,6 @@ public static class BlogSeriesEndpoints
     }
 
     public async static Task<Results<Ok<BlogSeries>, NotFound>> GetSeriesById(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         BlogSeriesStore store,
         string id)
     {
@@ -49,8 +42,6 @@ public static class BlogSeriesEndpoints
     }
 
     public async static Task<Created<BlogSeries>> CreateSeries(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         BlogSeriesStore store,
         [FromBody] BlogSeriesModel model)
     {
@@ -60,8 +51,6 @@ public static class BlogSeriesEndpoints
     }
 
     public async static Task<Results<Ok<BlogSeries>, NotFound>> UpdateSeries(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         BlogSeriesStore store,
         string id,
         [FromBody] BlogSeriesModel model)
@@ -73,8 +62,6 @@ public static class BlogSeriesEndpoints
     }
 
     public async static Task<Results<Ok<BlogSeries>, NotFound>> RemoveSeries(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         BlogSeriesStore store,
         string id)
     {

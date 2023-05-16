@@ -34,8 +34,6 @@ public static class AuthorEndpoints
     }
 
     public async static Task<Results<Ok<Author>, NotFound>> GetAuthor(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         AuthorStore store,
         string id)
     {
@@ -46,8 +44,6 @@ public static class AuthorEndpoints
     }
 
     public async static Task<Created<Author>> CreateAuthor(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         AuthorStore store,
         [FromBody] AuthorModel model)
     {
@@ -57,8 +53,6 @@ public static class AuthorEndpoints
     }
 
     public async static Task<Results<Ok<Author>, NotFound>> UpdateAuthor(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         AuthorStore store,
         string id,
         [FromBody] AuthorModel model)
@@ -70,8 +64,6 @@ public static class AuthorEndpoints
     }
 
     public async static Task<Results<Ok<Author>, NotFound>> RemoveAuthor(BlobServiceClient blobServiceClient,
-        IBlobContext<BlogMaster> context,
-        BlobStoreHelper blobStoreHelper,
         AuthorStore store,
         string id)
     {

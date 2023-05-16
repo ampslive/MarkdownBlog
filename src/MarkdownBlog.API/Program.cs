@@ -4,7 +4,9 @@ using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
 using MarkdownBlog.Domain.Store;
 using MarkdownBlog.Infra;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using Microsoft.Extensions.Azure;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,18 @@ builder.Services.AddAzureClients(clientBuilder =>
     clientBuilder.AddBlobServiceClient(builder.Configuration.GetSection("StorageConnectionString"));
 });
 
-builder.Services.AddTransient<IBlobContext<BlogMaster>, Context>();
+builder.Services.AddScoped<IBlobContext<BlogMaster>, Context>(serviceProvider =>
+{
+    var blobStoreHelper = serviceProvider.GetRequiredService<BlobStoreHelper>();
+    
+    var data = JsonSerializer.Deserialize<BlogMaster>(blobStoreHelper.GetBlobAsync().Result);
+
+    var ctx = new Context(blobStoreHelper, data);
+    return ctx;
+});
 builder.Services.AddTransient<AuthorStore>();
 builder.Services.AddTransient<BlogSeriesStore>();
+
 builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
 {
     var blobServiceClient = serviceProvider.GetRequiredService<BlobServiceClient>();
