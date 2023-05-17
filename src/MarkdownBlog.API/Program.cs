@@ -31,6 +31,7 @@ builder.Services.AddScoped<IBlobContext<BlogMaster>, Context>(serviceProvider =>
 });
 builder.Services.AddTransient<AuthorStore>();
 builder.Services.AddTransient<BlogSeriesStore>();
+builder.Services.AddTransient<PostStore>();
 
 builder.Services.AddSingleton<BlobStoreHelper>(serviceProvider =>
 {
@@ -54,5 +55,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapBlogSeriesEndpoints();
+app.MapPostEndpoints();
 app.MapAuthorEndpoints();
 app.Run();

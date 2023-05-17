@@ -1,0 +1,29 @@
+@id = lZBiP3V8W0eIu-7stYVfJA
+
+GET https://localhost:7299/api/posts
+Content-Type: application/json
+
+###
+
+GET https://localhost:7299/api/posts/{{id}}
+Content-Type: application/json
+
+###
+
+POST https://localhost:7299/api/posts
+Content-Type: application/json
+
+{
+  "title": "My Third Post",
+  "bannerUri": "https://picsum.photos/1000/300",
+  "description": "Post Description",
+  "body": "Post Body",
+  "authors": [
+    "cEtdOpSGJ0uEEJzeq1H3dw"
+  ],
+  "blogSeriesId": "J-l7D7WsakiTjXJIxnA4fw",
+  "meta": {
+    "contentType" : 0,
+    "contentLocation" : "https://raw.githubusercontent.com/ampslive/DSA/main/DS/1-LinkedList/LinkedList.md"
+  }
+}
