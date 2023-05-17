@@ -1,0 +1,42 @@
+name: Trigger auto deployment for cnt-demo
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/cnt-demo-AutoDeployTrigger-0412d243-c41b-4886-b3e9-8ac506e4ca0e.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.CNTDEMO_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: acrdemo517.azurecr.io
+          registryUsername: ${{ secrets.CNTDEMO_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.CNTDEMO_REGISTRY_PASSWORD }}
+          containerAppName: cnt-demo
+          resourceGroup: demo1
+          imageToBuild: acrdemo517.azurecr.io/cnt-demo:${{ github.sha }}
+          
+
+     
+
