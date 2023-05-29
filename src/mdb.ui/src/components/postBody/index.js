@@ -9,7 +9,8 @@ function PostBody(props) {
 
     const [postBody, setPostBody] = useState();
 
-    const { contentLocation, contentType, body } = props.meta;
+    const body = props.post.body;
+    const { contentLocation, contentType } = props.post.meta;
 
     useEffect(() => {
         getPostBody(contentLocation, contentType, body)

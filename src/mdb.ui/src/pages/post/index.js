@@ -49,7 +49,7 @@ function Post(props) {
                             </div>
                             <div><img src={blogPost.bannerUri} class="postBanner" alt='post-banner' /></div>
                             <div class="p-4">
-                                <PostBody meta={blogPost.meta} />
+                                <PostBody post={blogPost} />
                             </div>
                         </div>
                     </div>
