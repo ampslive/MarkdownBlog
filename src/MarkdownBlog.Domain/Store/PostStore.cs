@@ -13,45 +13,25 @@ public class PostStore
         _data = context.Data;
     }
 
-    public async Task<List<Blog>?> GetPosts(string? id = null)
+    public async Task<List<Post>?> GetPosts(string? id = null)
     {
         if (id is null)
-            return _data?.Blogs;
+            return _data?.Posts;
 
-        return _data?.Blogs.SelectMany(b => b.Posts.Where(p => p.Id == id), 
-            (b, p) => new Blog
-            {
-                Id = b.Id,
-                Description = b.Description,
-                Title = b.Title,
-                Posts = new List<Post>() { p }
-            }).ToList();
+        return _data?.Posts.Where(p => p.Id == id).ToList();
     }
 
-    public async Task<Blog?> AddPost(string blogSeriesId, Post post)
+    public async Task<Post?> AddPost(Post post)
     {
         if (_data is null)
             return null;
 
-        var blogToAdd = _data?.Blogs.FirstOrDefault(b=>b.Id == blogSeriesId);
         
-        if (blogToAdd is null)
-        {
-            var blogSeries = _data.BlogSeries.FirstOrDefault(bs => bs.Id == blogSeriesId);
-            _data.Blogs.Add(new Blog { 
-                Id = blogSeries.Id,
-                Title = blogSeries.Title,
-                Posts = new List<Post>() { post }
-            });
+            _data.Posts.Add(post);
             await _context.SaveAsync(_data);
-            return _data?.Blogs.Last();
-        }
 
-        blogToAdd?.Posts.Add(post);
 
-        await _context.SaveAsync(_data);
-
-        return blogToAdd;
+        return post;
     }
 
     //TODO
@@ -75,28 +55,19 @@ public class PostStore
         return author;
     }
     */
-    public async Task<Blog?> RemovePost(string id)
+    public async Task<Post?> RemovePost(string id)
     {
         if (_data is null)
             return null;
 
-        var blog = _data?.Blogs.SelectMany(b => b.Posts.Where(p => p.Id == id),
-            (b, p) => new Blog
-            {
-                Id = b.Id,
-                Description = b.Description,
-                Title = b.Title,
-                Posts = new List<Post>() { p }
-            }).FirstOrDefault();
+        var postToRemove = _data?.Posts.FirstOrDefault(p => p.Id == id);
 
-        if (blog is null)
+        if (postToRemove is null)
             return null;
 
-        var postToRemove = blog.Posts.FirstOrDefault(x => x.Id == id);
-
-        _data?.Blogs.Select(x=>x.Posts.Remove(postToRemove));
+        _data?.Posts.Remove(postToRemove);
         await _context.SaveAsync(_data);
 
-        return blog;
+        return postToRemove;
     }
 }

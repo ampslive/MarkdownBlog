@@ -19,10 +19,10 @@ public static class PostEndpoints
         group.MapGet("/{id}", GetPosts);
         group.MapPost("/", CreatePost);
         //group.MapPut("/{id}", UpdateAuthor);
-        //group.MapDelete("/{id}", RemoveAuthor);
+        group.MapDelete("/{id}", RemovePost);
     }
 
-    public async static Task<Results<Ok<List<Blog>>, NotFound>> GetPosts(BlobServiceClient blobServiceClient,
+    public async static Task<Results<Ok<List<Post>>, NotFound>> GetPosts(BlobServiceClient blobServiceClient,
         PostStore store,
         string? id)
     {
@@ -43,10 +43,20 @@ public static class PostEndpoints
             Description = model.Description,
             Body = model.Body,
             DateCreated = DateTime.UtcNow,
-            Authors = model.Authors
+            AuthorIds = model.AuthorIds,
+            Meta = model.Meta,
+            Series = model.Series
         };
-        var blog = await store.AddPost(model.BlogSeriesId, post);
+        var blog = await store.AddPost(post);
 
         return TypedResults.Created($"{post?.Id}", post);
+    }
+
+    public async static Task<Results<Ok<Post>, NotFound>> RemovePost(PostStore store, string id)
+    {
+        var post = await store.RemovePost(id);
+
+        return (post != null) ? TypedResults.Ok(post)
+            : TypedResults.NotFound();
     }
 }

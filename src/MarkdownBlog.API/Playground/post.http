@@ -1,4 +1,4 @@
-@id = lZBiP3V8W0eIu-7stYVfJA
+@id = g7PfYC6ycE2hC1TUTd5bCQ
 
 GET https://localhost:7299/api/posts
 Content-Type: application/json
@@ -14,16 +14,25 @@ POST https://localhost:7299/api/posts
 Content-Type: application/json
 
 {
-  "title": "My Third Post",
-  "bannerUri": "https://picsum.photos/1000/300",
-  "description": "Post Description",
-  "body": "Post Body",
-  "authors": [
-    "cEtdOpSGJ0uEEJzeq1H3dw"
-  ],
-  "blogSeriesId": "J-l7D7WsakiTjXJIxnA4fw",
-  "meta": {
-    "contentType" : 0,
-    "contentLocation" : "https://raw.githubusercontent.com/ampslive/DSA/main/DS/1-LinkedList/LinkedList.md"
-  }
+    "title": "Fourth Post Title",
+    "bannerUri": "https://picsum.photos/1000/300",
+    "description": "Subtext",
+    "body": "This is my fourth blog post.",
+    "authorIds": [
+        "1"
+    ],
+    "series" : {
+        "id": "1",
+        "title": "Blog Series",
+        "description": "This is a Blog Series"
+    },
+    "meta": {
+        "contentType": 1,
+        "contentLocation": "../../md-posts/sample.md"
+    }
 }
+
+###
+
+DELETE https://localhost:7299/api/posts/Ji8kJNKu4USnoEw_51lG8Q
+Content-Type: application/json

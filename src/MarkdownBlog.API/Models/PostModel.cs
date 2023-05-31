@@ -10,7 +10,9 @@ public class PostModel
     public string Description { get; set; }
     public string Body { get; set; }
     public DateTime DateCreated { get; set; }
-    public List<string> Authors { get; set; }
-    public string BlogSeriesId { get; set; }
+    public List<string> AuthorIds { get; set; }
+    public BlogSeries Series { get; set; }
     public Meta Meta { get; set; }
 }
+
+

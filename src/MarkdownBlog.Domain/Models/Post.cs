@@ -9,6 +9,7 @@ public class Post : BaseModel, IPost
     public string Description { get; set; }
     public string Body { get; set; }
     public DateTime DateCreated { get; set; }
-    public List<string> Authors { get; set; }
+    public BlogSeries Series { get; set; }
+    public List<string> AuthorIds { get; set; }
     public Meta Meta { get; set; }
 }

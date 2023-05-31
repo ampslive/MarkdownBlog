@@ -9,6 +9,6 @@ public interface IPost
     string Description { get; set; }
     string Body { get; set; }
     DateTime DateCreated { get; set; }
-    List<string> Authors { get; set; }
+    List<string> AuthorIds { get; set; }
     Meta Meta { get; set; }
 }
