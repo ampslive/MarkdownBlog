@@ -13,12 +13,18 @@ function Blog(props) {
 
         var data = [];
 
-        data = getPosts();
+        async function LoadData() {
+            data = await getPosts();
+
+            data.sort((a, b) => Date.parse(b.DateCreated) - Date.parse(a.DateCreated));
+
+            setPosts(data);
+        }
+
+        LoadData();
 
         //order posts by date descending
-        data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
 
-        setPosts(data);
     }, [])
 
 
@@ -32,7 +38,7 @@ function Blog(props) {
                     {
                         blogPosts &&
                         blogPosts.map((post) =>
-                            <div class="col-sm-4 my-4" key={post.id}>
+                            <div class="col-sm-4 my-4" key={post.Id}>
                                 <PostPreview post={post} />
                             </div>
                         )

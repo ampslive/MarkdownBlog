@@ -14,5 +14,5 @@ export const postApiJson = (url) => {
 
 export const getApiText = (url) => {
     return fetch(url)
-            .then(result => result.text());
+        .then(result => result.text());
 }
