@@ -1,39 +1,45 @@
 import BlogData from '../blogMaster.json'
-import { getApiText } from '../common/ApiHelper';
+import { getApiText, getApiJson } from '../common/ApiHelper';
 
 /***** Posts *****/
 
-export const getPosts = () => {
+const LoadMasterData = async () => {
     var data = [];
 
+    var response = await getApiJson("https://mdbstore.blob.core.windows.net/bm1/blogMaster.json");
+
     //fetch posts from all the blogs
-    BlogData.posts.map(p => data.push(ConvertToPosts(p)));
+    response.Posts.map(p => data.push(ConvertToPosts(p)));
     return data;
 }
 
-export const getPostById = (postId) => {
-    var data = [];
-    BlogData.posts.map(p => data.push(ConvertToPosts(p)));
+export const getPosts = async () => {
+    //fetch posts from all the blogs
+    var data = await LoadMasterData();
+
+    return data;
+}
+
+export const getPostById = async (postId) => {
+    var data = await LoadMasterData();
 
     //filter by id
-    let result = data.find(function (x) { return x.id === postId; });
+    let result = data.find(function (x) { return x.Id === postId; });
 
-    if(result === undefined)
+    if (result === undefined)
         return null;
 
     return result;
 }
 
-export const getPostByTitleDescription = (searchTerm) => {
-    var data = [];
-    BlogData.posts.map(p => data.push(ConvertToPosts(p)));
-    return data.filter(post => post.title.includes(searchTerm) || post.description.includes(searchTerm));
+export const getPostByTitleDescription = async (searchTerm) => {
+    var data = await LoadMasterData();
+    return data.filter(post => post.Title.includes(searchTerm) || post.Description.includes(searchTerm));
 }
 
-export const getPostByBlogSeries = (searchTerm) => {
-    var data = [];
-    BlogData.posts.map(p => data.push(ConvertToPosts(p)));
-    return data.filter(post => post.series.title.toLowerCase() === searchTerm);
+export const getPostByBlogSeries = async (searchTerm) => {
+    var data = await LoadMasterData();
+    return data.filter(post => post.Series.Title.toLowerCase() === searchTerm);
 }
 
 export const getPostBody = async (contentLocation, contentType, body) => {
@@ -52,10 +58,9 @@ export const getAuthorById = (authorId) => {
 
 
 function ConvertToPosts(post) {
-    post.authors = []
-    let authorInfo = post.authorIds;
+    post.Authors = []
+    let authorInfo = post.AuthorIds;
 
-    authorInfo.forEach(a => post.authors.push(getAuthorById(a)));
-
+    authorInfo.forEach(a => post.Authors.push(getAuthorById(a)));
     return post;
 }

@@ -4,28 +4,29 @@ import { Link } from 'react-router-dom';
 import { formatDate } from '../../common/Utils';
 
 function PostPreview(props) {
-    const postTitle = props.post.title.trim().toLowerCase().replace(/\s/g, "-");
-    const postUri = `/post/${props.post.id}/` + postTitle;
-    const seriesUri = `/blog/series/${props.post.series.title.toLowerCase()}/`;
+    const postTitle = props.post.Title.trim().toLowerCase().replace(/\s/g, "-");
+    const postUri = `/post/${props.post.Id}/` + postTitle;
+    const seriesUri = `/blog/series/${props.post.Series.Title.toLowerCase()}/`;
+
 
     return (
         <Fragment>
             <div class="card">
                 <Link to={postUri}>
-                    <img src={props.post.bannerUri} class="card-img-top" alt="Post Banner" />
+                    <img src={props.post.BannerUri} class="card-img-top" alt="Post Banner" />
                 </Link>
 
                 <div class="card-body">
                     <Link to={seriesUri} class="nav-link card-title">
-                        <pre class="text-right text-uppercase">{props.post.series.title}</pre>
+                        <pre class="text-right text-uppercase">{props.post.Series.Title}</pre>
                     </Link>
 
                     <Link to={postUri} class="nav-link card-title">
-                        <h5>{props.post.title}</h5>
+                        <h5>{props.post.Title}</h5>
                     </Link>
 
                     <div class="my-2">
-                        <p class="card-text">{props.post.description}</p>
+                        <p class="card-text">{props.post.Description}</p>
 
                         <Link to={postUri} class="nav-link card-title">
                             <span>[...]</span>
@@ -34,10 +35,10 @@ function PostPreview(props) {
 
                     <div class="d-flex justify-content-between text-muted">
                         <div class="d-flex justify-content-between">
-                            <img src={props.post.authors[0].imageUri} alt="author" class="user-image" />
-                            <p class="px-2 mt-1">{props.post.authors[0].name}</p>
+                            <img src={props.post.Authors[0].imageUri} alt="author" class="user-image" />
+                            <p class="px-2 mt-1">{props.post.Authors[0].name}</p>
                         </div>
-                        <div><p class="px-2 mt-1"><small>{formatDate(props.post.dateCreated)}</small></p></div>
+                        <div><p class="px-2 mt-1"><small>{formatDate(props.post.DateCreated)}</small></p></div>
                     </div>
 
                 </div>

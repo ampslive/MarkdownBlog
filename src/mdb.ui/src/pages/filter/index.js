@@ -1,24 +1,28 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { getPostByBlogSeries } from '../../common/BlogStore'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import PostPreview from '../../components/postPreview';
 
-function  Filter() {
+function Filter() {
     let { searchSeries } = useParams();
 
     const [blogPosts, setPosts] = useState([]);
 
     useEffect(() => {
 
-        var data = [];
+        async function LoadData() {
 
-        data = getPostByBlogSeries(searchSeries.toLowerCase());
+            var data = await getPostByBlogSeries(searchSeries.toLowerCase());
 
-        //order posts by date descending
-        data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated));
+            //order posts by date descending
+            data.sort((a, b) => Date.parse(b.DateCreated) - Date.parse(a.DateCreated));
 
-        setPosts(data);
+            setPosts(data);
+        }
+
+        LoadData();
+
     }, [searchSeries])
 
 
@@ -29,7 +33,7 @@ function  Filter() {
                     {
                         blogPosts &&
                         blogPosts.map((post) =>
-                            <div class="col-sm-4 my-4" key={post.id}>
+                            <div class="col-sm-4 my-4" key={post.Id}>
                                 <PostPreview post={post} />
                             </div>
                         )

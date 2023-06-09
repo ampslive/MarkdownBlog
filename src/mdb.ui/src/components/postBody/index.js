@@ -6,24 +6,22 @@ import { getPostBody } from '../../common/BlogStore';
 import './style.css'
 
 function PostBody(props) {
-
     const [postBody, setPostBody] = useState();
-
-    const body = props.post.body;
-    const { contentLocation, contentType } = props.post.meta;
+    const body = props.post.Body;
+    const { ContentLocation, ContentType } = props.post.Meta;
 
     useEffect(() => {
-        getPostBody(contentLocation, contentType, body)
+        getPostBody(ContentLocation, ContentType, body)
             .then(
                 (text) => setPostBody(text)
             );
-    }, [postBody, body, contentLocation, contentType]);
+    }, [postBody, body, ContentLocation, ContentType]);
 
     return (
         <Fragment>
             <div class="text-justify lh-base">
                 {
-                    ((contentType === 'embTxt') && <p class='embTxt'>{postBody}</p> ) 
+                    ((ContentType === 'embTxt') && <p class='embTxt'>{postBody}</p>)
                     || <div class='mdContainer'><ReactMarkdown remarkPlugins={[gfm]} children={postBody} /></div>
                 }
             </div>
