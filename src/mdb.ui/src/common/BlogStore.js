@@ -1,15 +1,31 @@
 import BlogData from '../blogMaster.json'
 import { getApiText, getApiJson } from '../common/ApiHelper';
 
+const cacheNameBlogMaster = 'blogMaster';
+const blogMasterUri = 'https://mdbstore.blob.core.windows.net/bm1/blogMaster.json';
+
 /***** Posts *****/
 
 const LoadMasterData = async () => {
     var data = [];
+    const cacheDuration = 60 * 60 * 1000; // 1 hour in milliseconds
 
-    var response = await getApiJson("https://mdbstore.blob.core.windows.net/bm1/blogMaster.json");
+    const cachedData = localStorage.getItem(cacheNameBlogMaster);
+
+    if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        if (Date.now() - timestamp < cacheDuration) {
+          return data;
+        }
+      }
+
+    //if cache has expired or not available
+    var response = await getApiJson(blogMasterUri);
 
     //fetch posts from all the blogs
     response.Posts.map(p => data.push(ConvertToPosts(p)));
+
+    localStorage.setItem(cacheNameBlogMaster, JSON.stringify({ data, timestamp: Date.now() }))
     return data;
 }
 
