@@ -42,7 +42,7 @@ function Post(props) {
                 <div class="container mainContent">
                     <div class="row">
                         <div class="col-md-12 my-4 p-3 post">
-                            <h2 class="text-center">{blogPost.title}</h2>
+                            <h2 class="text-center">{blogPost.Title}</h2>
                             <div class="my-3">
                                 <div class="d-flex justify-content-center"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image" /></div>
                                 <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0].Name}</a></div>
