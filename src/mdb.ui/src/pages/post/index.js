@@ -11,7 +11,7 @@ function Post(props) {
 
     const defaultPost = {
         DateCreated: "09/17/2022 18:46:07",
-        Authors: [{ name: "" }],
+        Authors: [{ Name: "abc", ImageUri: "" }],
         Meta: {},
         Series: { Title: "" },
         seriesUri: ""
@@ -44,8 +44,8 @@ function Post(props) {
                         <div class="col-md-12 my-4 p-3 post">
                             <h2 class="text-center">{blogPost.title}</h2>
                             <div class="my-3">
-                                <div class="d-flex justify-content-center"><img src={blogPost.Authors[0].imageUri} alt="author" class="author-image" /></div>
-                                <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0].name}</a></div>
+                                <div class="d-flex justify-content-center"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image" /></div>
+                                <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0].Name}</a></div>
                             </div>
                             <div class="d-flex justify-content-center text-center m-2">
                                 <p class="fw-light">{formatDate(blogPost.DateCreated) + '  |  '}</p>
@@ -62,10 +62,10 @@ function Post(props) {
                     <div id="postFooter" class="row p-4">
                         <div class="col-md-10 mx-auto">
                             <div class="d-flex flex-row">
-                                <div class="m-2"><img src={blogPost.Authors[0].imageUri} alt="author" class="author-image-footer" /></div>
+                                <div class="m-2"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image-footer" /></div>
                                 <div class="m-2">
-                                    <h6>ABOUT {blogPost.Authors[0].name.toUpperCase()}</h6>
-                                    <p>{blogPost.Authors[0].bio}</p>
+                                    <h6>ABOUT {blogPost.Authors[0].Name.toUpperCase()}</h6>
+                                    <p>{blogPost.Authors[0].Bio}</p> 
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,3 @@
-import BlogData from '../blogMaster.json'
 import { getApiText, getApiJson } from '../common/ApiHelper';
 
 const cacheNameBlogMaster = 'blogMaster';
@@ -17,13 +16,16 @@ const LoadMasterData = async () => {
         if (Date.now() - timestamp < cacheDuration) {
           return data;
         }
-      }
+    }
 
     //if cache has expired or not available
     var response = await getApiJson(blogMasterUri);
 
+    let authorList = response.Authors;
+    
     //fetch posts from all the blogs
-    response.Posts.map(p => data.push(ConvertToPosts(p)));
+    response.Posts.map(p => data.push(ConvertToPosts(p, authorList)));
+    console.log(data);
 
     localStorage.setItem(cacheNameBlogMaster, JSON.stringify({ data, timestamp: Date.now() }))
     return data;
@@ -67,16 +69,16 @@ export const getPostBody = async (contentLocation, contentType, body) => {
 
 /***** Authors *****/
 
-export const getAuthorById = (authorId) => {
+export const getAuthorById = (authorId, authorList) => {
     //fetch author details
-    return BlogData.authors.filter(x => x.id === authorId)[0];
+    var authorDetails = authorList.filter(x => x.Id === authorId)[0];
+    return authorDetails;
 }
 
 
-function ConvertToPosts(post) {
+function ConvertToPosts(post, authorList) {
     post.Authors = []
     let authorInfo = post.AuthorIds;
-
-    authorInfo.forEach(a => post.Authors.push(getAuthorById(a)));
+    authorInfo.forEach(a => post.Authors.push(getAuthorById(a, authorList)));
     return post;
 }

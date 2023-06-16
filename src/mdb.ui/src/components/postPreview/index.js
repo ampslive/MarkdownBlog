@@ -8,7 +8,6 @@ function PostPreview(props) {
     const postUri = `/post/${props.post.Id}/` + postTitle;
     const seriesUri = `/blog/series/${props.post.Series.Title.toLowerCase()}/`;
 
-
     return (
         <Fragment>
             <div class="card">
@@ -35,8 +34,8 @@ function PostPreview(props) {
 
                     <div class="d-flex justify-content-between text-muted">
                         <div class="d-flex justify-content-between">
-                            <img src={props.post.Authors[0].imageUri} alt="author" class="user-image" />
-                            <p class="px-2 mt-1">{props.post.Authors[0].name}</p>
+                            <img src={props.post.Authors[0].ImageUri} alt="author" class="user-image" />
+                            <p class="px-2 mt-1">{props.post.Authors[0].Name}</p>
                         </div>
                         <div><p class="px-2 mt-1"><small>{formatDate(props.post.DateCreated)}</small></p></div>
                     </div>

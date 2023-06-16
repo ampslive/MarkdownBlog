@@ -18,8 +18,8 @@ POST https://localhost:7299/api/author
 Content-Type: application/json
 
 {
-  "name": "amit philips",
-  "imageUri": "myimage",
+  "name": "john sanjeev",
+  "imageUri": "https://th.bing.com/th/id/OIP.LWXAxMTEcHfBztD0iaYSzgHaHP",
   "bio": "bionic"
 }
 

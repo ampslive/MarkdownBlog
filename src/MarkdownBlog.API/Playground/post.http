@@ -14,12 +14,12 @@ POST https://localhost:7299/api/posts
 Content-Type: application/json
 
 {
-    "title": "Fourth Post Title",
+    "title": "Fifth Post Title",
     "bannerUri": "https://picsum.photos/1000/300",
     "description": "Subtext",
-    "body": "This is my fourth blog post.",
+    "body": "This is my fifth blog post.",
     "authorIds": [
-        "1"
+        "z2mbU_IncUikH_hQgjyNzw"
     ],
     "series" : {
         "id": "1",
