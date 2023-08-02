@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<Blog />} />
             <Route path="/news" element={<NewsSources />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/series/:searchSeries" element={<Filter />} />
+            <Route path="/blog/:filter/:searchTerm" element={<Filter />} />
             <Route path="/sample" element={<Sample />} />
             <Route path="/post/:id/:title" element={<Post />} />
           </Routes>

@@ -25,7 +25,6 @@ const LoadMasterData = async () => {
     
     //fetch posts from all the blogs
     response.Posts.map(p => data.push(ConvertToPosts(p, authorList)));
-    console.log(data);
 
     localStorage.setItem(cacheNameBlogMaster, JSON.stringify({ data, timestamp: Date.now() }))
     return data;
@@ -57,6 +56,7 @@ export const getPostByTitleDescription = async (searchTerm) => {
 
 export const getPostByBlogSeries = async (searchTerm) => {
     var data = await LoadMasterData();
+
     return data.filter(post => post.Series.Title.toLowerCase() === searchTerm);
 }
 
@@ -75,6 +75,11 @@ export const getAuthorById = (authorId, authorList) => {
     return authorDetails;
 }
 
+/***** BlogSeries *****/
+
+export const getBlogSeriesById = (seriesTitle, seriesList) => {
+    
+}
 
 function ConvertToPosts(post, authorList) {
     post.Authors = []
