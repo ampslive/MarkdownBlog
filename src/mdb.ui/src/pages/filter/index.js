@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { getPostByBlogSeries } from '../../common/BlogStore'
+import { getPostByBlogSeries, getPostByAuthor, getAuthorById } from '../../common/BlogStore'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import PostPreview from '../../components/postPreview';
@@ -10,6 +10,7 @@ function Filter() {
     let { filter, searchTerm } = useParams();
 
     const [blogPosts, setPosts] = useState([]);
+    const [author, setAuthor] = useState();
 
     useEffect(() => {
 
@@ -20,7 +21,8 @@ function Filter() {
                 data = await getPostByBlogSeries(searchTerm.toLowerCase());
             }
             else if (filter === 'author') {
-                data = await getPostByBlogSeries(searchTerm.toLowerCase());
+                data = await getPostByAuthor('z2mbU_IncUikH_hQgjyNzw');
+                setAuthor(getAuthorById('z2mbU_IncUikH_hQgjyNzw', data[0]?.Authors));
             }
 
             //order posts by date descending
@@ -31,14 +33,15 @@ function Filter() {
 
         LoadData();
 
-    }, [searchTerm])
+    }, [searchTerm, filter])
 
 
     return (
         <Fragment>
             <div class="container">
                 <div class="row p-5 bg-dark">
-                 {blogPosts && <JumbotronFilter Filter={capitalize(filter)} Title={blogPosts[0]?.Series?.Title} Description={blogPosts[0]?.Series?.Description} Stats={blogPosts.length} /> }
+                 {blogPosts && filter === 'series' && <JumbotronFilter Filter={capitalize(filter)} Title={blogPosts[0]?.Series?.Title} Description={blogPosts[0]?.Series?.Description} Stats={blogPosts.length} /> }
+                 {blogPosts && filter === 'author' && <JumbotronFilter Filter={capitalize(filter)} Title={author?.Name} Description={author?.Bio} Stats={blogPosts.length} /> }
                 </div>
                 <div class="row">
                     {

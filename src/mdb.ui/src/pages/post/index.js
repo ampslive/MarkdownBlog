@@ -21,6 +21,7 @@ function Post(props) {
 
     let { id } = useParams();
     const seriesUri = `/blog/series/`;
+    const authorUri = `/blog/author/`;
 
     useEffect(() => {
 
@@ -65,7 +66,10 @@ function Post(props) {
                                 <div class="m-2"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image-footer" /></div>
                                 <div class="m-2">
                                     <h6>ABOUT {blogPost.Authors[0].Name.toUpperCase()}</h6>
-                                    <p>{blogPost.Authors[0].Bio}</p> 
+                                    <p>{blogPost.Authors[0].Bio}</p>
+                                    <Link to={authorUri + blogPost.Authors[0].Id + '/'} class="nav-link">
+                                        <p class="fw-light">Posts by this author</p>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

@@ -60,6 +60,11 @@ export const getPostByBlogSeries = async (searchTerm) => {
     return data.filter(post => post.Series.Title.toLowerCase() === searchTerm);
 }
 
+export const getPostByAuthor = async (searchTerm) => {
+    var data = await LoadMasterData();
+    return data.filter(post => post.AuthorIds.includes(searchTerm));
+}
+
 export const getPostBody = async (contentLocation, contentType, body) => {
     if (contentType === "embTxt") {
         return Promise.resolve(body);
