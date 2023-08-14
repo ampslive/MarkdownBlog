@@ -9,20 +9,27 @@ function PostBody(props) {
     const [postBody, setPostBody] = useState();
     const body = props.post.Body;
     const { ContentLocation, ContentType } = props.post.Meta;
+    const [isBusy, setBusy] = useState(true);
 
     useEffect(() => {
         getPostBody(ContentLocation, ContentType, body)
             .then(
-                (text) => setPostBody(text)
+                (text) => {
+                    setPostBody(text);
+                    setBusy(false);
+                }
             );
     }, [postBody, body, ContentLocation, ContentType]);
 
     return (
         <Fragment>
             <div class="text-justify lh-base">
-                {
-                    ((ContentType === 'embTxt') && <p class='embTxt'>{postBody}</p>)
-                    || <div class='mdContainer'><ReactMarkdown remarkPlugins={[gfm]} children={postBody} /></div>
+                { isBusy ? (<span class="loader"></span>) :
+                    (((ContentType === 'embTxt') && <p class='embTxt'>{postBody}</p>)
+                    || <div class='mdContainer'>
+                        
+                        <ReactMarkdown remarkPlugins={[gfm]} children={postBody} />
+                        </div>)
                 }
             </div>
         </Fragment>

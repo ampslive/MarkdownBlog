@@ -18,6 +18,7 @@ function Post(props) {
     };
 
     const [blogPost, setPost] = useState(defaultPost);
+    const [isBusy, setBusy] = useState(true);
 
     let { id } = useParams();
     const seriesUri = `/blog/series/`;
@@ -54,7 +55,10 @@ function Post(props) {
                                     <p class="fw-light">{blogPost.Series.Title}</p>
                                 </Link>
                             </div>
-                            <div><img src={blogPost.BannerUri} class="postBanner" alt='post-banner' /></div>
+                            <div>
+                                { isBusy && (<span class="loader"></span>) } 
+                                <img src={blogPost.BannerUri} class="postBanner" onLoad={() => setBusy(false)} alt='post-banner'/>
+                            </div>
                             <div class="p-4">
                                 <PostBody post={blogPost} />
                             </div>
