@@ -19,7 +19,9 @@ function PostBody(props) {
                     setBusy(false);
                 }
             );
-    }, [postBody, body, ContentLocation, ContentType]);
+    }, [body, ContentLocation, ContentType]);
+
+    useEffect(() => {}, [postBody])
 
     return (
         <Fragment>
