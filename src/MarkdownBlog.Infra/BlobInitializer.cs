@@ -2,6 +2,7 @@
 using MarkdownBlog.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace MarkdownBlog.Infra;
@@ -10,8 +11,8 @@ public static class BlobInitializer
 {
     public async static void CreateContainerAndBlob(IServiceProvider services)
     {
-        using (var scope = services.CreateScope())
-        {
+        //using (var scope = services.CreateScope())
+        //{
             try
             {
                 var blobServiceClient = services.GetRequiredService<BlobServiceClient>();
@@ -28,8 +29,9 @@ public static class BlobInitializer
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 //logger.LogError(ex, "An error occurred while seeding blob container");
             }
-        }
+        //}
     }
 }

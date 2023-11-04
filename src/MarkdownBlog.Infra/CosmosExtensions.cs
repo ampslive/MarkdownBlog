@@ -1,7 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 
 namespace MarkdownBlog.Infra;
 
