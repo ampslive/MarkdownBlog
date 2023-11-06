@@ -52,8 +52,6 @@ public class Startup : FunctionsStartup
             return new BlobStoreHelper(blobServiceClient, containername, filename);
         });
 
-        //var provider = builder.Services.BuildServiceProvider();
-        //BlobInitializer.CreateContainerAndBlob(provider);
 
         builder.Services.AddScoped(serviceProvider => 
         {
@@ -61,11 +59,9 @@ public class Startup : FunctionsStartup
             return serviceProvider.ToString();
         });
 
-        //var serviceProvider = builder.Services.BuildServiceProvider();
-        //var blobServiceClient = serviceProvider.GetRequiredService<BlobServiceClient>();
-
-        //BlobInitializer.CreateContainerAndBlob(builder.Services.BuildServiceProvider());
-        //builder.Services.CreateContainerAndBlob();
-
+        builder.Services.Configure<JsonSerializerOptions>(options =>
+        {
+            options.PropertyNameCaseInsensitive = true;
+        });
     }
 }
