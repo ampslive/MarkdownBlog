@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Infra", "Markd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.API", "MarkdownBlog.API\MarkdownBlog.API.csproj", "{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Functions", "MarkdownBlog.Functions\MarkdownBlog.Functions.csproj", "{5C5131BA-BFE9-4D78-9364-86B9332ED21D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownBlog.Functions", "MarkdownBlog.Functions\MarkdownBlog.Functions.csproj", "{3248E890-B96B-41DA-84DF-4A2364CFF0CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7552CDF-0A5B-4D05-9454-FC3D71026EF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C5131BA-BFE9-4D78-9364-86B9332ED21D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C5131BA-BFE9-4D78-9364-86B9332ED21D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C5131BA-BFE9-4D78-9364-86B9332ED21D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C5131BA-BFE9-4D78-9364-86B9332ED21D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3248E890-B96B-41DA-84DF-4A2364CFF0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3248E890-B96B-41DA-84DF-4A2364CFF0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3248E890-B96B-41DA-84DF-4A2364CFF0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3248E890-B96B-41DA-84DF-4A2364CFF0CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

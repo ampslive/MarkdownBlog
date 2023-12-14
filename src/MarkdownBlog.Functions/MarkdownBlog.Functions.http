@@ -1,0 +1,27 @@
+﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
+@seriesId = J-l7D7WsakiTjXJIxnA4fw
+
+GET {{MarkdownBlog.Functions_HostAddress}}/series
+
+###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/series/{{seriesId}}
+
+###
+POST {{MarkdownBlog.Functions_HostAddress}}/series
+Content-Type: application/json
+
+{
+  "title": "Cloud",
+  "description": "All cloud posts"
+}
+
+###
+
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
+
+###
+
+DELETE {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
+
+###

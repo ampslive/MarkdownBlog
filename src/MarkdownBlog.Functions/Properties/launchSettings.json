@@ -2,7 +2,7 @@
   "profiles": {
     "MarkdownBlog.Functions": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7089",
+      "commandLineArgs": "--port 7119",
       "launchBrowser": false
     }
   }
