@@ -1,88 +1,44 @@
+using System.Net;
 using MarkdownBlog.Domain.Store;
-using MarkdownBlog.Functions.Models;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Net;
-using System.Text.Json;
+using MarkdownBlog.API.Models;
+using MarkdownBlog.Functions.Models;
 
 namespace MarkdownBlog.Functions;
 
-public class BlogSeriesFunction
+public class AuthorFunction
 {
-    private readonly BlogSeriesStore _store;
+    private readonly AuthorStore _store;
     private readonly JsonSerializerOptions _serializerOptions;
     private readonly ILogger _logger;
 
-    public BlogSeriesFunction(BlogSeriesStore store, IOptions<JsonSerializerOptions> serializerOptions, ILoggerFactory loggerFactory)
+    public AuthorFunction(AuthorStore store, IOptions<JsonSerializerOptions> serializerOptions, ILoggerFactory loggerFactory)
     {
         _store = store;
         _serializerOptions = serializerOptions.Value;
-        _logger = loggerFactory.CreateLogger<BlogSeriesFunction>();
+        _logger = loggerFactory.CreateLogger<AuthorFunction>();
     }
 
-    [Function("BlogSeriesGet")]
-    public async Task<HttpResponseData> BlogSeriesGet(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "series")] HttpRequestData req,
-        ILogger log)
+    [Function("AuthorGet")]
+    public async Task<HttpResponseData> AuthorGet([HttpTrigger(AuthorizationLevel.Function, "get", Route = "authors")] HttpRequestData req)
     {
-        var result = await _store.Get();
+        var result = await _store.GetAuthors();
 
         var response = req.CreateResponse(HttpStatusCode.OK);
         await response.WriteAsJsonAsync(result);
 
         return response;
     }
-    
-    [Function("BlogSeriesGetById")]
-    public async Task<HttpResponseData> BlogSeriesGetById(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "series/{id}")] HttpRequestData req,
-        ILogger log)
+
+    [Function("AuthorGetById")]
+    public async Task<HttpResponseData> AuthorGetById([HttpTrigger(AuthorizationLevel.Function, "get", Route = "author/{id}")] HttpRequestData req)
     {
         string id = req.Url.Segments[3];
-
-        var result = await _store.Get(id);
-
-        if(result == null)
-        {
-            var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
-            return responseNotFound;
-        }
-
-        var response = req.CreateResponse(HttpStatusCode.OK);
-        await response.WriteAsJsonAsync(result);
-
-        return response;
-    }
-    [Function("BlogSeriesCreate")]
-    public async Task<HttpResponseData> BlogSeriesCreate(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "series")] HttpRequestData req,
-        ILogger log)
-    {
-        var content = await new StreamReader(req.Body).ReadToEndAsync();
-        var model = JsonSerializer.Deserialize<BlogSeriesRequest>(content, _serializerOptions);
-
-        var result = await _store.Add(model.Title, model.Description);
-
-        var response = req.CreateResponse(HttpStatusCode.Created);
-        await response.WriteAsJsonAsync(result);
-
-        return response;
-    }
-
-    [Function("BlogSeriesUpdate")]
-    public async Task<HttpResponseData> BlogSeriesUpdate(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "series/{id}")] HttpRequestData req,
-        ILogger log)
-    {
-        string id = req.Url.Segments[3];
-
-        var content = await new StreamReader(req.Body).ReadToEndAsync();
-        var model = JsonSerializer.Deserialize<BlogSeriesRequest>(content, _serializerOptions);
-
-        var result = await _store.Update(id, model.Title, model.Description);
+        var result = await _store.GetAuthors(id);
 
         if (result == null)
         {
@@ -97,15 +53,54 @@ public class BlogSeriesFunction
         return response;
     }
 
+    [Function("AuthorCreate")]
+    public async Task<HttpResponseData> AuthorCreate([HttpTrigger(AuthorizationLevel.Function, "post", Route = "author")] HttpRequestData req)
+    {
+        var content = await new StreamReader(req.Body).ReadToEndAsync();
+        var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
 
-    [Function("BlogSeriesDelete")]
-    public async Task<HttpResponseData> BlogSeriesDelete(
-        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "series/{id}")] HttpRequestData req,
+        var result = await _store.AddAuthor(model.Name, model.ImageUri, model.Bio);
+
+        var response = req.CreateResponse(HttpStatusCode.Created);
+        await response.WriteAsJsonAsync(result);
+
+        return response;
+
+    }
+
+    [Function("AuthorUpdate")]
+    public async Task<HttpResponseData> AuthorUpdate(
+        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "author/{id}")] HttpRequestData req,
         ILogger log)
     {
         string id = req.Url.Segments[3];
 
-        var result = await _store.Remove(id);
+        var content = await new StreamReader(req.Body).ReadToEndAsync();
+        var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
+
+        var result = await _store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio);
+
+        if (result == null)
+        {
+            var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
+            await responseNotFound.WriteAsJsonAsync(result);
+            return responseNotFound;
+        }
+
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        await response.WriteAsJsonAsync(result);
+
+        return response;
+    }
+
+    [Function("AuthorDelete")]
+    public async Task<HttpResponseData> AuthorDelete(
+        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "author/{id}")] HttpRequestData req,
+        ILogger log)
+    {
+        string id = req.Url.Segments[3];
+
+        var result = await _store.RemoveAuthor(id);
 
         if (result == null)
         {

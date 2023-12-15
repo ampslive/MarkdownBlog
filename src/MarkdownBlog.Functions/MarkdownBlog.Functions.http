@@ -1,5 +1,6 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = J-l7D7WsakiTjXJIxnA4fw
+@authorId = 95TCdmnA3UuApj9wVP54yw
 
 GET {{MarkdownBlog.Functions_HostAddress}}/series
 
@@ -20,8 +21,47 @@ Content-Type: application/json
 
 PUT {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
 
+Content-Type: application/json
+
+{
+  "title": "Cloud",
+  "description": "All cloud posts"
+}
 ###
 
 DELETE {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
 
+### 
+
+## Authors Endpoints ###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/api/authors
+
 ###
+GET {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+
+###
+
+POST {{MarkdownBlog.Functions_HostAddress}}/api/author
+Content-Type: application/json
+
+{
+  "Name": "John Doe",
+  "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
+  "Bio": "Coder, Surfer"
+}
+###
+
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+Content-Type: application/json
+
+{
+  "Name": "John Doe",
+  "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
+  "Bio": "Coder, Surfer, Golfer",
+  "Id": "8H2ut3lxn0yQaxefos988g"
+}
+
+###
+
+DELETE {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
