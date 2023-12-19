@@ -46,8 +46,8 @@ function Post(props) {
                         <div class="col-md-12 my-4 p-3 post">
                             <h2 class="text-center">{blogPost.Title}</h2>
                             <div class="my-3">
-                                <div class="d-flex justify-content-center"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image" /></div>
-                                <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0].Name}</a></div>
+                                <div class="d-flex justify-content-center"><img src={blogPost.Authors[0]?.ImageUri} alt="author" class="author-image" /></div>
+                                <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0]?.Name}</a></div>
                             </div>
                             <div class="d-flex justify-content-center text-center m-2">
                                 <p class="fw-light">{formatDate(blogPost.DateCreated) + '  |  '}</p>
@@ -67,11 +67,11 @@ function Post(props) {
                     <div id="postFooter" class="row p-4">
                         <div class="col-md-10 mx-auto">
                             <div class="d-flex flex-row">
-                                <div class="m-2"><img src={blogPost.Authors[0].ImageUri} alt="author" class="author-image-footer" /></div>
+                                <div class="m-2"><img src={blogPost.Authors[0]?.ImageUri} alt="author" class="author-image-footer" /></div>
                                 <div class="m-2">
-                                    <h6>ABOUT {blogPost.Authors[0].Name.toUpperCase()}</h6>
-                                    <p>{blogPost.Authors[0].Bio}</p>
-                                    <Link to={authorUri + blogPost.Authors[0].Id + '/'} class="nav-link">
+                                    <h6>ABOUT {blogPost.Authors[0]?.Name.toUpperCase()}</h6>
+                                    <p>{blogPost.Authors[0]?.Bio}</p>
+                                    <Link to={authorUri + blogPost.Authors[0]?.Id + '/'} class="nav-link">
                                         <p class="fw-light">Posts by this author</p>
                                     </Link>
                                 </div>
