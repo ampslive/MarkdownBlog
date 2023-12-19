@@ -34,8 +34,8 @@ function PostPreview(props) {
 
                     <div class="d-flex justify-content-between text-muted">
                         <div class="d-flex justify-content-between">
-                            <img src={props.post.Authors[0].ImageUri} alt="author" class="user-image" />
-                            <p class="px-2 mt-1">{props.post.Authors[0].Name}</p>
+                            <img src={props.post.Authors[0]?.ImageUri} alt="author" class="user-image" />
+                            <p class="px-2 mt-1">{props.post.Authors[0]?.Name}</p>
                         </div>
                         <div><p class="px-2 mt-1"><small>{formatDate(props.post.DateCreated)}</small></p></div>
                     </div>
