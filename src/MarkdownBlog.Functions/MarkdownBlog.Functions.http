@@ -1,6 +1,7 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = J-l7D7WsakiTjXJIxnA4fw
 @authorId = 95TCdmnA3UuApj9wVP54yw
+@postId = g7PfYC6ycE2hC1TUTd5bCQ
 
 GET {{MarkdownBlog.Functions_HostAddress}}/series
 
@@ -65,3 +66,41 @@ Content-Type: application/json
 ###
 
 DELETE {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+
+###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/api/posts
+
+###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
+
+###
+
+POST {{MarkdownBlog.Functions_HostAddress}}/api/posts
+Content-Type: application/json
+
+{
+    "title": "Fifth Post Title",
+    "bannerUri": "https://picsum.photos/1000/300",
+    "description": "Subtext",
+    "body": "This is my fifth blog post.",
+    "authorIds": [
+        "95TCdmnA3UuApj9wVP54yw"
+    ],
+    "series" : {
+        "id": "1",
+        "title": "Blog Series",
+        "description": "This is a Blog Series"
+    },
+    "meta": {
+        "contentType": 1,
+        "contentLocation": "../../md-posts/sample.md"
+    }
+}
+
+###
+
+DELETE {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
+Content-Type: application/json
+
