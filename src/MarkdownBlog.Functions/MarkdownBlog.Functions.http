@@ -1,16 +1,16 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
-@seriesId = J-l7D7WsakiTjXJIxnA4fw
-@authorId = 95TCdmnA3UuApj9wVP54yw
+@seriesId = mL7bN1IJqEGe9nTempMETA
+@authorId = 8o-sQOeCrUCJ2RxcKzax6g
 @postId = g7PfYC6ycE2hC1TUTd5bCQ
 
-GET {{MarkdownBlog.Functions_HostAddress}}/series
+GET {{MarkdownBlog.Functions_HostAddress}}/api/series
 
 ###
 
-GET {{MarkdownBlog.Functions_HostAddress}}/series/{{seriesId}}
+GET {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
 
 ###
-POST {{MarkdownBlog.Functions_HostAddress}}/series
+POST {{MarkdownBlog.Functions_HostAddress}}/api/series
 Content-Type: application/json
 
 {
@@ -39,11 +39,11 @@ DELETE {{MarkdownBlog.Functions_HostAddress}}/api/series/{{seriesId}}
 GET {{MarkdownBlog.Functions_HostAddress}}/api/authors
 
 ###
-GET {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+GET {{MarkdownBlog.Functions_HostAddress}}/api/authors/{{authorId}}
 
 ###
 
-POST {{MarkdownBlog.Functions_HostAddress}}/api/author
+POST {{MarkdownBlog.Functions_HostAddress}}/api/authors
 Content-Type: application/json
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 ###
 
-PUT {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/authors/{{authorId}}
 Content-Type: application/json
 
 {
@@ -65,9 +65,9 @@ Content-Type: application/json
 
 ###
 
-DELETE {{MarkdownBlog.Functions_HostAddress}}/api/author/{{authorId}}
+DELETE {{MarkdownBlog.Functions_HostAddress}}/api/authors/{{authorId}}
 
-###
+### POSTS ENDPOINTS
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/posts
 

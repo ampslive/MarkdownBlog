@@ -23,21 +23,24 @@ public class AuthorFunction
         _logger = loggerFactory.CreateLogger<AuthorFunction>();
     }
 
-    [Function("AuthorGet")]
-    public async Task<HttpResponseData> AuthorGet([HttpTrigger(AuthorizationLevel.Function, "get", Route = "authors")] HttpRequestData req)
+    [Function("AuthorFunction")]
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "put", "delete", Route = "authors/{id?}")] HttpRequestData req)
     {
-        var result = await _store.GetAuthors();
-
-        var response = req.CreateResponse(HttpStatusCode.OK);
-        await response.WriteAsJsonAsync(result);
+        HttpResponseData response = req.Method switch
+        {
+            "GET" => await GetAuthors(req),
+            "POST" => await CreateAuthor(req),
+            "PUT" => await UpdateAuthor(req),
+            "DELETE" => await DeleteAuthor(req),
+            _ => req.CreateResponse(HttpStatusCode.MethodNotAllowed)
+        };
 
         return response;
     }
 
-    [Function("AuthorGetById")]
-    public async Task<HttpResponseData> AuthorGetById([HttpTrigger(AuthorizationLevel.Function, "get", Route = "author/{id}")] HttpRequestData req)
+    public async Task<HttpResponseData> GetAuthors(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
         var result = await _store.GetAuthors(id);
 
         if (result == null)
@@ -53,8 +56,7 @@ public class AuthorFunction
         return response;
     }
 
-    [Function("AuthorCreate")]
-    public async Task<HttpResponseData> AuthorCreate([HttpTrigger(AuthorizationLevel.Function, "post", Route = "author")] HttpRequestData req)
+    public async Task<HttpResponseData> CreateAuthor(HttpRequestData req)
     {
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
@@ -68,12 +70,9 @@ public class AuthorFunction
 
     }
 
-    [Function("AuthorUpdate")]
-    public async Task<HttpResponseData> AuthorUpdate(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "author/{id}")] HttpRequestData req,
-        ILogger log)
+    public async Task<HttpResponseData> UpdateAuthor(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
 
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
@@ -93,12 +92,9 @@ public class AuthorFunction
         return response;
     }
 
-    [Function("AuthorDelete")]
-    public async Task<HttpResponseData> AuthorDelete(
-        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "author/{id}")] HttpRequestData req,
-        ILogger log)
+    public async Task<HttpResponseData> DeleteAuthor(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
 
         var result = await _store.RemoveAuthor(id);
 

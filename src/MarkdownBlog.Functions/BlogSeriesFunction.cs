@@ -22,25 +22,24 @@ public class BlogSeriesFunction
         _logger = loggerFactory.CreateLogger<BlogSeriesFunction>();
     }
 
-    [Function("BlogSeriesGet")]
-    public async Task<HttpResponseData> BlogSeriesGet(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "series")] HttpRequestData req,
-        ILogger log)
+    [Function("BlogSeriesFunction")]
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "put", "delete", Route = "series/{id?}")] HttpRequestData req)
     {
-        var result = await _store.Get();
-
-        var response = req.CreateResponse(HttpStatusCode.OK);
-        await response.WriteAsJsonAsync(result);
+        HttpResponseData response = req.Method switch
+        {
+            "GET" => await GetBlogSeries(req),
+            "POST" => await CreateBlogSeries(req),
+            "PUT" => await UpdateBlogSeries(req),
+            "DELETE" => await DeleteBlogSeries(req),
+            _ => req.CreateResponse(HttpStatusCode.MethodNotAllowed)
+        };
 
         return response;
     }
-    
-    [Function("BlogSeriesGetById")]
-    public async Task<HttpResponseData> BlogSeriesGetById(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "series/{id}")] HttpRequestData req,
-        ILogger log)
+
+    public async Task<HttpResponseData> GetBlogSeries(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
 
         var result = await _store.Get(id);
 
@@ -56,10 +55,8 @@ public class BlogSeriesFunction
 
         return response;
     }
-    [Function("BlogSeriesCreate")]
-    public async Task<HttpResponseData> BlogSeriesCreate(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "series")] HttpRequestData req,
-        ILogger log)
+
+    public async Task<HttpResponseData> CreateBlogSeries(HttpRequestData req)
     {
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<BlogSeriesRequest>(content, _serializerOptions);
@@ -72,12 +69,9 @@ public class BlogSeriesFunction
         return response;
     }
 
-    [Function("BlogSeriesUpdate")]
-    public async Task<HttpResponseData> BlogSeriesUpdate(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "series/{id}")] HttpRequestData req,
-        ILogger log)
+    public async Task<HttpResponseData> UpdateBlogSeries(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
 
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<BlogSeriesRequest>(content, _serializerOptions);
@@ -98,12 +92,9 @@ public class BlogSeriesFunction
     }
 
 
-    [Function("BlogSeriesDelete")]
-    public async Task<HttpResponseData> BlogSeriesDelete(
-        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "series/{id}")] HttpRequestData req,
-        ILogger log)
+    public async Task<HttpResponseData> DeleteBlogSeries(HttpRequestData req)
     {
-        string id = req.Url.Segments[3];
+        string? id = req.Url.Segments.Length > 3 ? req.Url.Segments[3] : default;
 
         var result = await _store.Remove(id);
 

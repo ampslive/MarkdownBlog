@@ -24,7 +24,7 @@ namespace MarkdownBlog.Functions
         }
 
         [Function("PostFunction")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "put", "delete", Route = "posts/{id?}")] HttpRequestData req)
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "delete", Route = "posts/{id?}")] HttpRequestData req)
         {
             HttpResponseData response = req.Method switch
             {
