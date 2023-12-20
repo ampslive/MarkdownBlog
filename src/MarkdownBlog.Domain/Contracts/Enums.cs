@@ -12,3 +12,14 @@ public enum ContentType
     LocalMD,
     ExtMD
 }
+
+public enum SocialMediaProvider
+{
+    Twitter = 0,
+    LinkedIn = 1,
+    YouTube = 2,
+    Threads = 3,
+    Mastodon = 4,
+    Facebook = 5,
+    Email = 6
+}

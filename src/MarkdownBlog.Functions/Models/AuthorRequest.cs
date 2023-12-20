@@ -1,4 +1,6 @@
-﻿namespace MarkdownBlog.API.Models;
+﻿using MarkdownBlog.Domain.Models;
+
+namespace MarkdownBlog.API.Models;
 
 public class AuthorRequest
 {
@@ -6,4 +8,5 @@ public class AuthorRequest
     public string Name { get; set; }
     public string ImageUri { get; set; }
     public string Bio { get; set; }
+    public List<Social> Socials { get; set; }
 }

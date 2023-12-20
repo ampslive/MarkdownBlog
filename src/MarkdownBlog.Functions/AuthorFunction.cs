@@ -61,7 +61,7 @@ public class AuthorFunction
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
 
-        var result = await _store.AddAuthor(model.Name, model.ImageUri, model.Bio);
+        var result = await _store.AddAuthor(model.Name, model.ImageUri, model.Bio, model.Socials);
 
         var response = req.CreateResponse(HttpStatusCode.Created);
         await response.WriteAsJsonAsync(result);
@@ -77,7 +77,7 @@ public class AuthorFunction
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<AuthorRequest>(content, _serializerOptions);
 
-        var result = await _store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio);
+        var result = await _store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio, model.Socials);
 
         if (result == null)
         {

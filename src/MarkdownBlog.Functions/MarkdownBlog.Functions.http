@@ -1,6 +1,6 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = mL7bN1IJqEGe9nTempMETA
-@authorId = 8o-sQOeCrUCJ2RxcKzax6g
+@authorId = cEtdOpSGJ0uEEJzeq1H3dw
 @postId = g7PfYC6ycE2hC1TUTd5bCQ
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/series
@@ -57,11 +57,37 @@ PUT {{MarkdownBlog.Functions_HostAddress}}/api/authors/{{authorId}}
 Content-Type: application/json
 
 {
-  "Name": "John Doe",
-  "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
-  "Bio": "Coder, Surfer, Golfer",
-  "Id": "8H2ut3lxn0yQaxefos988g"
-}
+    "Name": "Amit Philips",
+    "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
+    "Bio": "bionic",
+    "Socials": [
+        {
+            "Provider":0,
+            "Uri": "https://twitter.com/amitphilips"
+        },
+        {
+            "Provider":1,
+            "Uri": "https://www.linkedin.com/in/amitphilips/"
+        },
+        {
+            "Provider":2,
+            "Uri": "https://www.youtube.com/@ap360"
+        },
+        {
+            "Provider":3,
+            "Uri": "https://www.threads.net/@amitphilips"
+        },
+        {
+            "Provider":5,
+            "Uri": "https://www.facebook.com/amitphilips"
+        },
+        {
+            "Provider":6,
+            "Uri": "amitphilips@live.com"
+        }
+    ],
+    "Id": "cEtdOpSGJ0uEEJzeq1H3dw"
+  }
 
 ###
 
