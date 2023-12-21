@@ -6,6 +6,7 @@ import { getPostById } from '../../common/BlogStore'
 import { formatDate } from '../../common/Utils';
 import PostBody from '../../components/postBody';
 import NoContent from '../../components/NoContent';
+import Socials from '../../components/socials';
 
 function Post(props) {
 
@@ -56,8 +57,8 @@ function Post(props) {
                                 </Link>
                             </div>
                             <div>
-                                { isBusy && (<span class="loader"></span>) } 
-                                <img src={blogPost.BannerUri} class="postBanner" onLoad={() => setBusy(false)} alt='post-banner'/>
+                                {isBusy && (<span class="loader"></span>)}
+                                <img src={blogPost.BannerUri} class="postBanner" onLoad={() => setBusy(false)} alt='post-banner' />
                             </div>
                             <div class="p-4">
                                 <PostBody post={blogPost} />
@@ -71,6 +72,7 @@ function Post(props) {
                                 <div class="m-2">
                                     <h6>ABOUT {blogPost.Authors[0]?.Name.toUpperCase()}</h6>
                                     <p>{blogPost.Authors[0]?.Bio}</p>
+                                    <Socials provider={blogPost.Authors[0]?.Socials} />
                                     <Link to={authorUri + blogPost.Authors[0]?.Id + '/'} class="nav-link">
                                         <p class="fw-light">Posts by this author</p>
                                     </Link>
