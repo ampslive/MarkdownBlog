@@ -7,6 +7,7 @@ import { formatDate } from '../../common/Utils';
 import PostBody from '../../components/postBody';
 import NoContent from '../../components/NoContent';
 import Socials from '../../components/socials';
+import UserImage from '../../components/userImage';
 
 function Post(props) {
 
@@ -68,8 +69,8 @@ function Post(props) {
                     <div id="postFooter" class="row p-4">
                         <div class="col-md-10 mx-auto">
                             <div class="d-flex flex-row">
-                                <div class="m-2"><img src={blogPost.Authors[0]?.ImageUri} alt="author" class="author-image-footer" /></div>
-                                <div class="m-2">
+                                <div class="m-2" style={{flex: "0 0 15%"}}><UserImage class="author-image-footer" image={blogPost.Authors[0]?.ImageUri} /></div>
+                                <div class="m-2" style={{flex: "0 0 85%"}}>
                                     <h6>ABOUT {blogPost.Authors[0]?.Name.toUpperCase()}</h6>
                                     <p>{blogPost.Authors[0]?.Bio}</p>
                                     <Socials provider={blogPost.Authors[0]?.Socials} />

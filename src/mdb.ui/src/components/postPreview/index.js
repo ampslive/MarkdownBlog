@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../common/Utils';
+import UserImage from '../../components/userImage';
 
 function PostPreview(props) {
     const postTitle = props.post.Title.trim().toLowerCase().replace(/\s/g, "-");
@@ -32,12 +33,12 @@ function PostPreview(props) {
                         </Link>
                     </div>
 
-                    <div class="d-flex justify-content-between text-muted">
-                        <div class="d-flex justify-content-between">
-                            <img src={props.post.Authors[0]?.ImageUri} alt="author" class="user-image" />
-                            <p class="px-2 mt-1">{props.post.Authors[0]?.Name}</p>
+                    <div class="row px-2 text-muted">
+                        <div class="col-md-1 p-0">
+                            <UserImage image={props.post.Authors[0]?.ImageUri} />
                         </div>
-                        <div><p class="px-2 mt-1"><small>{formatDate(props.post.DateCreated)}</small></p></div>
+                        <div class="col-md-7"><p class="mt-1">{props.post.Authors[0]?.Name}</p></div>
+                        <div class="col-md-4"><p class=" mt-1 float-end"><small>{formatDate(props.post.DateCreated)}</small></p></div>
                     </div>
 
                 </div>
