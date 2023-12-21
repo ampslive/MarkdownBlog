@@ -6,18 +6,20 @@ function Socials(props) {
     const providers = props.provider;
     const [socials, setSocials] = useState([{ icon : "", uri : "" }]);
 
-    const socialMediaProvider = [
-        "bi bi-twitter", //twitter
-        "bi bi-linkedin", //linkedin
-        "bi bi-youtube", //youtube
-        "bi bi-threads-fill", //threads
-        "bi bi-mastodon", //mastodon
-        "bi bi-facebook", //facebook
-        "bi bi-envelope-at-fill", //mail
-        "bi bi-instagram"  //instagram
-    ];
+    
 
     useEffect(() => {
+
+        const socialMediaProvider = [
+            "bi bi-twitter", //twitter
+            "bi bi-linkedin", //linkedin
+            "bi bi-youtube", //youtube
+            "bi bi-threads-fill", //threads
+            "bi bi-mastodon", //mastodon
+            "bi bi-facebook", //facebook
+            "bi bi-envelope-at-fill", //mail
+            "bi bi-instagram"  //instagram
+        ];
 
         var socialData = providers?.map(i => ({
             icon : socialMediaProvider[i.Provider],
