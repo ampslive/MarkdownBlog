@@ -3,14 +3,15 @@ import React from 'react'
 function SocialsShare(props) {
 
     const shareOnFacebook = () => {
-        alert(document.location.href);
-        const postUrl = encodeURI(document.location.href);
+        //alert(document.location.href);
+        const postUrl = encodeURI('https://www.amitphilips.com/post/hu2DkDY_RkSlRCDdB1lbJg/fifth-post-title');
         const postTitle = encodeURI("Your Blog Post Title Here");
         const postDesc = encodeURI("Your Blog Post Description Here");
         const postImg = encodeURI("URL of the image to display in the share");
-       // window.open(`https://www.facebook.com/sharer.php?s=100&p[u]=${postUrl}`, 'sharer', 'toolbar=0,status=0,width=548,height=325');
-
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Fpost%2Fg7PfYC6ycE2hC1TUTd5bCQ%2Ffourth-post-title%23&amp;src=sdkpreparse`, 'sharer', 'toolbar=0,status=0,width=548,height=325');
+        alert(postUrl);
+       //window.open(`https://www.facebook.com/sharer.php?s=100&p[u]=${postUrl}`, 'sharer', 'toolbar=0,status=0,width=548,height=325');
+       window.open(`https://www.facebook.com/sharer.php?s=100&p[url]=${postUrl}&p[title]=${postTitle}&p[summary]=${postDesc}&p[images][0]=${postImg}`, 'sharer', 'toolbar=0,status=0,width=548,height=325');
+        //window.open(`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.amitphilips.com%2Fpost%2Fhu2DkDY_RkSlRCDdB1lbJg%2Ffifth-post-title;src=sdkpreparse`, 'sharer', 'toolbar=0,status=0,width=548,height=325');
     }
 
     const shareOnTwitter = () => {
