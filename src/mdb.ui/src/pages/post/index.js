@@ -9,7 +9,7 @@ import NoContent from '../../components/NoContent';
 import Socials from '../../components/socials';
 import UserImage from '../../components/userImage';
 import SocialsShare from '../../components/socialsShare';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 function Post(props) {
 
