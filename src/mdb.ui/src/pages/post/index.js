@@ -9,6 +9,7 @@ import NoContent from '../../components/NoContent';
 import Socials from '../../components/socials';
 import UserImage from '../../components/userImage';
 import SocialsShare from '../../components/socialsShare';
+import { Helmet } from 'react-helmet';
 
 function Post(props) {
 
@@ -45,6 +46,12 @@ function Post(props) {
 
             {blogPost && (
                 <div class="container mainContent">
+                    <Helmet>
+                        <title>{blogPost.Title}</title>
+                        <meta name="description" content={blogPost.Description} />
+                        <meta property="og:title" content={blogPost.Title} />
+                        <meta property="og:image" content={blogPost.BannerUri} />
+                    </Helmet>
                     <div class="row">
                         <div class="col-md-12 my-4 p-3 post">
                             <h2 class="text-center">{blogPost.Title}</h2>
