@@ -6,17 +6,10 @@ import Blog from './pages/blog'
 import Sample from './pages/sample/sample';
 import Post from './pages/post';
 import Filter from './pages/filter';
-import { Helmet } from 'react-helmet';
 
 function App() {
   return (
     <div className="App">
-      <Helmet>
-        <title>Hey Title</title>
-        <meta name="description" content="Hey Description" />
-        <meta property="og:title" content="Hey Title" />
-        <meta property="og:image" content="https://picsum.photos/1000/300" />
-      </Helmet>
       <Router>
         <TopNav title="Markdown Blog" />
         <div className="content">
