@@ -68,7 +68,7 @@ function Post(props) {
                         </div>
                     </div>
                     <div class="row text-center my-3">
-                        <SocialsShare />
+                        <SocialsShare post={blogPost} />
                     </div>
                     <div id="postFooter" class="row p-4">
                         <div class="col-md-10 mx-auto">
