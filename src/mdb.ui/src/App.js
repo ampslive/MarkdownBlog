@@ -15,7 +15,7 @@ function App() {
         <title>Hey Title</title>
         <meta name="description" content="Hey Description" />
         <meta property="og:title" content="Hey Title" />
-        <meta property="og:image" content="public\logo192.png" />
+        <meta property="og:image" content="https://picsum.photos/1000/300" />
       </Helmet>
       <Router>
         <TopNav title="Markdown Blog" />
