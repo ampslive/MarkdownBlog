@@ -7,11 +7,18 @@ import Sample from './pages/sample/sample';
 import Post from './pages/post';
 import Filter from './pages/filter';
 import { HelmetProvider } from 'react-helmet-async';
+import SEO from './components/SEO'
 
 function App() {
   return (
     <HelmetProvider>
+
       <div className="App">
+        <SEO
+          title="Amit Philips - Coder, Blogger"
+          description="Test Description"
+          name="amitphilips"
+          type="article" />
         <Router>
           <TopNav title="Markdown Blog" />
           <div className="content">
