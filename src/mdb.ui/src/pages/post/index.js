@@ -9,7 +9,7 @@ import NoContent from '../../components/NoContent';
 import Socials from '../../components/socials';
 import UserImage from '../../components/userImage';
 import SocialsShare from '../../components/socialsShare';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/SEO'
 
 function Post(props) {
 
@@ -46,7 +46,13 @@ function Post(props) {
 
             {blogPost && (
                 <div class="container mainContent">
-                    <Helmet>
+                    <SEO
+                        title={blogPost.Title}
+                        description={blogPost.Description}
+                        name="amitphilips"
+                        type="article" />
+                    
+                    {/* <Helmet>
                         <title>{blogPost.Title}</title>
                         <meta name="description" content={blogPost.Description} />
                         <meta name="og:title" content={blogPost.Title} />
@@ -55,7 +61,7 @@ function Post(props) {
                         <meta property="og:type" content="article" />
                         <meta property="og:description" content={`${blogPost.Description}`} />
                         <meta property="og:image" content={`https://www.amitphilips.com/assets/person-circle.svg`} />
-                    </Helmet>
+                    </Helmet> */}
                     <div class="row">
                         <div class="col-md-12 my-4 p-3 post">
                             <h2 class="text-center">{blogPost.Title}</h2>
