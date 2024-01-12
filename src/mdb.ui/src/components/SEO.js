@@ -6,12 +6,14 @@ export default function SEO({ title, description, name, type }) {
         <Helmet prioritizeSeoTags>
             { /* Standard metadata tags */}
             <title>{title}</title>
+            <meta property="og:image" content="https://picsum.photos/1000/300" />
+            <meta property="og:description" content={description} />
             <meta name='description' content={description} />
             { /* End standard metadata tags */}
             { /* Facebook tags */}
             <meta property="og:type" content={type} />
             <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
+            {/* <meta property="og:description" content={description} /> */}
             { /* End Facebook tags */}
             { /* Twitter tags */}
             <meta name="twitter:creator" content={name} />

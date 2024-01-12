@@ -4,11 +4,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import { HelmetProvider } from 'react-helmet-async';
+import SEO from './components/SEO'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <HelmetProvider>
+      <SEO
+        title="Amit Philips - Coder, Blogger"
+        description="Test Description"
+        name="amitphilips"
+        type="article" />
       <App />
+    </HelmetProvider>
   </React.StrictMode>
 );
 

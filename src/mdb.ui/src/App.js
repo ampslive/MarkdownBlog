@@ -6,17 +6,9 @@ import Blog from './pages/blog'
 import Sample from './pages/sample/sample';
 import Post from './pages/post';
 import Filter from './pages/filter';
-import { HelmetProvider } from 'react-helmet-async';
-import SEO from './components/SEO'
 
 function App() {
   return (
-    <HelmetProvider>
-        <SEO
-          title="Amit Philips - Coder, Blogger"
-          description="Test Description"
-          name="amitphilips"
-          type="article" />
       <div className="App">
         <Router>
           <TopNav title="Markdown Blog" />
@@ -32,7 +24,6 @@ function App() {
           </div>
         </Router>
       </div>
-    </HelmetProvider>
   );
 }
 
