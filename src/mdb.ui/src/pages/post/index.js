@@ -50,9 +50,11 @@ function Post(props) {
                         <title>{blogPost.Title}</title>
                         <meta name="description" content={blogPost.Description} />
                         <meta name="og:title" content={blogPost.Title} />
-                        <meta property="og:image" content="https://www.amitphilips.com/assets/person-circle.svg" />
-                        <meta property="og:image:secure" content="https://www.amitphilips.com/assets/person-circle.svg" />
-                        <meta name="twitter:image" content="https://www.amitphilips.com/assets/person-circle.svg" />
+
+                        <meta property="og:title" content={`${blogPost.Title}`} />
+                        <meta property="og:type" content="article" />
+                        <meta property="og:description" content={`${blogPost.Description}`} />
+                        <meta property="og:image" content={`https://www.amitphilips.com/assets/person-circle.svg`} />
                     </Helmet>
                     <div class="row">
                         <div class="col-md-12 my-4 p-3 post">
