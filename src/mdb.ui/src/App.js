@@ -12,13 +12,12 @@ import SEO from './components/SEO'
 function App() {
   return (
     <HelmetProvider>
-
-      <div className="App">
         <SEO
           title="Amit Philips - Coder, Blogger"
           description="Test Description"
           name="amitphilips"
           type="article" />
+      <div className="App">
         <Router>
           <TopNav title="Markdown Blog" />
           <div className="content">

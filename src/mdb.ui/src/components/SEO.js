@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 export default function SEO({ title, description, name, type }) {
     return (
-        <Helmet>
+        <Helmet prioritizeSeoTags>
             { /* Standard metadata tags */}
             <title>{title}</title>
             <meta name='description' content={description} />
