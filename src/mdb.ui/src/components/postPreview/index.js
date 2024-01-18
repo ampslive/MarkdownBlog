@@ -26,19 +26,19 @@ function PostPreview(props) {
                     </Link>
 
                     <div class="my-2">
-                        <p class="card-text">{props.post.Description}</p>
+                        <p class="card-text">{props.post.Description}
 
                         <Link to={postUri} class="nav-link card-title">
                             <span>[...]</span>
-                        </Link>
+                        </Link></p>
                     </div>
 
                     <div class="row px-2 text-muted">
-                        <div class="col-md-1 p-0">
+                        <div class="col-1 p-0">
                             <UserImage image={props.post.Authors[0]?.ImageUri} />
                         </div>
-                        <div class="col-md-7"><p class="mt-1">{props.post.Authors[0]?.Name}</p></div>
-                        <div class="col-md-4"><p class=" mt-1 float-end"><small>{formatDate(props.post.DateCreated)}</small></p></div>
+                        <div class="col-7"><p class="mt-1">{props.post.Authors[0]?.Name}</p></div>
+                        <div class="col-4"><p class=" mt-1 float-end"><small>{formatDate(props.post.DateCreated)}</small></p></div>
                     </div>
 
                 </div>
