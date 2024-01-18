@@ -13,7 +13,7 @@ root.render(
     <HelmetProvider>
       <App>
         <SEO
-          image= {window.location.href + "logo192.png"}
+          image= {window.location.href + "logo512.png"}
           title="Amit Philips - Coder, Blogger"
           description="Amit Philips is a programmer specializing in creating cloud based solutions"
           name="amitphilips"
