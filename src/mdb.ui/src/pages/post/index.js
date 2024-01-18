@@ -47,6 +47,7 @@ function Post(props) {
             {blogPost && (
                 <div class="container mainContent">
                     <SEO
+                        image={blogPost.BannerUri}
                         title={blogPost.Title}
                         description={blogPost.Description}
                         name="amitphilips"

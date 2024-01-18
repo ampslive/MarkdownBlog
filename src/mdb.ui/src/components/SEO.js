@@ -1,12 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export default function SEO({ title, description, name, type }) {
+export default function SEO({ image, title, description, name, type }) {
     return (
         <Helmet prioritizeSeoTags>
             { /* Standard metadata tags */}
             <title>{title}</title>
-            <meta property="og:image" content="https://picsum.photos/1000/300" />
+            <meta property="og:image" content={image} />
             <meta property="og:description" content={description} />
             <meta name='description' content={description} />
             { /* End standard metadata tags */}

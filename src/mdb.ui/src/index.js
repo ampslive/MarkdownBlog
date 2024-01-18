@@ -13,8 +13,9 @@ root.render(
     <HelmetProvider>
       <App>
         <SEO
+          image="%PUBLIC_URL%/logo192.png"
           title="Amit Philips - Coder, Blogger"
-          description="Test Description"
+          description="Amit Philips is a programmer specializing in creating cloud based solutions"
           name="amitphilips"
           type="article" />
       </App>
