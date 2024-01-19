@@ -30,7 +30,7 @@ function Blog(props) {
 
     return (
         <Fragment>
-            <div class="p-5 bg-dark">
+            <div class="bg-dark">
                 <Jumbotron />
             </div>
             <div class="container">
