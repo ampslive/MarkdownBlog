@@ -11,7 +11,7 @@ function App() {
   return (
       <div className="App">
         <Router>
-          <TopNav title="Markdown Blog" />
+          <TopNav title="AMIT PHILIPS" />
           <div className="content">
             <Routes>
               <Route path="/" element={<Blog />} />
