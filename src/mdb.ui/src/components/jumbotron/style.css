@@ -1,7 +1,25 @@
 .jumbotron {
-    background-image: url("/public/banner.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-  }
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/public/banner.png");
+  background-size: cover;
+  filter: blur(8px);
+  height: 110%;
+  width: 110%;
+  left: -5%;
+  top: -5%;
+}
+
+.jumbotron-text {
+  position: relative;
+  color: white;
+  width: 90vw;
+}
