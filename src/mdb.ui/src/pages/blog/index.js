@@ -4,6 +4,7 @@ import PostPreview from '../../components/postPreview';
 import './style.css'
 import Jumbotron from '../../components/jumbotron'
 import { getPosts } from '../../common/BlogStore'
+import NoContent from '../../components/NoContent'
 
 function Blog(props) {
 
@@ -20,7 +21,6 @@ function Blog(props) {
 
             setPosts(data);
         }
-
         LoadData();
 
         //order posts by date descending
@@ -35,6 +35,8 @@ function Blog(props) {
             </div>
             <div class="container">
                 <div class="row">
+                    { (!blogPosts || blogPosts.length === 0) && <NoContent message="No posts found" />}
+
                     {
                         blogPosts &&
                         blogPosts.map((post) =>
