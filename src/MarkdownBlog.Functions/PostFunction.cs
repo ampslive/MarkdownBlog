@@ -9,18 +9,21 @@ using MarkdownBlog.API.Models;
 using MarkdownBlog.Domain.Models;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using MarkdownBlog.Domain.Contracts;
+using MarkdownBlog.Functions.Models;
 
 namespace MarkdownBlog.Functions;
 
 public class PostFunction
 {
     private readonly PostStore _store;
+    private readonly BlogSeriesStore _storeSeries;
     private readonly JsonSerializerOptions _serializerOptions;
     private readonly ILogger _logger;
 
-    public PostFunction(PostStore store, IOptions<JsonSerializerOptions> serializerOptions, ILoggerFactory loggerFactory)
+    public PostFunction(PostStore store, BlogSeriesStore storeSeries, IOptions<JsonSerializerOptions> serializerOptions, ILoggerFactory loggerFactory)
     {
         _store = store;
+        _storeSeries = storeSeries;
         _serializerOptions = serializerOptions.Value;
         _logger = loggerFactory.CreateLogger<PostFunction>();
     }
@@ -139,7 +142,7 @@ public class PostFunction
             DateCreated = DateTime.UtcNow,
             AuthorIds = model.AuthorIds,
             Meta = model.Meta,
-            Series = model.Series
+            SeriesId = model.SeriesId
         };
 
         var result = await _store.AddPost(post);
@@ -150,13 +153,57 @@ public class PostFunction
         return response;
     }
 
-    private async Task<List<Post>?> GetPosts(string? id)
+    private async Task<List<PostResponse>?> GetPosts(string? id)
     {
-        return await _store.GetPosts(id);
+        var postsList = new List<PostResponse>();
+
+        var posts = await _store.GetPosts(id);
+
+        var blogSeries = await _storeSeries.Get();
+
+        foreach(var p in posts)
+        {
+            postsList.Add(new PostResponse
+            {
+                Id = p.Id,
+                Title = p.Title,
+                BannerUri= p.BannerUri,
+                Description = p.Description,
+                Body= p.Body,
+                DateCreated = DateTime.UtcNow,
+                AuthorIds = p.AuthorIds,
+                Meta = p.Meta,
+                Series = blogSeries.FirstOrDefault(x=>x.Id.Equals(p.SeriesId)),
+            });
+        }
+
+        return postsList;
     }
 
-    private async Task<List<Post>?> GetPostsByFilter(PostStatus status)
+    private async Task<List<PostResponse>?> GetPostsByFilter(PostStatus status)
     {
-        return await _store.GetPostsByStatus(status);
+        var postsList = new List<PostResponse>();
+
+        var posts = await _store.GetPostsByStatus(status);
+
+        var blogSeries = await _storeSeries.Get();
+
+        foreach(var p in posts)
+        {
+            postsList.Add(new PostResponse
+            {
+                Id = p.Id,
+                Title = p.Title,
+                BannerUri= p.BannerUri,
+                Description = p.Description,
+                Body= p.Body,
+                DateCreated = DateTime.UtcNow,
+                AuthorIds = p.AuthorIds,
+                Meta = p.Meta,
+                Series = blogSeries.FirstOrDefault(x=>x.Id.Equals(p.SeriesId)),
+            });
+        }
+
+        return postsList;
     }
 }

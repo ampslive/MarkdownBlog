@@ -45,7 +45,7 @@ public static class PostEndpoints
             DateCreated = DateTime.UtcNow,
             AuthorIds = model.AuthorIds,
             Meta = model.Meta,
-            Series = model.Series
+            SeriesId = model.SeriesId
         };
         var blog = await store.AddPost(post);
 

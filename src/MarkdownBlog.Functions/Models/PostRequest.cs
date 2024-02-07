@@ -11,7 +11,7 @@ public class PostRequest
     public string Body { get; set; }
     public DateTime DateCreated { get; set; }
     public List<string> AuthorIds { get; set; }
-    public BlogSeries Series { get; set; }
+    public string SeriesId { get; set; }
     public Meta Meta { get; set; }
 }
 

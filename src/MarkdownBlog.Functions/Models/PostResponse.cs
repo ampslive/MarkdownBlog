@@ -1,8 +1,8 @@
 ﻿using MarkdownBlog.Domain.Models;
 
-namespace MarkdownBlog.API.Models;
+namespace MarkdownBlog.Functions.Models;
 
-public class PostModel
+public class PostResponse
 {
     public string Id { get; set; }
     public string Title { get; set; }
@@ -11,8 +11,6 @@ public class PostModel
     public string Body { get; set; }
     public DateTime DateCreated { get; set; }
     public List<string> AuthorIds { get; set; }
-    public string SeriesId { get; set; }
+    public BlogSeries? Series { get; set; }
     public Meta Meta { get; set; }
 }
-
-

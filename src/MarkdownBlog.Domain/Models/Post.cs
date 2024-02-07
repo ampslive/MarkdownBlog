@@ -17,7 +17,7 @@ public class Post : BaseModel, IPost
     public PostStatus Status { get; set; } 
     public DateTime? DatePublished { get; set; }
     public DateTime DateCreated { get; set; }
-    public BlogSeries Series { get; set; }
+    public string SeriesId { get; set; }
     public List<string> AuthorIds { get; set; }
     public Meta Meta { get; set; }
 }
