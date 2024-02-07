@@ -18,7 +18,7 @@ public static class PostEndpoints
         group.MapGet("/", GetPosts);
         group.MapGet("/{id}", GetPosts);
         group.MapPost("/", CreatePost);
-        //group.MapPut("/{id}", UpdateAuthor);
+        group.MapPut("/{id}/{postStatus}", UpdatePostStatus);
         group.MapDelete("/{id}", RemovePost);
     }
 
@@ -50,6 +50,17 @@ public static class PostEndpoints
         var blog = await store.AddPost(post);
 
         return TypedResults.Created($"{post?.Id}", post);
+    }
+
+    public async static Task<Results<Accepted<Post>, BadRequest>> UpdatePostStatus(BlobServiceClient blobServiceClient,
+        PostStore store,
+        string postId,
+        PostStatus postStatus)
+    {
+        var post = await store.UpdatePost(postId, postStatus);
+
+        return (post?.Status == postStatus) ? TypedResults.Accepted($"{post?.Id}", post)
+            : TypedResults.BadRequest();
     }
 
     public async static Task<Results<Ok<Post>, NotFound>> RemovePost(PostStore store, string id)

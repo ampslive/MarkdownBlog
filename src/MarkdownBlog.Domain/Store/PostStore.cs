@@ -1,5 +1,6 @@
 ﻿using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
+using MarkdownBlog.Domain.Utils;
 
 namespace MarkdownBlog.Domain.Store;
 
@@ -21,17 +22,38 @@ public class PostStore
         return _data?.Posts.Where(p => p.Id == id).ToList();
     }
 
+    public async Task<List<Post>?> GetPostsByStatus(PostStatus postStatus)
+    {
+        return _data?.Posts.Where(p => p.Status == postStatus).ToList();
+    }
+
     public async Task<Post?> AddPost(Post post)
     {
         if (_data is null)
             return null;
 
         
-            _data.Posts.Add(post);
-            await _context.SaveAsync(_data);
+        _data.Posts.Add(post);
+        await _context.SaveAsync(_data);
 
 
         return post;
+    }
+
+    public async Task<Post?> UpdatePost(string postId, PostStatus postStatus)
+    {
+        if (_data is null)
+            return null;
+
+        var postToUpdate = _data?.Posts.FirstOrDefault(p => p.Id == postId);
+
+        if (postToUpdate is null)
+            return null;
+
+        postToUpdate.UpdatePostStatus(postStatus);
+        await _context.SaveAsync(_data);
+
+        return postToUpdate;
     }
 
     //TODO
@@ -70,4 +92,6 @@ public class PostStore
 
         return postToRemove;
     }
+
+
 }

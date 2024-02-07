@@ -3,7 +3,9 @@
 public enum PostStatus
 {
     Draft = 0,
-    Published = 1
+    Preview = 1,
+    Published = 2,
+    Archive = 3,
 }
 
 public enum ContentType

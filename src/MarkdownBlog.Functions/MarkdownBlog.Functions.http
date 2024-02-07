@@ -1,6 +1,6 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = mL7bN1IJqEGe9nTempMETA
-@authorId = cEtdOpSGJ0uEEJzeq1H3dw
+@authorId = k5EZsYNpe0qMia-VzC7QQg
 @postId = g7PfYC6ycE2hC1TUTd5bCQ
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/series
@@ -14,8 +14,8 @@ POST {{MarkdownBlog.Functions_HostAddress}}/api/series
 Content-Type: application/json
 
 {
-  "title": "Cloud",
-  "description": "All cloud posts"
+  "title": "General",
+  "description": "All programming related posts"
 }
 
 ###
@@ -47,9 +47,9 @@ POST {{MarkdownBlog.Functions_HostAddress}}/api/authors
 Content-Type: application/json
 
 {
-  "Name": "John Doe",
-  "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
-  "Bio": "Coder, Surfer"
+  "Name": "Amit Philips",
+  "ImageUri": "https://mdbstore.blob.core.windows.net/author/amitphilips.jpg",
+  "Bio": "I'm an 13+ years experienced software developer working on C#, ASP.NET and Azure"
 }
 ###
 
@@ -58,8 +58,8 @@ Content-Type: application/json
 
 {
     "Name": "Amit Philips",
-    "ImageUri": "https://media.licdn.com/dms/image/C4E03AQFMupIkLM-_6w/profile-displayphoto-shrink_800_800/0/1516337443631?e=1692230400&v=beta&t=l13Ddl6Cs9i79PJqj1pFQSm6gn4QfR8x6KFuPkY1OE4",
-    "Bio": "bionic",
+    "ImageUri": "https://mdbstore.blob.core.windows.net/author/amitphilips.jpg",
+    "Bio": "I'm an 13+ years experienced software developer working on C#, ASP.NET and Azure",
     "Socials": [
         {
             "Provider":0,
@@ -95,8 +95,11 @@ DELETE {{MarkdownBlog.Functions_HostAddress}}/api/authors/{{authorId}}
 
 ### POSTS ENDPOINTS
 
-GET {{MarkdownBlog.Functions_HostAddress}}/api/posts
+GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/
 
+###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/preview
 ###
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
@@ -112,7 +115,7 @@ Content-Type: application/json
     "description": "Subtext",
     "body": "This is my fifth blog post.",
     "authorIds": [
-        "95TCdmnA3UuApj9wVP54yw"
+        "k5EZsYNpe0qMia-VzC7QQg"
     ],
     "series" : {
         "id": "1",
@@ -130,3 +133,5 @@ Content-Type: application/json
 DELETE {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
 Content-Type: application/json
 
+###
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}/previe
