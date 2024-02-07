@@ -1,15 +1,14 @@
-using System.Net;
+using MarkdownBlog.API.Models;
+using MarkdownBlog.Domain.Contracts;
+using MarkdownBlog.Domain.Models;
 using MarkdownBlog.Domain.Store;
-using System.Text.Json;
+using MarkdownBlog.Functions.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MarkdownBlog.API.Models;
-using MarkdownBlog.Domain.Models;
-using Microsoft.Azure.Cosmos.Serialization.HybridRow;
-using MarkdownBlog.Domain.Contracts;
-using MarkdownBlog.Functions.Models;
+using System.Net;
+using System.Text.Json;
 
 namespace MarkdownBlog.Functions;
 
@@ -99,14 +98,17 @@ public class PostFunction
         return response;
     }
 
-    private async Task<Post?> UpdatePost(HttpRequestData req, string id)
+    private async Task<PostResponse?> UpdatePost(HttpRequestData req, string id)
     {
         throw new NotImplementedException();
     }
 
-    private async Task<Post?> UpdatePostStatus(string id, PostStatus status)
+    private async Task<PostResponse?> UpdatePostStatus(string id, PostStatus status)
     {
-        return await _store.UpdatePost(id, status);
+        var post = await _store.UpdatePost(id, status);
+        var blogSeries = await _storeSeries.Get();
+        
+        return PostResponse.Convert(post, blogSeries);
     }
 
     private async Task<HttpResponseData> DeletePost(HttpRequestData req)
@@ -146,9 +148,10 @@ public class PostFunction
         };
 
         var result = await _store.AddPost(post);
+        var blogSeries = await _storeSeries.Get();
 
         var response = req.CreateResponse(HttpStatusCode.Created);
-        await response.WriteAsJsonAsync(result);
+        await response.WriteAsJsonAsync(PostResponse.Convert(result, blogSeries));
 
         return response;
     }
@@ -163,18 +166,7 @@ public class PostFunction
 
         foreach(var p in posts)
         {
-            postsList.Add(new PostResponse
-            {
-                Id = p.Id,
-                Title = p.Title,
-                BannerUri= p.BannerUri,
-                Description = p.Description,
-                Body= p.Body,
-                DateCreated = DateTime.UtcNow,
-                AuthorIds = p.AuthorIds,
-                Meta = p.Meta,
-                Series = blogSeries.FirstOrDefault(x=>x.Id.Equals(p.SeriesId)),
-            });
+            postsList.Add(PostResponse.Convert(p, blogSeries));
         }
 
         return postsList;
@@ -188,20 +180,9 @@ public class PostFunction
 
         var blogSeries = await _storeSeries.Get();
 
-        foreach(var p in posts)
+        foreach (var p in posts)
         {
-            postsList.Add(new PostResponse
-            {
-                Id = p.Id,
-                Title = p.Title,
-                BannerUri= p.BannerUri,
-                Description = p.Description,
-                Body= p.Body,
-                DateCreated = DateTime.UtcNow,
-                AuthorIds = p.AuthorIds,
-                Meta = p.Meta,
-                Series = blogSeries.FirstOrDefault(x=>x.Id.Equals(p.SeriesId)),
-            });
+            postsList.Add(PostResponse.Convert(p, blogSeries));
         }
 
         return postsList;
