@@ -1,7 +1,7 @@
 import { getApiText, getApiJson } from '../common/ApiHelper';
 
 const cacheNameBlogMaster = 'blogMaster';
-const blogMasterUri = 'https://mdbstore.blob.core.windows.net/bm1/blogMaster.json';
+const blogMasterUri = 'https://www.amitphilips.com/api/posts';
 
 /***** Posts *****/
 
