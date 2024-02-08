@@ -94,27 +94,24 @@ public class PostFunction
 
     private async Task<PostResponse?> UpdatePost(HttpRequestData req, string id)
     {
-        var existingPost = (await _store.GetPosts(id))?.FirstOrDefault();
-        
-        if (existingPost == null)
-        {
-            return null;
-        }
-
         var content = await new StreamReader(req.Body).ReadToEndAsync();
         var model = JsonSerializer.Deserialize<PostRequest>(content, _serializerOptions);
 
-        existingPost.Title = model.Title;
-        existingPost.BannerUri = model.BannerUri;
-        existingPost.AuthorIds = model.AuthorIds;
-        existingPost.Body = model.Body;
-        existingPost.Description = model.Description;
-        existingPost.Meta = model.Meta;
-        existingPost.SeriesId = model.SeriesId;
+        var postToUpdate = new Post { 
+            Title = model.Title,
+            BannerUri = model.BannerUri,
+            AuthorIds = model.AuthorIds,
+            Body = model.Body,
+            Description = model.Description,
+            Meta = model.Meta,
+            SeriesId = model.SeriesId
+        };
+
+        var postUpdated = await _store.UpdatePost(id, postToUpdate);
 
         var blogSeries = await _storeSeries.Get();
 
-        return PostResponse.Convert(existingPost, blogSeries);
+        return PostResponse.Convert(postUpdated, blogSeries);
     }
 
     private async Task<PostResponse?> UpdatePostStatus(string id, PostStatus status)

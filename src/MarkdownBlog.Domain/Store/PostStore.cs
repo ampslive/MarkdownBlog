@@ -56,6 +56,23 @@ public class PostStore
         return postToUpdate;
     }
 
+    public async Task<Post?> UpdatePost(string postId, Post post)
+    {
+        if (_data is null)
+            return null;
+
+        var postToUpdate = _data?.Posts.FirstOrDefault(p => p.Id == postId);
+
+        if (postToUpdate is null)
+            return null;
+
+        postToUpdate = post;
+
+        await _context.SaveAsync(_data);
+
+        return postToUpdate;
+    }
+
     //TODO
     /*
     public async Task<Author?> UpdateAuthor(string id, string name, string imageUri, string bio)
