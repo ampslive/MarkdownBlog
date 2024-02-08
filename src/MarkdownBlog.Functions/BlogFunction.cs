@@ -1,3 +1,4 @@
+using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Store;
 using MarkdownBlog.Functions.Models;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
@@ -27,7 +28,7 @@ namespace MarkdownBlog.Functions
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "blog")] HttpRequestData req)
         {
             var authors = await _authorStore.GetAuthors();
-            var posts = await _postStore.GetPosts();
+            var posts = await _postStore.GetPostsByStatus(PostStatus.Published);
             var blogSeries = await _blogSeriesStore.Get();
 
             var postResponses = new List<PostResponse>();
