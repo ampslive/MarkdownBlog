@@ -1,7 +1,7 @@
 import { getApiText, getApiJson } from '../common/ApiHelper';
 
 const cacheNameBlogMaster = 'blogMaster';
-const blogMasterUri = 'https://www.amitphilips.com/api/posts';
+const blogMasterUri = 'https://www.amitphilips.com/api/blog';
 
 /***** Posts *****/
 
