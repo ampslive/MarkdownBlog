@@ -131,3 +131,8 @@ Content-Type: application/json
 
 ###
 PUT {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}/previe
+
+
+###
+
+GET {{MarkdownBlog.Functions_HostAddress}}/api/blog
