@@ -38,7 +38,7 @@ function PostPreview(props) {
                             <UserImage image={props.post.Authors[0]?.ImageUri} />
                         </div>
                         <div class="col-7"><p class="mt-1">{props.post.Authors[0]?.Name}</p></div>
-                        <div class="col-4"><p class=" mt-1 float-end"><small>{formatDate(props.post.DateCreated)}</small></p></div>
+                        <div class="col-4"><p class=" mt-1 float-end"><small>{formatDate(props.post.DatePublished)}</small></p></div>
                     </div>
 
                 </div>

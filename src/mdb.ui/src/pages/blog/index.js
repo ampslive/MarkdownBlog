@@ -17,7 +17,7 @@ function Blog(props) {
         async function LoadData() {
             data = await getPosts();
 
-            data.sort((a, b) => Date.parse(b.DateCreated) - Date.parse(a.DateCreated));
+            data.sort((a, b) => Date.parse(b.DatePublished) - Date.parse(a.DatePublished));
 
             setPosts(data);
         }

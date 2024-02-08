@@ -14,7 +14,7 @@ import SEO from '../../components/SEO'
 function Post(props) {
 
     const defaultPost = {
-        DateCreated: "09/17/2022 18:46:07",
+        DatePublished: "09/17/2022 18:46:07",
         Authors: [{ Name: "abc", ImageUri: "" }],
         Meta: {},
         Series: { Title: "" },
@@ -71,7 +71,7 @@ function Post(props) {
                                 <div class="text-center"><a href="#postFooter" class="fw-semibold link-secondary">{blogPost.Authors[0]?.Name}</a></div>
                             </div>
                             <div class="d-flex justify-content-center text-center m-2">
-                                <p class="fw-light">{formatDate(blogPost.DateCreated) + '  |  '}</p>
+                                <p class="fw-light">{formatDate(blogPost.DatePublished) + '  |  '}</p>
                                 <Link to={seriesUri + blogPost.Series.Title.toLowerCase() + '/'} class="mx-1 nav-link card-title">
                                     <p class="fw-light">{blogPost.Series.Title}</p>
                                 </Link>

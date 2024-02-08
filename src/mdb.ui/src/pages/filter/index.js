@@ -26,7 +26,7 @@ function Filter() {
             }
 
             //order posts by date descending
-            data.sort((a, b) => Date.parse(b.DateCreated) - Date.parse(a.DateCreated));
+            data.sort((a, b) => Date.parse(b.DatePublished) - Date.parse(a.DatePublished));
 
             setPosts(data);
         }
