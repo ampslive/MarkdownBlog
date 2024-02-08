@@ -7,6 +7,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Dynamic;
 using System.Net;
 using System.Text.Json;
 
@@ -93,7 +94,27 @@ public class PostFunction
 
     private async Task<PostResponse?> UpdatePost(HttpRequestData req, string id)
     {
-        throw new NotImplementedException();
+        var existingPost = (await _store.GetPosts(id))?.FirstOrDefault();
+        
+        if (existingPost == null)
+        {
+            return null;
+        }
+
+        var content = await new StreamReader(req.Body).ReadToEndAsync();
+        var model = JsonSerializer.Deserialize<PostRequest>(content, _serializerOptions);
+
+        existingPost.Title = model.Title;
+        existingPost.BannerUri = model.BannerUri;
+        existingPost.AuthorIds = model.AuthorIds;
+        existingPost.Body = model.Body;
+        existingPost.Description = model.Description;
+        existingPost.Meta = model.Meta;
+        existingPost.SeriesId = model.SeriesId;
+
+        var blogSeries = await _storeSeries.Get();
+
+        return PostResponse.Convert(existingPost, blogSeries);
     }
 
     private async Task<PostResponse?> UpdatePostStatus(string id, PostStatus status)

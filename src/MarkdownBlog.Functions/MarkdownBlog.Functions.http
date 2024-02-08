@@ -1,7 +1,7 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = mL7bN1IJqEGe9nTempMETA
 @authorId = k5EZsYNpe0qMia-VzC7QQg
-@postId = g7PfYC6ycE2hC1TUTd5bCQ
+@postId = XbNHHuMlvUKpDDDBrSPmSQ
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/series
 
@@ -126,11 +126,31 @@ Content-Type: application/json
 
 ###
 
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
+Content-Type: application/json
+
+{
+    "title": "Designing a Scalable Project Architecture",
+    "bannerUri": "https://mdbstore.blob.core.windows.net/posts/images/proj-structure/banner-proj-structure.png",
+    "description": "When creating a project, the most basic foundation step is to plan a project structure. Without this being done properly, we will encounter various hurdles down the road. Find the method I use to create a basic project structure that can be used in almost any scenario.",
+    "body": "",
+    "authorIds": [
+        "k5EZsYNpe0qMia-VzC7QQg"
+    ],
+    "seriesId" : "1MgdP7fUrUOgo9go-ynSZQ",
+    "meta": {
+        "contentType": 2,
+        "contentLocation": "https://mdbstore.blob.core.windows.net/posts/project-structure.md"
+    }
+}
+
+###
+
 DELETE {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
 Content-Type: application/json
 
 ###
-PUT {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}/previe
+PUT {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}/published
 
 
 ###
