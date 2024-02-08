@@ -1,6 +1,7 @@
 ﻿using MarkdownBlog.Domain.Contracts;
 using MarkdownBlog.Domain.Models;
 using MarkdownBlog.Domain.Utils;
+using System.Reflection;
 
 namespace MarkdownBlog.Domain.Store;
 
@@ -32,7 +33,7 @@ public class PostStore
         if (_data is null)
             return null;
 
-        
+
         _data.Posts.Add(post);
         await _context.SaveAsync(_data);
 
@@ -66,7 +67,13 @@ public class PostStore
         if (postToUpdate is null)
             return null;
 
-        postToUpdate = post;
+        postToUpdate.Title = post.Title;
+        postToUpdate.BannerUri = post.BannerUri;
+        postToUpdate.AuthorIds = post.AuthorIds;
+        postToUpdate.Body = post.Body;
+        postToUpdate.Description = post.Description;
+        postToUpdate.Meta = post.Meta;
+        postToUpdate.SeriesId = post.SeriesId;
 
         await _context.SaveAsync(_data);
 

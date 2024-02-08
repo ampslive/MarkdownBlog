@@ -95,19 +95,9 @@ public class PostFunction
     private async Task<PostResponse?> UpdatePost(HttpRequestData req, string id)
     {
         var content = await new StreamReader(req.Body).ReadToEndAsync();
-        var model = JsonSerializer.Deserialize<PostRequest>(content, _serializerOptions);
+        var model = JsonSerializer.Deserialize<Post>(content, _serializerOptions);
 
-        var postToUpdate = new Post { 
-            Title = model.Title,
-            BannerUri = model.BannerUri,
-            AuthorIds = model.AuthorIds,
-            Body = model.Body,
-            Description = model.Description,
-            Meta = model.Meta,
-            SeriesId = model.SeriesId
-        };
-
-        var postUpdated = await _store.UpdatePost(id, postToUpdate);
+        var postUpdated = await _store.UpdatePost(id, model);
 
         var blogSeries = await _storeSeries.Get();
 
