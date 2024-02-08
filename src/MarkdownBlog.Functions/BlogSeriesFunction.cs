@@ -46,7 +46,6 @@ public class BlogSeriesFunction
         if(result == null)
         {
             var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
             return responseNotFound;
         }
 
@@ -81,7 +80,6 @@ public class BlogSeriesFunction
         if (result == null)
         {
             var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
             return responseNotFound;
         }
 
@@ -101,7 +99,6 @@ public class BlogSeriesFunction
         if (result == null)
         {
             var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
             return responseNotFound;
         }
 

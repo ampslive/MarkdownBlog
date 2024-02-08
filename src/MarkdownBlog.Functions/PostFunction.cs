@@ -53,13 +53,6 @@ public class PostFunction
             _ => await GetPosts(id)
         };
 
-        if (result?.Count == 0)
-        {
-            var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
-            return responseNotFound;
-        }
-
         var response = req.CreateResponse(HttpStatusCode.OK);
         await response.WriteAsJsonAsync(result);
 
@@ -120,7 +113,6 @@ public class PostFunction
         if (result == null)
         {
             var responseNotFound = req.CreateResponse(HttpStatusCode.NotFound);
-            await responseNotFound.WriteAsJsonAsync(result);
             return responseNotFound;
         }
 
