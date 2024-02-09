@@ -3,8 +3,10 @@ import { getApiText, getApiJson } from '../common/ApiHelper';
 const cacheNameBlogMaster = 'blogMaster';
 let blogMasterUri = 'https://www.amitphilips.com/api/blog';
 
-if(process.env.NODE_ENV === "development");
+if(process.env.NODE_ENV === "development")
+{
     blogMasterUri = process.env.REACT_APP_API_URL + "api/blog";
+}
 
 /***** Posts *****/
 
