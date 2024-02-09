@@ -8,26 +8,5 @@
       },
       "enableLiveMetricsFilters": true
     }
-  },
-  "extensions": {
-    "http": {
-      "routePrefix": "api",
-      "cors": {
-        "allowedOrigins": [
-          "http://localhost:3000/",
-          "https://www.amitphilips.com"
-        ],
-        "allowedMethods": [
-          "GET",
-          "POST",
-          "PUT",
-          "DELETE"
-        ],
-        "allowedHeaders": [
-          "Content-Type",
-          "Authorization"
-        ]
-      }
-    }
   }
 }
