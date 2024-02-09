@@ -25,7 +25,7 @@ function PostBody(props) {
 
     return (
         <Fragment>
-            <div class="text-justify lh-base">
+            <div id="postBody" class="text-justify lh-base">
                 { isBusy ? (<span class="loader"></span>) :
                     (((ContentType === 'embTxt') && <p class='embTxt'>{postBody}</p>)
                     || <div class='mdContainer'>

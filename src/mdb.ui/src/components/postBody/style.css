@@ -38,3 +38,9 @@
       box-shadow: -38px 6px, -14px -6px, 14px 6px;
     }
   }
+
+  #postBody > img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: cover;
+  }
