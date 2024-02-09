@@ -1,7 +1,10 @@
 import { getApiText, getApiJson } from '../common/ApiHelper';
 
 const cacheNameBlogMaster = 'blogMaster';
-const blogMasterUri = 'https://www.amitphilips.com/api/blog';
+let blogMasterUri = 'https://www.amitphilips.com/api/blog';
+
+if(process.env.REACT_APP_API_URL !== undefined);
+    blogMasterUri = process.env.REACT_APP_API_URL + "api/blog";
 
 /***** Posts *****/
 
