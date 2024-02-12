@@ -21,8 +21,9 @@ function Filter() {
                 data = await getPostByBlogSeries(searchTerm.toLowerCase());
             }
             else if (filter === 'author') {
-                data = await getPostByAuthor('z2mbU_IncUikH_hQgjyNzw');
-                setAuthor(getAuthorById('z2mbU_IncUikH_hQgjyNzw', data[0]?.Authors));
+                console.log(searchTerm);
+                data = await getPostByAuthor(searchTerm);
+                setAuthor(getAuthorById(searchTerm, data[0]?.Authors));
             }
 
             //order posts by date descending

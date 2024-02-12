@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.jumbotron::before {
+#jumbotronMain:before {
   content: "";
   position: absolute;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/public/banner.png");

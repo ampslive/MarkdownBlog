@@ -4,7 +4,7 @@ import './style.css'
 function Jumbotron() {
     return (
         <>
-            <div class="jumbotron jumbotron-fluid text-white">
+            <div id="jumbotronMain" class="jumbotron jumbotron-fluid text-white">
                 <div class="jumbotron-text px-3 py-5 my-5 text-center">
                     <h1 class="display-4">Hello, world! I'm Amit</h1>
                     <p class="lead">I'm a passionate coder who thrives on turning ideas into reality using the power of .NET and Azure.</p>
