@@ -5,7 +5,6 @@ function SocialsShare(props) {
 
     const post = props.post;
     const postUrl = document.location.href.replace("http://localhost:3000/", "https://amitphilips.com/");
-    console.log(document);
 
     return (
         <>

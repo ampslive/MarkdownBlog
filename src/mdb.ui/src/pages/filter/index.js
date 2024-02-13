@@ -21,7 +21,6 @@ function Filter() {
                 data = await getPostByBlogSeries(searchTerm.toLowerCase());
             }
             else if (filter === 'author') {
-                console.log(searchTerm);
                 data = await getPostByAuthor(searchTerm);
                 setAuthor(getAuthorById(searchTerm, data[0]?.Authors));
             }

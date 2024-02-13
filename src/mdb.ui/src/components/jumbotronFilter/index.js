@@ -2,7 +2,6 @@ import React from 'react'
 
 function JumbotronFilter(props) {
 
-console.log(props);
     return (
         <div class="jumbotron jumbotron-fluid text-white">
             <div class="container text-center">
