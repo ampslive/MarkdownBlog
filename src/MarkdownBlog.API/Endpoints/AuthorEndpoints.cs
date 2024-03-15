@@ -47,7 +47,7 @@ public static class AuthorEndpoints
         AuthorStore store,
         [FromBody] AuthorModel model)
     {
-        var author = await store.AddAuthor(model.Name, model.ImageUri, model.Bio);
+        var author = await store.AddAuthor(model.Name, model.ImageUri, model.Bio, model.Socials);
         
         return TypedResults.Created($"{author?.Id}", author);
     }
@@ -57,7 +57,7 @@ public static class AuthorEndpoints
         string id,
         [FromBody] AuthorModel model)
     {
-        var author = await store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio);
+        var author = await store.UpdateAuthor(id, model.Name, model.ImageUri, model.Bio, model.Socials);
 
         return (author != null) ? TypedResults.Ok(author)
             : TypedResults.NotFound();
