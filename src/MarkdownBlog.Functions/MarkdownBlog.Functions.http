@@ -1,9 +1,9 @@
 ﻿@MarkdownBlog.Functions_HostAddress = http://localhost:7119
 @seriesId = mL7bN1IJqEGe9nTempMETA
 @authorId = k5EZsYNpe0qMia-VzC7QQg
-@postId = XbNHHuMlvUKpDDDBrSPmSQ
+@postId = P50As4geEUGpH8YhKXY79w
 
-GET {{MarkdownBlog.Functions_HostAddress}}/api/series
+GET http://localhost:7119/api/series
 
 ###
 
@@ -99,7 +99,7 @@ GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/
 
 ###
 
-GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/preview
+GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/published
 ###
 
 GET {{MarkdownBlog.Functions_HostAddress}}/api/posts/{{postId}}
@@ -110,9 +110,9 @@ POST {{MarkdownBlog.Functions_HostAddress}}/api/posts
 Content-Type: application/json
 
 {
-    "title": "Creating a Project Structure that is extensible",
-    "bannerUri": "https://mdbstore.blob.core.windows.net/posts/images/proj-structure/banner-proj-structure.png",
-    "description": "When creating a project, the most basic foundation step is to plan a project structure. Without this being done properly, we will encounter various hurdles down the road. Find the method I use to create a basic project structure that can be used in almost any scenario.",
+    "title": "Testing API's using .http file",
+    "bannerUri": "https://mdbstore.blob.core.windows.net/posts/images/httpfile-visualstudio22/banner-http-vs22.png",
+    "description": "Visual Studio 2022 introduces a new way to test and debug API's instead of using Swagger or POSTMAN. Now send requests to your backend API's without switching away from your favorite IDE.",
     "body": "",
     "authorIds": [
         "k5EZsYNpe0qMia-VzC7QQg"
@@ -120,7 +120,7 @@ Content-Type: application/json
     "seriesId" : "1MgdP7fUrUOgo9go-ynSZQ",
     "meta": {
         "contentType": 2,
-        "contentLocation": "https://mdbstore.blob.core.windows.net/posts/project-structure.md"
+        "contentLocation": "https://mdbstore.blob.core.windows.net/posts/httpfile-visualstudio22.md"
     }
 }
 
