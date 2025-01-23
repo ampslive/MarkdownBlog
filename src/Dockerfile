@@ -12,9 +12,9 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["./src/MarkdownBlog.API/MarkdownBlog.API.csproj", "MarkdownBlog.API/"]
-COPY ["./src/MarkdownBlog.Domain/MarkdownBlog.Domain.csproj", "MarkdownBlog.Domain/"]
-COPY ["./src/MarkdownBlog.Infra/MarkdownBlog.Infra.csproj", "MarkdownBlog.Infra/"]
+COPY ["MarkdownBlog.API/MarkdownBlog.API.csproj", "MarkdownBlog.API/"]
+COPY ["MarkdownBlog.Domain/MarkdownBlog.Domain.csproj", "MarkdownBlog.Domain/"]
+COPY ["MarkdownBlog.Infra/MarkdownBlog.Infra.csproj", "MarkdownBlog.Infra/"]
 RUN dotnet restore "./MarkdownBlog.API/MarkdownBlog.API.csproj"
 
 COPY . .
