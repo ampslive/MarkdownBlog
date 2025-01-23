@@ -29,7 +29,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./src/MarkdownBlog.API/Dockerfile
+        file: ./src/Dockerfile
         push: true
         tags: ampslive/markdownblog:latest
     
