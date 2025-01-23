@@ -19,7 +19,7 @@ RUN dotnet restore "./MarkdownBlog.API/MarkdownBlog.API.csproj"
 
 COPY . .
 WORKDIR "/src/MarkdownBlog.API"
-RUN dotnet build "./MarkdownBlog.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build MarkdownBlog.API.csproj -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
