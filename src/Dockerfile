@@ -17,8 +17,8 @@ COPY ["./src/MarkdownBlog.Domain/MarkdownBlog.Domain.csproj", "MarkdownBlog.Doma
 COPY ["./src/MarkdownBlog.Infra/MarkdownBlog.Infra.csproj", "MarkdownBlog.Infra/"]
 RUN dotnet restore "./MarkdownBlog.API/MarkdownBlog.API.csproj"
 
-COPY . .
 WORKDIR "/src/MarkdownBlog.API"
+COPY . .
 RUN dotnet build MarkdownBlog.API.csproj -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
